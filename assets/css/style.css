@@ -1,0 +1,573 @@
+/* =========================================================
+   VARIABLES & DESIGN TOKENS
+   ========================================================= */
+:root {
+    --primary-blue: #8ea4c8;
+    --primary-blue-light: #b4c6e2;
+    --primary-blue-dark: #647b9f;
+
+    --serenity-bg: #e4ebf5;
+
+    --olive: #5e6f47;
+    --olive-dark: #465533;
+    --olive-card: #6d7f57;
+
+    --gold: #bfa054;
+    --gold-light: #e6ce8a;
+    --gold-dark: #917531;
+
+    --paper-bg: #f7f5f0;
+    --card-cream: #fdfbf7;
+    --white: #ffffff;
+    --text-main: #333a42;
+    --text-muted: #6f7782;
+
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 15px 35px rgba(94, 111, 71, 0.08);
+    --shadow-floating: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================================
+   BASE STYLES & RESET
+   ========================================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--paper-bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.script-font {
+    font-family: 'Sloop Script', cursive;
+}
+
+.serif {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* Contenedor principal estilo móvil/tarjeta estilizada */
+.app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #faf8f5;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================================================
+   BOTÓN FLOTANTE DE MÚSICA
+   ========================================================= */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--gold-light);
+    box-shadow: var(--shadow-floating);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    color: var(--olive);
+}
+
+.music-btn.playing {
+    animation: rotateMusic 4s linear infinite;
+    background: var(--gold-light);
+    color: var(--white);
+}
+
+@keyframes rotateMusic {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   1. HERO / HEADER CON SOBRE
+   ========================================================= */
+.hero-section {
+    padding: 60px 20px 40px;
+    background: linear-gradient(180deg, #f3f0ea 0%, #faf8f5 100%);
+    position: relative;
+}
+
+.couple-names-header {
+    font-size: 3.2rem;
+    color: var(--olive);
+    line-height: 1;
+    margin-bottom: 25px;
+}
+
+.envelope-wrapper {
+    position: relative;
+    max-width: 280px;
+    margin: 0 auto 25px;
+}
+
+.envelope-graphic {
+    width: 100%;
+    background: var(--primary-blue);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+}
+
+.envelope-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: #eee;
+}
+
+.wedding-quote-intro {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 8px;
+}
+
+.wedding-main-date {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    color: var(--gold-dark);
+    font-weight: 600;
+}
+
+/* =========================================================
+   2. BANNER DECORATIVO (ALIANZAS)
+   ========================================================= */
+.rings-banner {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 35px 20px;
+    position: relative;
+}
+
+.rings-banner svg {
+    width: 46px;
+    height: 46px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    margin-bottom: 10px;
+}
+
+.rings-banner p {
+    font-size: 0.85rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   3. CUENTA REGRESIVA & CALENDARIO
+   ========================================================= */
+.countdown-section {
+    padding: 50px 20px;
+    background: #faf8f5;
+}
+
+.countdown-title {
+    font-size: 2.8rem;
+    color: var(--olive);
+    margin-bottom: 20px;
+}
+
+.countdown-timer-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.cd-box {
+    background: var(--white);
+    padding: 14px 12px;
+    border-radius: 12px;
+    min-width: 65px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid #eee7db;
+}
+
+.cd-number {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--olive);
+    display: block;
+    line-height: 1;
+}
+
+.cd-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-top: 5px;
+}
+
+/* Mini Calendario Diciembre */
+.calendar-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 320px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid #eee7db;
+}
+
+.cal-header {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    color: var(--gold-dark);
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px 4px;
+    font-size: 0.85rem;
+}
+
+.cal-grid .day-name {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.cal-grid .day-num {
+    padding: 6px 0;
+    color: var(--text-main);
+}
+
+.cal-grid .day-num.target-date {
+    background-color: var(--olive);
+    color: var(--white);
+    border-radius: 50%;
+    font-weight: bold;
+    position: relative;
+}
+
+/* =========================================================
+   4. FOTOS DE PAREJA (INTERCALADAS)
+   ========================================================= */
+.photo-break {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================================================
+   5. DONDE & CUANDO (CEREMONIA / RECEPCION)
+   ========================================================= */
+.events-section {
+    background-color: var(--primary-blue);
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.event-card-arch {
+    background: var(--white);
+    border-radius: 120px 120px 20px 20px;
+    padding: 40px 25px 30px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+}
+
+.event-card-gold {
+    background: linear-gradient(135deg, #d4b876 0%, #b7984c 100%);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 35px 25px;
+    box-shadow: var(--shadow-card);
+}
+
+.event-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-dark);
+}
+
+.event-card-gold .event-icon {
+    color: var(--white);
+}
+
+.event-title {
+    font-size: 2rem;
+    margin-bottom: 6px;
+}
+
+.event-time {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 8px 0;
+}
+
+.event-place {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+.event-card-gold .event-place {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.polaroid-frame {
+    background: var(--white);
+    padding: 12px 12px 30px;
+    box-shadow: var(--shadow-card);
+    transform: rotate(-2deg);
+    margin: 10px auto;
+    max-width: 260px;
+}
+
+.polaroid-frame img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* =========================================================
+   6. CÓDIGO DE VESTIMENTA (DRESS CODE)
+   ========================================================= */
+.dresscode-section {
+    padding: 60px 20px;
+    background: #faf8f5;
+}
+
+.dresscode-title {
+    font-size: 2.5rem;
+    color: var(--olive);
+    margin-bottom: 10px;
+}
+
+.dresscode-icons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 25px 0;
+}
+
+.dress-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.dress-item svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--olive);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.color-palette-bubbles {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0 15px;
+}
+
+.color-bubble {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.c-olive {
+    background: #556b2f;
+}
+
+.c-camel {
+    background: #c29b62;
+}
+
+.c-navy {
+    background: #2b3a55;
+}
+
+.c-terracotta {
+    background: #b05c48;
+}
+
+.c-blue {
+    background: #647b9f;
+}
+
+/* =========================================================
+   7. DETALLES / NO NIÑOS
+   ========================================================= */
+.banner-info {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 40px 25px;
+}
+
+.icons-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.circle-tag {
+    width: 65px;
+    height: 65px;
+    border: 2px dashed rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================================================
+   8. MESA DE REGALOS & SOBRE VERDE
+   ========================================================= */
+.gift-section {
+    padding: 50px 20px;
+    background: #faf8f5;
+}
+
+.gift-card-olive {
+    background-color: var(--olive-card);
+    color: var(--white);
+    border-radius: 20px;
+    padding: 40px 25px;
+    box-shadow: var(--shadow-card);
+}
+
+.gift-title {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+/* =========================================================
+   9. CONFIRMACIÓN DE ASISTENCIA (RSVP)
+   ========================================================= */
+.rsvp-section {
+    background-color: var(--serenity-bg);
+    padding: 60px 20px 80px;
+}
+
+.rsvp-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 35px 25px;
+    box-shadow: var(--shadow-soft);
+}
+
+.guest-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    margin: 10px 0;
+    background: #faf9f6;
+    border: 1px solid #ede8df;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.guest-option input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--olive);
+    cursor: pointer;
+}
+
+.badge-count {
+    color: var(--gold-dark);
+    font-weight: 600;
+    margin: 10px 0 20px;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn {
+    display: inline-block;
+    background-color: var(--olive);
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(94, 111, 71, 0.2);
+}
+
+.btn:hover {
+    background-color: var(--olive-dark);
+    transform: translateY(-2px);
+}
+
+.btn-gold {
+    background-color: var(--white);
+    color: var(--gold-dark);
+    font-weight: 600;
+}
+
+.btn-gold:hover {
+    background-color: #faf8f5;
+    color: var(--gold);
+}
+
+.btn-outline-white {
+    background: transparent;
+    border: 1.5px solid var(--white);
+    color: var(--white);
+}
+
+.btn-outline-white:hover {
+    background: var(--white);
+    color: var(--olive-card);
+}

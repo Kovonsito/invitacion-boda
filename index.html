@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save The Date | Karla & Kevin</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Contenedor Principal (Estilo Invitación Móvil) -->
+    <div class="app-container">
+
+        <!-- Botón Flotante de Música -->
+        <button id="music-toggle" class="music-btn" onclick="toggleMusic()" aria-label="Música de fondo">
+            <span id="music-icon">&#9654;</span>
+        </button>
+        <audio id="bg-music" loop preload="auto">
+            <source src="assets/audio/Bruno Mars - Risk It All.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- 1. HERO CON SOBRE Y FOTO -->
+        <section class="hero-section">
+            <h1 class="couple-names-header script-font" data-aos="fade-down" data-aos-duration="1000">Kevin & Mayalli
+            </h1>
+
+            <div class="envelope-wrapper" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="envelope-graphic">
+                    <img src="assets/images/hero/portada.webp" alt="Karla y Kevin" class="envelope-photo"
+                        onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80'">
+                </div>
+            </div>
+
+            <p class="wedding-quote-intro serif" data-aos="fade-up">Y sobre todas estas cosas vestíos de amor, que es el
+                vínculo perfecto.
+
+                Colosenses 3:14</p>
+            <p class="wedding-main-date" data-aos="fade-up" data-aos-delay="100">04 · DICIEMBRE · 2026</p>
+        </section>
+
+        <!-- 2. BANNER DECORATIVO (ALIANZAS) -->
+        <div class="rings-banner" data-aos="fade-up">
+            <svg viewBox="0 0 24 24">
+                <circle cx="9" cy="12" r="6" />
+                <circle cx="15" cy="12" r="6" />
+            </svg>
+            <p class="serif">Un solo corazón en dos almas</p>
+        </div>
+
+        <!-- 3. CUENTA REGRESIVA & CALENDARIO -->
+        <section class="countdown-section">
+            <h2 class="countdown-title script-font" data-aos="fade-up">Faltan tan solo...</h2>
+
+            <div class="countdown-timer-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="cd-box">
+                    <span class="cd-number" id="cd-days">00</span>
+                    <span class="cd-label">Días</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-number" id="cd-hours">00</span>
+                    <span class="cd-label">Horas</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-number" id="cd-minutes">00</span>
+                    <span class="cd-label">Min</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-number" id="cd-seconds">00</span>
+                    <span class="cd-label">Seg</span>
+                </div>
+            </div>
+
+            <!-- Mini Calendario -->
+            <div class="calendar-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="cal-header serif">Diciembre 2026</div>
+                <div class="cal-grid">
+                    <div class="day-name">D</div>
+                    <div class="day-name">L</div>
+                    <div class="day-name">M</div>
+                    <div class="day-name">M</div>
+                    <div class="day-name">J</div>
+                    <div class="day-name">V</div>
+                    <div class="day-name">S</div>
+
+                    <!-- Días del mes (Ejemplo Dic 2026: Mié 1 al 31) -->
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div class="day-num">1</div>
+                    <div class="day-num">2</div>
+                    <div class="day-num">3</div>
+                    <div class="day-num target-date">4</div>
+                    <div class="day-num">5</div>
+                    <div class="day-num">6</div>
+                    <div class="day-num">7</div>
+                    <div class="day-num">8</div>
+                    <div class="day-num">9</div>
+                    <div class="day-num">10</div>
+                    <div class="day-num">11</div>
+                    <div class="day-num">12</div>
+                    <div class="day-num">13</div>
+                    <div class="day-num">14</div>
+                    <div class="day-num">15</div>
+                    <div class="day-num">16</div>
+                    <div class="day-num">17</div>
+                    <div class="day-num">18</div>
+                    <div class="day-num">19</div>
+                    <div class="day-num">20</div>
+                    <div class="day-num">21</div>
+                    <div class="day-num">22</div>
+                    <div class="day-num">23</div>
+                    <div class="day-num">24</div>
+                    <div class="day-num">25</div>
+                    <div class="day-num">26</div>
+                    <div class="day-num">27</div>
+                    <div class="day-num">28</div>
+                    <div class="day-num">29</div>
+                    <div class="day-num">30</div>
+                    <div class="day-num">31</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. FOTO DE PAREJA (INTERCALADA 1) -->
+        <img src="assets/images/gallery/foto-1.webp" alt="Foto Novios" class="photo-break"
+            onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80'"
+            data-aos="fade-up">
+
+        <!-- 5. DÓNDE & CUÁNDO (CEREMONIA Y RECEPCIÓN) -->
+        <section class="events-section">
+            <!-- Ceremonia -->
+            <div class="event-card-arch" data-aos="fade-up">
+                <div class="event-icon">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                </div>
+                <h3 class="event-title script-font" style="color: var(--olive);">Ceremonia</h3>
+                <p class="event-time">2:00 PM</p>
+                <p class="event-place">Templo Expiatorio / Capilla<br><small>Tepic, Nayarit</small></p>
+                <a href="https://maps.app.goo.gl/onuwvL4tyU1zq8Xy6" target="_blank" class="btn">Ver Ubicación</a>
+            </div>
+
+            <!-- Recepción -->
+            <div class="event-card-gold" data-aos="fade-up" data-aos-delay="100">
+                <div class="event-icon">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8">
+                        <path d="M8 22h8M12 11v11M5 3l7 8 7-8z" />
+                    </svg>
+                </div>
+                <h3 class="event-title script-font">Recepción</h3>
+                <p class="event-time">3:30 PM</p>
+                <p class="event-place">Azul Terraza<br><small>Tepic, Nayarit</small></p>
+                <a href="https://maps.app.goo.gl/onuwvL4tyU1zq8Xy6" target="_blank" class="btn btn-gold">Ver
+                    Ubicación</a>
+            </div>
+
+            <!-- Foto estilo Polaroid -->
+            <div class="polaroid-frame" data-aos="zoom-in" data-aos-delay="200">
+                <img src="assets/images/gallery/polaroid.webp" alt="Momento Especial"
+                    onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80'">
+            </div>
+        </section>
+
+        <!-- 6. CÓDIGO DE VESTIMENTA -->
+        <section class="dresscode-section">
+            <h2 class="dresscode-title script-font" data-aos="fade-up">Código de Vestimenta</h2>
+            <p style="font-weight: 500; font-size: 1.1rem; color: var(--olive);" data-aos="fade-up">Formal / Rigurosa
+                Etiqueta</p>
+
+            <div class="dresscode-icons" data-aos="fade-up" data-aos-delay="100">
+                <div class="dress-item">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l3 5-3 5-3-5zM9 12h6v10H9z" />
+                    </svg>
+                    <span style="font-size: 0.85rem;">Ellas: Vestido Largo</span>
+                </div>
+                <div class="dress-item">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 3h12l-2 9H8zM9 12v9h6v-9" />
+                    </svg>
+                    <span style="font-size: 0.85rem;">Ellos: Traje Formal</span>
+                </div>
+            </div>
+
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 15px;" data-aos="fade-up">Paleta de
+                colores sugerida:</p>
+            <div class="color-palette-bubbles" data-aos="fade-up" data-aos-delay="150">
+                <div class="color-bubble c-olive" title="Verde Olivo"></div>
+                <div class="color-bubble c-camel" title="Camel / Dorado"></div>
+                <div class="color-bubble c-navy" title="Azul Marino"></div>
+                <div class="color-bubble c-terracotta" title="Terracota"></div>
+                <div class="color-bubble c-blue" title="Azul Serenity"></div>
+            </div>
+            <p style="font-size: 0.75rem; color: #999; font-style: italic;" data-aos="fade-up">
+                * Favor de reservar el color blanco y marfil exclusivamente para la novia.
+            </p>
+        </section>
+
+        <!-- 7. DETALLES (NO NIÑOS / RESPETO) -->
+        <div class="banner-info" data-aos="fade-up">
+            <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 8px;">Un Evento para Adultos</h3>
+            <p style="font-size: 0.85rem; line-height: 1.5; opacity: 0.95;">
+                Amamos a sus pequeños, pero hemos decidido celebrar este día exclusivamente entre adultos. ¡Agradecemos
+                su comprensión!
+            </p>
+            <div class="icons-row">
+                <div class="circle-tag">No Niños</div>
+                <div class="circle-tag">Puntualidad</div>
+            </div>
+        </div>
+
+        <!-- FOTO DE PAREJA (INTERCALADA 2) -->
+        <img src="assets/images/gallery/foto-2.webp" alt="Karla y Kevin" class="photo-break"
+            onerror="this.src='https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80'"
+            data-aos="fade-up">
+
+        <!-- 8. MESA DE REGALOS & LLUVIA DE SOBRES -->
+        <section class="gift-section">
+            <div class="gift-card-olive" data-aos="fade-up">
+                <h3 class="gift-title script-font">Mesa de Regalos</h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
+                    Su presencia es nuestro mejor regalo. Si desean hacernos un presente, contaremos con opción de
+                    lluvia de sobres el día del evento o transferencia bancaria.
+                </p>
+                <button class="btn btn-outline-white"
+                    onclick="alert('CLABE Interbancaria: 0123 4567 8901 2345\nBanco: BBVA\nTitular: Karla & Kevin')">Ver
+                    Datos Bancarios</button>
+            </div>
+        </section>
+
+        <!-- FOTO DE PAREJA (INTERCALADA 3) -->
+        <img src="assets/images/gallery/foto-3.webp" alt="Pareja Boda" class="photo-break"
+            onerror="this.src='https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80'"
+            data-aos="fade-up">
+
+        <!-- 9. CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
+        <section class="rsvp-section">
+            <div class="rsvp-card" data-aos="zoom-in" id="rsvp-container">
+                <h2 class="script-font" style="font-size: 2.6rem; color: var(--olive); margin-bottom: 10px;">
+                    Confirmación</h2>
+
+                <div id="loading-state">Cargando tus datos de pase...</div>
+
+                <div id="form-state" style="display: none;">
+                    <h3 class="serif" id="guest-name"
+                        style="font-size: 1.6rem; color: var(--olive); margin-bottom: 6px;">
+                    </h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Selecciona quiénes de tu grupo asistirán:
+                    </p>
+
+                    <div class="badge-count" id="badge-pases"></div>
+
+                    <div id="guests-list" style="margin-bottom: 15px;"></div>
+
+                    <button class="btn" id="btn-submit" onclick="enviarRSVP()">Confirmar Asistencia</button>
+                </div>
+
+                <div id="confirmed-state" style="display: none;">
+                    <h3 class="serif" style="font-size: 1.6rem; color: var(--olive);">¡Respuesta Registrada!</h3>
+                    <p id="confirmed-msg" style="margin-top: 10px; font-size: 0.9rem; color: #555;"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script de configuración GAS -->
+    <script>
+        const rowId = "<?= id ?>";
+    </script>
+
+    <!-- Librerías JS & Módulos -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/countdown.js"></script>
+    <script src="assets/js/music.js"></script>
+    <script src="assets/js/rsvp.js"></script>
+</body>
+
+</html>
