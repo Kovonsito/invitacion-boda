@@ -27,6 +27,17 @@
     --shadow-floating: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
+@font-face {
+    font-family: 'Sloop Script';
+    src: url('../fonts/Sloop Script.woff2') format('woff2');
+    font-weight: lighter;
+    font-style: light;
+    font-display: swap;
+}
+
+
+
+
 /* =========================================================
    BASE STYLES & RESET
    ========================================================= */
@@ -111,55 +122,148 @@ body {
    1. HERO / HEADER CON SOBRE
    ========================================================= */
 .hero-section {
-    padding: 60px 20px 40px;
-    background: linear-gradient(180deg, #f3f0ea 0%, #faf8f5 100%);
+    padding: 50px 20px 50px;
+    background-image: url(../images/hero/fondo-1.png);
+    background-size: cover;
+    background-position: center;
     position: relative;
+    overflow: hidden;
 }
 
 .couple-names-header {
-    font-size: 3.2rem;
-    color: var(--olive);
-    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 4.2rem;
+    color: var(--primary-blue-dark);
+    line-height: 0.85;
     margin-bottom: 25px;
+    padding: 0 10px;
 }
 
-.envelope-wrapper {
+.couple-names-header .name.first {
+    align-self: flex-start;
+    margin-left: 5%;
+}
+
+.couple-names-header .name.connector {
+    font-size: 2.8rem;
+    margin: -15px 0 -10px 0;
+    align-self: center;
+    transform: translateX(-15px);
+}
+
+.couple-names-header .name.second {
+    align-self: flex-end;
+    margin-right: 5%;
+}
+
+/* =========================================================
+   ESTRUCTURA DEL SOBRE Y CAPAS
+   ========================================================= */
+.envelope-container {
     position: relative;
-    max-width: 280px;
-    margin: 0 auto 25px;
+    width: 320px;
+    height: 270px;
+    margin: 25px auto 35px;
 }
 
-.envelope-graphic {
+.env-layer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
-    background: var(--primary-blue);
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: var(--shadow-soft);
-    position: relative;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
 }
 
-.envelope-photo {
-    width: 100%;
-    height: 200px;
+.env-back {
+    z-index: 1;
+}
+
+/* Foto inclinada con marco */
+.env-photo-wrapper {
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%) rotate(8deg);
+    width: 145px;
+    height: 165px;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.env-photo-wrapper:hover {
+    transform: translateX(-50%) rotate(0deg) scale(1.05);
+}
+
+.env-photo-img {
+    position: absolute;
+    top: 6%;
+    left: 6%;
+    width: 88%;
+    height: 88%;
     object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    background-color: #eee;
+    display: block;
 }
 
-.wedding-quote-intro {
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin: 20px 0 8px;
+.env-photo-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+    pointer-events: none;
 }
 
-.wedding-main-date {
-    font-size: 1.4rem;
-    letter-spacing: 3px;
-    color: var(--gold-dark);
-    font-weight: 600;
+.env-front {
+    z-index: 3;
+}
+
+/* Flores laterales */
+.env-flower {
+    position: absolute;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.env-flower-left {
+    bottom: 85px;
+    left: 0px;
+    width: 48px;
+}
+
+.env-flower-right {
+    bottom: 80px;
+    right: 0px;
+    width: 48px;
+}
+
+/* =========================================================
+   CITA BÍBLICA (GARAMOND)
+   ========================================================= */
+.bible-quote-container {
+    margin-top: 20px;
+}
+
+.bible-quote {
+    font-size: 1.25rem;
+    color: var(--primary-blue-dark);
+    line-height: 1.5;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.bible-verse {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-blue-dark);
+    margin-top: 14px;
+    letter-spacing: 0.5px;
 }
 
 /* =========================================================
