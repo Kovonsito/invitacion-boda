@@ -4,3 +4,10 @@ AOS.init({
     duration: 800,
     offset: 120
 });
+
+const photoWrapper = document.querySelector('.env-photo-wrapper');
+if (photoWrapper) {
+    photoWrapper.addEventListener('click', () => {
+        photoWrapper.classList.toggle('opened');
+    });
+}
