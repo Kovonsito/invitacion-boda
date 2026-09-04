@@ -35,6 +35,14 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Alta';
+    src: url('../fonts/Alta_Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 
 
 
@@ -389,66 +397,121 @@ body {
    3. CUENTA REGRESIVA & CALENDARIO
    ========================================================= */
 .countdown-section {
-    padding: 50px 20px;
-    background: #faf8f5;
+    padding: 60px 15px 0 15px;
+    background-image: url(../images/hero/fondo-1.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.countdown-title {
-    font-size: 2.8rem;
-    color: var(--olive);
+/* 1. Título "Prepárate..." */
+.countdown-title.script-font {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.2rem;
+    color: #4b583e;
+    margin-bottom: 2px;
+    font-weight: normal;
+}
+
+/* 2. Subtítulo "SOLO FALTAN" */
+.countdown-subtitle {
+    font-family: 'Alta', sans-serif;
+    font-size: 1.35rem;
+    color: #c29b53;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+/* 3. Contador horizontal limpio (sin cajas) */
+.countdown-timer-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-.countdown-timer-grid {
+.cd-inline-item {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 35px;
+    flex-direction: column;
+    align-items: center;
 }
 
-.cd-box {
-    background: var(--white);
-    padding: 14px 12px;
-    border-radius: 12px;
-    min-width: 65px;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid #eee7db;
-}
-
-.cd-number {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--olive);
-    display: block;
+.cd-inline-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    color: #3b4630;
     line-height: 1;
+    font-weight: 500;
 }
 
-.cd-label {
+.cd-inline-lbl {
+    font-family: 'Alta', sans-serif;
     font-size: 0.65rem;
-    text-transform: uppercase;
+    color: #4b583e;
     letter-spacing: 1px;
-    color: var(--text-muted);
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
-/* Mini Calendario Diciembre */
-.calendar-card {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 24px;
-    max-width: 320px;
-    margin: 0 auto;
-    box-shadow: var(--shadow-soft);
-    border: 1px solid #eee7db;
+.cd-inline-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: #3b4630;
+    margin-bottom: 14px;
 }
 
-.cal-header {
-    font-size: 1.2rem;
+/* 4. Tagline "¡PARA NUESTRO GRAN DÍA!" */
+.countdown-tagline {
+    font-family: 'Alta', sans-serif;
+    font-size: 1.15rem;
+    color: #c29b53;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+}
+
+/* 5. Mini Calendario Minimalista */
+.calendar-card-minimal {
+    width: 100%;
+    max-width: 310px;
+    border: 1.5px solid rgba(194, 155, 83, 0.5);
+    border-radius: 4px;
+    padding: 20px 16px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(2px);
+}
+
+.cal-header-minimal .cal-month {
+    font-size: 1.8rem;
     letter-spacing: 3px;
-    color: var(--gold-dark);
-    font-weight: 600;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+    color: #4b583e;
+    display: block;
+}
+
+.cal-year-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.cal-year-line .line {
+    height: 1px;
+    width: 45px;
+    background: #c29b53;
+}
+
+.cal-year-line .year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: #4b583e;
+    letter-spacing: 3px;
 }
 
 .cal-grid {
@@ -459,22 +522,57 @@ body {
 }
 
 .cal-grid .day-name {
+    font-family: 'Alta', sans-serif;
     font-weight: 600;
-    color: var(--text-muted);
-    font-size: 0.75rem;
+    color: #4b583e;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
 }
 
 .cal-grid .day-num {
-    padding: 6px 0;
-    color: var(--text-main);
+    padding: 4px 0;
+    color: #4b583e;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
 }
 
+/* Día objetivo con círculo verde */
 .cal-grid .day-num.target-date {
-    background-color: var(--olive);
-    color: var(--white);
+    background-color: #4b583e;
+    color: #ffffff;
     border-radius: 50%;
-    font-weight: bold;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    margin: 0 auto;
+    font-weight: 600;
+}
+
+/* 6. Foto inferior con desvanecido gradual */
+.countdown-photo-container {
+    width: 100%;
     position: relative;
+    margin-top: 15px;
+    line-height: 0;
+}
+
+.countdown-photo-img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+}
+
+.countdown-photo-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(to bottom, rgba(247, 245, 240, 1) 0%, rgba(247, 245, 240, 0) 100%);
+    z-index: 2;
+    pointer-events: none;
 }
 
 /* =========================================================
