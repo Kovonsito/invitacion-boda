@@ -42,12 +42,12 @@
                 <span class="name second">Mayalli</span>
             </h1>
 
-            <div class="envelope-container" data-aos="zoom-in" data-aos-duration="1200">
+            <div class="envelope-container" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="150">
                 <!-- Capa trasera del sobre -->
                 <img src="assets/images/hero/sobre-capa-trasera.png" alt="Sobre" class="env-layer env-back">
 
                 <!-- Foto polaroid inclinada con foto de los novios + marco -->
-                <div class="env-photo-wrapper">
+                <div class="env-photo-wrapper" id="hero-photo-wrapper">
                     <img src="assets/images/hero/foto-dentro-de-marco.jpeg" alt="Kevin y Mayalli" class="env-photo-img">
                     <img src="assets/images/hero/marco-foto.png" alt="Marco" class="env-photo-frame">
                 </div>
@@ -56,12 +56,12 @@
                 <img src="assets/images/hero/sobre-capa-delantera.png" alt="Solapa Sobre" class="env-layer env-front">
 
                 <!-- Flores decorativas laterales -->
-                <img src="assets/images/hero/flores1.png" alt="Flores" class="env-flower env-flower-left">
-                <img src="assets/images/hero/flores2.png" alt="Flores" class="env-flower env-flower-right">
+                <img src="assets/images/hero/flores1.png" alt="Flores" class="env-flower env-flower-left" data-aos="fade-right" data-aos-delay="400">
+                <img src="assets/images/hero/flores2.png" alt="Flores" class="env-flower env-flower-right" data-aos="fade-left" data-aos-delay="400">
             </div>
 
             <!-- Cita bíblica -->
-            <div class="bible-quote-container" data-aos="fade-up">
+            <div class="bible-quote-container" data-aos="fade-up" data-aos-delay="200">
                 <p class="bible-quote serif">
                     Y sobre todas estas cosas<br>
                     vestíos de amor, que es el<br>
@@ -72,17 +72,17 @@
         </section>
 
         <!-- 2. SECCIÓN REPRODUCTOR DE MÚSICA CON ALIANZAS -->
-        <section class="music-banner-section" data-aos="fade-up">
-            <div class="music-player-card" onclick="toggleMusic()">
+        <section class="music-banner-section">
+            <div class="music-player-card" onclick="toggleMusic()" data-aos="fade-up" data-aos-duration="900">
                 <!-- Ilustración de Alianzas -->
-                <div class="player-rings-icon">
+                <div class="player-rings-icon" data-aos="zoom-in" data-aos-delay="150">
                     <img src="assets/images/gallery/anillos.png" alt="Alianzas" class="player-rings-img">
                 </div>
 
-                <p class="player-quote">¡DALE PLAY PARA ESCUCHAR NUESTRA CANCIÓN!</p>
+                <p class="player-quote" data-aos="fade-up" data-aos-delay="200">¡DALE PLAY PARA ESCUCHAR NUESTRA CANCIÓN!</p>
 
                 <!-- Barra y controles estilo reproductor -->
-                <div class="player-controls">
+                <div class="player-controls" data-aos="fade-up" data-aos-delay="250">
                     <div class="player-progress-bar">
                         <div class="player-progress-fill" id="player-progress-fill"></div>
                         <div class="player-progress-dot" id="player-progress-dot"></div>
@@ -102,10 +102,10 @@
         <!-- 3. CUENTA REGRESIVA & CALENDARIO -->
         <section class="countdown-section">
             <h2 class="countdown-title script-font" data-aos="fade-up">Prepárate...</h2>
-            <p class="countdown-subtitle" data-aos="fade-up">SOLO FALTAN</p>
+            <p class="countdown-subtitle" data-aos="fade-up" data-aos-delay="100">SOLO FALTAN</p>
 
             <!-- Contador plano con separadores ":" -->
-            <div class="countdown-timer-inline" data-aos="fade-up" data-aos-delay="100">
+            <div class="countdown-timer-inline" data-aos="fade-up" data-aos-delay="150">
                 <div class="cd-inline-item">
                     <span class="cd-inline-num" id="cd-days">00</span>
                     <span class="cd-inline-lbl">DIAS</span>
@@ -184,10 +184,24 @@
                 </div>
             </div>
 
-            <!-- Foto de pareja inferior con desvanecido -->
-            <div class="countdown-photo-container" data-aos="fade-up">
-                <img src="assets/images/gallery/foto-conteo.jpg" alt="Kevin y Karla" class="countdown-photo-img">
-                <div class="countdown-photo-color-fade"></div>
+            <!-- Botón interactivo para agregar al calendario -->
+            <div class="calendar-action-wrap" data-aos="fade-up" data-aos-delay="200">
+                <button type="button" onclick="openCalendarModal()" class="calendar-add-btn">
+                    <svg class="cal-btn-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>AGREGAR AL CALENDARIO</span>
+                </button>
+            </div>
+
+            <!-- Foto de pareja inferior con desvanecido superior e inferior unificado -->
+            <div class="photo-fade-container countdown-photo-wrap" data-aos="fade-up">
+                <div class="photo-fade-top fade-cream"></div>
+                <img src="assets/images/gallery/foto-conteo.jpg" alt="Kevin y Karla" class="photo-fade-img">
+                <div class="photo-fade-bottom fade-blue-serenity"></div>
             </div>
         </section>
 
@@ -204,15 +218,15 @@
                         <p class="event-hour">2:00 PM</p>
                         <h4 class="event-venue-title">AZUL TERRAZA</h4>
                         <p class="event-venue-address">Palomas km 1.8, El<br>Armadillo, 63792 Tepic, Nay.</p>
-                        <a href="https://maps.app.goo.gl/onuwvL4tyU1zq8Xy6" target="_blank" class="event-map-btn">VER MAPA</a>
+                        <button type="button" onclick="openMapModal()" class="event-map-btn">VER MAPA</button>
                     </div>
                 </div>
 
                 <!-- Flor blanca izquierda abajo del arco -->
-                <img src="assets/images/gallery/flores1-ceremonia.png" alt="Flores decorativas" class="event-flower flower-left">
+                <img src="assets/images/gallery/flores1-ceremonia.png" alt="Flores decorativas" class="event-flower flower-left" data-aos="fade-right" data-aos-delay="200">
 
                 <!-- Flor verde derecha arriba de la recepción -->
-                <img src="assets/images/gallery/flores2-ceremonia.png" alt="Flores decorativas" class="event-flower flower-top-right">
+                <img src="assets/images/gallery/flores2-ceremonia.png" alt="Flores decorativas" class="event-flower flower-top-right" data-aos="fade-left" data-aos-delay="250">
 
                 <!-- Tarjeta Rectangular Dorada: Recepción -->
                 <div class="event-gold-card" data-aos="fade-left" data-aos-delay="150">
@@ -224,7 +238,7 @@
                         <p class="event-hour">3:00 PM</p>
                         <h4 class="event-venue-title">AZUL TERRAZA</h4>
                         <p class="event-venue-address">Palomas km 1.8,<br>El Armadillo,<br>63792 Tepic,<br>Nay.</p>
-                        <a href="https://maps.app.goo.gl/onuwvL4tyU1zq8Xy6" target="_blank" class="event-map-btn gold-btn">VER MAPA</a>
+                        <button type="button" onclick="openMapModal()" class="event-map-btn gold-btn">VER MAPA</button>
                     </div>
                 </div>
 
@@ -234,25 +248,25 @@
                         <img src="assets/images/gallery/foto-marco-ceremonia.jpeg" alt="Kevin y Karla" class="event-polaroid-img">
                     </div>
                     <!-- Flor colgante en la esquina inferior derecha de la polaroid -->
-                    <img src="assets/images/gallery/flores3-ceremonia.png" alt="Flor decorativa" class="event-flower flower-polaroid">
+                    <img src="assets/images/gallery/flores3-ceremonia.png" alt="Flor decorativa" class="event-flower flower-polaroid" data-aos="zoom-in" data-aos-delay="350">
                 </div>
             </div>
         </section>
 
         <!-- 6. CÓDIGO DE VESTIMENTA -->
         <section class="dresscode-section">
-            <div class="dresscode-inner" data-aos="fade-up">
-                <h2 class="dresscode-title script-font">Código de vestimenta</h2>
-                <h3 class="dresscode-subtitle">FORMAL CAMPESTRE</h3>
+            <div class="dresscode-inner">
+                <h2 class="dresscode-title script-font" data-aos="fade-up">Código de vestimenta</h2>
+                <h3 class="dresscode-subtitle" data-aos="fade-up" data-aos-delay="100">FORMAL CAMPESTRE</h3>
 
-                <div class="dresscode-illustration-wrap" data-aos="zoom-in" data-aos-delay="100">
+                <div class="dresscode-illustration-wrap" data-aos="zoom-in" data-aos-delay="150">
                     <img src="assets/images/gallery/novios-codigo-vestimenta.png" alt="Formal Campestre Pareja" class="dresscode-couple-img">
                 </div>
 
-                <h2 class="dresscode-title script-font suggested-title" data-aos="fade-up">Colores sugeridos</h2>
-                <p class="dresscode-recommend-label" data-aos="fade-up">RECOMENDAMOS UTILIZAR<br>COLORES COMO</p>
+                <h2 class="dresscode-title script-font suggested-title" data-aos="fade-up" data-aos-delay="100">Colores sugeridos</h2>
+                <p class="dresscode-recommend-label" data-aos="fade-up" data-aos-delay="150">RECOMENDAMOS UTILIZAR<br>COLORES COMO</p>
 
-                <ul class="dresscode-color-list" data-aos="fade-up" data-aos-delay="100">
+                <ul class="dresscode-color-list" data-aos="fade-up" data-aos-delay="200">
                     <li>VERDE OLIVO</li>
                     <li>CAMEL</li>
                     <li>AZUL MARINO</li>
@@ -262,7 +276,7 @@
                     <li>AZUL ACERO</li>
                 </ul>
 
-                <div class="color-palette-bubbles" data-aos="fade-up" data-aos-delay="150">
+                <div class="color-palette-bubbles" data-aos="zoom-in" data-aos-delay="250">
                     <div class="color-bubble c-verde-olivo" title="Verde Olivo"></div>
                     <div class="color-bubble c-camel" title="Camel"></div>
                     <div class="color-bubble c-azul-marino" title="Azul Marino"></div>
@@ -275,22 +289,22 @@
         </section>
 
         <!-- 7. RECOMENDACIONES DE VESTIMENTA (RESERVADOS Y PROHIBICIONES) -->
-        <section class="dress-rules-section" data-aos="fade-up">
+        <section class="dress-rules-section">
             <!-- Bloque Superior Azul: Tonos reservados para los novios -->
             <div class="dress-rules-top">
-                <p class="dress-rules-text">
+                <p class="dress-rules-text" data-aos="fade-up">
                     AGRADECEMOS TOMAR EN CUENTA:<br>
                     RESERVAR LOS TONOS BLANCO,<br>
                     AZUL CIELO Y COLORES PARECIDOS<br>
                     EXCLUSIVAMENTE PARA LOS NOVIOS.
                 </p>
-                <div class="dress-rules-novios-wrap">
-                    <img src="assets/images/gallery/novios-codigo-vestimenta.png" alt="Novios reservado" class="dress-rules-novios-img">
+                <div class="dress-rules-novios-wrap" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="assets/images/gallery/novios-codigo-vestimenta-cropped.png" alt="Novios reservado" class="dress-rules-novios-img">
                 </div>
             </div>
 
             <!-- Franja Central Crema/Amarilla: Evitar color negro y ropa casual -->
-            <div class="dress-rules-middle">
+            <div class="dress-rules-middle" data-aos="fade-up" data-aos-delay="100">
                 <p class="dress-rules-alert-text">
                     EVITAR EL USO DE COLOR NEGRO Y<br>
                     ROPA CASUAL (MEZCLILLA O TENIS)
@@ -301,105 +315,386 @@
             <div class="dress-rules-bottom">
                 <div class="dress-ban-icons-row">
                     <!-- Tenis / Sneaker Prohibido -->
-                    <div class="dress-ban-circle">
-                        <svg class="dress-ban-svg" viewBox="0 0 100 100" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
-                            <!-- Tenis / Sneaker vector -->
-                            <path d="M18 64 L26 64 C29 64 32 62 34 58 L38 52 C42 47 48 46 56 49 L70 54 C74 55 77 58 78 61 L82 64" stroke-width="2"/>
-                            <path d="M18 64 L18 73 C18 75 20 77 22 77 L80 77 C82 77 84 75 84 73 L84 66 C84 65 83 64 82 64 Z" stroke-width="2"/>
-                            <line x1="18" y1="71" x2="84" y2="71" stroke-width="1.8"/>
-                            <path d="M26 64 C25 59 26 53 28 50 C29 48 33 48 35 52 L35 64" stroke-width="1.8"/>
-                            <line x1="42" y1="52" x2="49" y2="53" stroke-width="1.8"/>
-                            <line x1="45" y1="56" x2="52" y2="57" stroke-width="1.8"/>
-                            <line x1="48" y1="60" x2="56" y2="61" stroke-width="1.8"/>
-                            <!-- Círculo y diagonal de prohibición -->
-                            <circle cx="50" cy="50" r="46" stroke="#ffffff" stroke-width="3"/>
-                            <line x1="18" y1="82" x2="82" y2="18" stroke="#ffffff" stroke-width="3"/>
-                        </svg>
+                    <div class="dress-ban-circle" data-aos="zoom-in" data-aos-delay="150">
+                        <img src="assets/images/gallery/teni-prohibicion-cropped.png" alt="Prohibido tenis" class="dress-ban-img">
                     </div>
 
                     <!-- Mezclilla / Pantalón Jeans Prohibido -->
-                    <div class="dress-ban-circle">
-                        <svg class="dress-ban-svg" viewBox="0 0 100 100" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
-                            <!-- Pantalón Jeans vector -->
-                            <!-- Pretina / Cinturón -->
-                            <path d="M30 20 L70 20 L68 26 L32 26 Z" stroke-width="2"/>
-                            <!-- Costuras y botón -->
-                            <circle cx="50" cy="23" r="1.5" fill="#ffffff"/>
-                            <line x1="50" y1="26" x2="50" y2="38" stroke-width="1.8"/>
-                            <!-- Bolsillos curvos -->
-                            <path d="M32 26 Q40 28 41 36" stroke-width="1.6"/>
-                            <path d="M68 26 Q60 28 59 36" stroke-width="1.6"/>
-                            <!-- Pierna izquierda -->
-                            <path d="M30 26 L28 80 L44 80 L49 42" stroke-width="2"/>
-                            <!-- Pierna derecha -->
-                            <path d="M70 26 L72 80 L56 80 L51 42" stroke-width="2"/>
-                            <!-- Costura entrepierna y detalles de pliegues -->
-                            <line x1="49" y1="42" x2="51" y2="42" stroke-width="1.8"/>
-                            <path d="M34 56 Q37 58 39 55" stroke-width="1.2"/>
-                            <path d="M62 60 Q64 62 66 59" stroke-width="1.2"/>
-                            <!-- Círculo y diagonal de prohibición -->
-                            <circle cx="50" cy="50" r="46" stroke="#ffffff" stroke-width="3"/>
-                            <line x1="18" y1="82" x2="82" y2="18" stroke="#ffffff" stroke-width="3"/>
-                        </svg>
+                    <div class="dress-ban-circle" data-aos="zoom-in" data-aos-delay="250">
+                        <img src="assets/images/gallery/mezclilla-prohibicion-cropped.png" alt="Prohibido mezclilla" class="dress-ban-img">
                     </div>
                 </div>
 
-                <!-- Foto de pareja inferior dentro del bloque azul con desvanecido -->
-                <div class="dress-photo-container" data-aos="fade-up">
-                    <img src="assets/images/gallery/foto-codigo-vestimenta.jpeg" alt="Kevin y Mayalli" class="dress-photo-img">
-                    <div class="dress-photo-color-fade"></div>
+                <!-- Foto de pareja inferior dentro del bloque azul con desvanecido superior e inferior unificado -->
+                <div class="photo-fade-container dress-photo-wrap" data-aos="fade-up" data-aos-delay="150">
+                    <div class="photo-fade-top fade-blue-rules"></div>
+                    <img src="assets/images/gallery/foto-codigo-vestimenta.jpeg" alt="Kevin y Mayalli" class="photo-fade-img">
+                    <div class="photo-fade-bottom fade-cream"></div>
                 </div>
             </div>
         </section>
 
         <!-- 8. MESA DE REGALOS & LLUVIA DE SOBRES -->
         <section class="gift-section">
-            <div class="gift-card-olive" data-aos="fade-up">
-                <h3 class="gift-title script-font">Mesa de Regalos</h3>
-                <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
-                    Su presencia es nuestro mejor regalo. Si desean hacernos un presente, contaremos con opción de
-                    lluvia de sobres el día del evento o transferencia bancaria.
-                </p>
-                <button class="btn btn-outline-white"
-                    onclick="alert('CLABE Interbancaria: 0123 4567 8901 2345\nBanco: BBVA\nTitular: Karla & Kevin')">Ver
-                    Datos Bancarios</button>
-            </div>
-        </section>
+            <div class="gift-card-container">
+                <!-- Flor decorativa superior derecha -->
+                <img src="assets/images/gallery/flores1-mesa-regalos.png" alt="Flores decorativas" class="gift-flower flower-top-right" data-aos="fade-down-left" data-aos-delay="200">
 
-        <!-- FOTO DE PAREJA (INTERCALADA 3) -->
-        <img src="assets/images/gallery/foto-3.webp" alt="Pareja Boda" class="photo-break"
-            onerror="this.src='https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80'"
-            data-aos="fade-up">
+                <!-- Flor decorativa inferior izquierda -->
+                <img src="assets/images/gallery/flores2-mesa-regalos.png" alt="Flores decorativas" class="gift-flower flower-bottom-left" data-aos="fade-up-right" data-aos-delay="250">
 
-        <!-- 9. CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
-        <section class="rsvp-section">
-            <div class="rsvp-card" data-aos="zoom-in" id="rsvp-container">
-                <h2 class="script-font" style="font-size: 2.6rem; color: var(--olive); margin-bottom: 10px;">
-                    Confirmación</h2>
-
-                <div id="loading-state">Cargando tus datos de pase...</div>
-
-                <div id="form-state" style="display: none;">
-                    <h3 class="serif" id="guest-name"
-                        style="font-size: 1.6rem; color: var(--olive); margin-bottom: 6px;">
-                    </h3>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Selecciona quiénes de tu grupo asistirán:
+                <!-- Tarjeta Verde Oliva Central -->
+                <div class="gift-card-green" data-aos="fade-up" data-aos-duration="900">
+                    <!-- Texto de introducción -->
+                    <p class="gift-intro-text" data-aos="fade-up" data-aos-delay="100">
+                        Más que cualquier cosa, valoramos<br>
+                        su presencia en nuestra boda. Sin<br>
+                        embargo, si desean contribuir de<br>
+                        alguna manera, te dejamos las siguientes<br>
+                        opciones
                     </p>
 
-                    <div class="badge-count" id="badge-pases"></div>
+                    <!-- Subsección 1: Mesa de regalos -->
+                    <div class="gift-subsection">
+                        <h3 class="gift-script-title" data-aos="fade-up" data-aos-delay="150">Mesa de regalos</h3>
 
-                    <div id="guests-list" style="margin-bottom: 15px;"></div>
+                        <!-- Ilustración Caja de Regalo -->
+                        <div class="gift-icon-wrap" data-aos="zoom-in" data-aos-delay="200">
+                            <svg class="gift-box-svg" viewBox="0 0 100 100" fill="none" stroke="#e5be85" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Moño / Lazo superior -->
+                                <path d="M50 32 C42 20 32 20 36 29 C40 38 48 33 50 33 C52 33 60 38 64 29 C68 20 58 20 50 32 Z" />
+                                <path d="M47 33 C42 38 38 44 38 48" />
+                                <path d="M53 33 C58 38 62 44 62 48" />
+                                <!-- Tapa de la caja (perspectiva isométrica suave) -->
+                                <polygon points="50,33 76,42 50,51 24,42" />
+                                <polygon points="24,42 50,51 50,56 24,47" />
+                                <polygon points="76,42 50,51 50,56 76,47" />
+                                <!-- Cinta de la tapa -->
+                                <path d="M37 37.5 L43 39.5 L43 53.5 L37 51.5 Z" />
+                                <path d="M63 37.5 L57 39.5 L57 53.5 L63 51.5 Z" />
+                                <!-- Cuerpo de la caja -->
+                                <polygon points="26,49 50,57 50,88 26,80" />
+                                <polygon points="74,49 50,57 50,88 74,80" />
+                                <!-- Cintas del cuerpo de la caja -->
+                                <path d="M38 53 L38 84" />
+                                <path d="M62 53 L62 84" />
+                            </svg>
+                        </div>
 
-                    <button class="btn" id="btn-submit" onclick="enviarRSVP()">Confirmar Asistencia</button>
-                </div>
+                        <!-- Info Liverpool -->
+                        <div class="gift-store-info" data-aos="fade-up" data-aos-delay="250">
+                            <p class="store-name">LIVERPOOL</p>
+                            <p class="store-number">NO. EVENTO 60006286</p>
+                        </div>
 
-                <div id="confirmed-state" style="display: none;">
-                    <h3 class="serif" style="font-size: 1.6rem; color: var(--olive);">¡Respuesta Registrada!</h3>
-                    <p id="confirmed-msg" style="margin-top: 10px; font-size: 0.9rem; color: #555;"></p>
+                        <!-- Botón Ver Aquí con link a Liverpool -->
+                        <a href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60006286" target="_blank" rel="noopener noreferrer" class="gift-btn-pill" data-aos="fade-up" data-aos-delay="300">
+                            VER AQUÍ
+                        </a>
+                    </div>
+
+                    <!-- Subsección 2: Lluvia de sobres -->
+                    <div class="gift-subsection envelope-sub">
+                        <h3 class="gift-script-title" data-aos="fade-up" data-aos-delay="200">Lluvia de sobres</h3>
+
+                        <!-- Ilustración Sobre -->
+                        <div class="gift-envelope-wrap" data-aos="zoom-in" data-aos-delay="250">
+                            <img src="assets/images/gallery/sobre.png" alt="Sobre" class="gift-envelope-img">
+                        </div>
+
+                        <!-- Texto descriptivo buzón -->
+                        <p class="gift-envelope-desc" data-aos="fade-up" data-aos-delay="300">
+                            Para su comodidad, contaremos con<br>
+                            un buzón de sobres el día de la<br>
+                            recepción.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- 9. FOTO PAREJA & SECCIÓN ESPACIO INFANTIL / NIÑOS -->
+        <section class="kids-section">
+            <!-- Foto de pareja con desvanecido gradual superior e inferior unificado -->
+            <div class="photo-fade-container kids-photo-wrap" data-aos="fade-up" data-aos-duration="900">
+                <div class="photo-fade-top fade-cream"></div>
+                <img src="assets/images/gallery/foto-mesa-regalo.jpeg" alt="Kevin y Mayalli" class="photo-fade-img">
+                <div class="photo-fade-bottom fade-cream"></div>
+            </div>
+
+            <!-- Bloque de texto con fondo texturizado y flor decorativa -->
+            <div class="kids-text-card">
+                <p class="kids-notice-text" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900">
+                    AMAMOS A SUS PEQUEÑOS, POR<br>
+                    ESO HEMOS PREPARADO UN<br>
+                    ESPACIO EXCLUSIVO PARA SU<br>
+                    CUIDADO Y DIVERSIÓN<br>
+                    MIENTRAS USTEDES DISFRUTAN<br>
+                    DE LA FIESTA. PARA<br>
+                    TRANQUILIDAD Y SEGURIDAD<br>
+                    DE TODOS, LES PEDIMOS A LOS<br>
+                    PAPÁS MANTENERSE ATENTOS A<br>
+                    ELLOS EN TODO MOMENTO,<br>
+                    ESPECIALMENTE CON LOS MÁS<br>
+                    CHIQUITOS.
+                </p>
+
+                <!-- Flor decorativa inferior derecha -->
+                <img src="assets/images/gallery/flor-ninos.png" alt="Flor decorativa" class="kids-flower-decor" data-aos="zoom-in" data-aos-delay="300">
+            </div>
+        </section>
+
+        <!-- 10. ASISTENCIA & CONFIRMACIÓN (SOBRE AZUL Y LAGO) -->
+        <section class="rsvp-section">
+            <div class="rsvp-bg-overlay"></div>
+
+            <div class="rsvp-content">
+                <!-- Título Caligráfico Dorado -->
+                <h2 class="rsvp-script-title" data-aos="fade-up" data-aos-duration="800">Asistencia</h2>
+
+                <!-- Subtítulo Fecha Límite -->
+                <p class="rsvp-deadline-text" data-aos="fade-up" data-aos-delay="100">
+                    POR FAVOR CONFIRMA TU ASISTENCIA<br>
+                    ANTES DEL 01 DE NOVIEMBRE
+                </p>
+
+                <!-- Composición del Sobre con Flores, Sello y Tarjeta -->
+                <div class="rsvp-envelope-container" data-aos="zoom-in" data-aos-duration="900" data-aos-delay="150">
+                    <!-- Flores Superpuestas en las esquinas del sobre -->
+                    <img src="assets/images/gallery/flor1-asistencia.png" alt="Flores decorativas" class="rsvp-flower rsvp-flower-left" data-aos="fade-right" data-aos-delay="250">
+                    <img src="assets/images/gallery/flor2-asistencia.png" alt="Flores decorativas" class="rsvp-flower rsvp-flower-right" data-aos="fade-left" data-aos-delay="250">
+
+                    <!-- Ilustración / Capa del Sobre Cerrado -->
+                    <div class="rsvp-envelope-body">
+                        <!-- Pliegues en SVG del Sobre Cerrado Sereno -->
+                        <svg class="rsvp-envelope-svg" viewBox="0 0 320 220" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="envGradBack" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#b6c8e2" />
+                                    <stop offset="100%" stop-color="#9eb2ce" />
+                                </linearGradient>
+                                <linearGradient id="envGradFlap" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#c1d2eb" />
+                                    <stop offset="100%" stop-color="#a4b8d4" />
+                                </linearGradient>
+                                <filter id="envShadow" x="-10%" y="-10%" width="120%" height="120%">
+                                    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-opacity="0.18" />
+                                </filter>
+                            </defs>
+                            <!-- Cuerpo base -->
+                            <rect x="0" y="0" width="320" height="220" rx="3" fill="url(#envGradBack)" />
+                            <!-- Pliegue inferior -->
+                            <polygon points="0,220 160,110 320,220" fill="#9db0cc" opacity="0.6" stroke="#879cb8" stroke-width="1.2" />
+                            <!-- Pliegue izquierdo -->
+                            <polygon points="0,0 160,110 0,220" fill="#a4b8d4" opacity="0.5" stroke="#879cb8" stroke-width="1.2" />
+                            <!-- Pliegue derecho -->
+                            <polygon points="320,0 160,110 320,220" fill="#a4b8d4" opacity="0.5" stroke="#879cb8" stroke-width="1.2" />
+                            <!-- Solapa superior triangular que apunta al centro -->
+                            <polygon points="0,0 160,125 320,0" fill="url(#envGradFlap)" filter="url(#envShadow)" stroke="#879cb8" stroke-width="1.2" />
+                        </svg>
+
+                        <!-- Sello de Cera Dorado KM sobre la punta del sobre -->
+                        <div class="rsvp-wax-seal-wrap">
+                            <img src="assets/images/gallery/sello-sobre-asistencia.png" alt="Sello de cera KM" class="rsvp-wax-seal-img" data-aos="zoom-in" data-aos-delay="350">
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta Crema Superpuesta de Asistencia y Confirmación -->
+                    <div class="rsvp-letter-card" id="rsvp-container" data-aos="fade-up" data-aos-delay="250" data-aos-duration="900">
+                        <!-- Mensaje Emotivo Principal -->
+                        <p class="rsvp-honor-text">
+                            SERÁ UN HONOR<br>
+                            CONTAR<br>
+                            CON TÚ PRESENCIA
+                        </p>
+
+                        <p class="rsvp-te-esperamos">¡Te esperamos!</p>
+
+                        <!-- Flor sutil en la esquina inferior derecha de la tarjeta -->
+                        <img src="assets/images/gallery/flores2-mesa-regalos.png" alt="Flor sutil" class="rsvp-letter-flower" data-aos="zoom-in" data-aos-delay="400">
+
+                        <!-- Módulo Interactivo de Pases / Confirmación GAS -->
+                        <div class="rsvp-interactive-module">
+                            <div id="loading-state">Cargando tus datos de pase...</div>
+
+                            <div id="form-state" style="display: none;">
+                                <h3 class="serif" id="guest-name" style="font-size: 1.25rem; color: #355375; margin-bottom: 4px;"></h3>
+                                <p style="font-size: 0.82rem; color: #5a738e; margin-bottom: 8px;">Selecciona quiénes asistirán:</p>
+
+                                <div class="badge-count" id="badge-pases"></div>
+                                <div id="guests-list" style="margin-bottom: 14px;"></div>
+
+                                <button class="btn rsvp-submit-btn" id="btn-submit" onclick="enviarRSVP()">Confirmar Asistencia</button>
+                            </div>
+
+                            <div id="confirmed-state" style="display: none;">
+                                <h3 class="serif" style="font-size: 1.3rem; color: #355375;">¡Respuesta Registrada!</h3>
+                                <p id="confirmed-msg" style="margin-top: 6px; font-size: 0.85rem; color: #4a6279;"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Despedida Con Cariño & Nombres -->
+                <div class="rsvp-farewell">
+                    <p class="rsvp-con-carino" data-aos="fade-up" data-aos-delay="100">CON CARIÑO</p>
+                    <p class="rsvp-names-footer" data-aos="fade-up" data-aos-delay="200">Kevin y Mayalli</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal Interactivo de Ubicación / Mapa -->
+    <div id="map-modal" class="map-modal-backdrop" onclick="closeMapModal(event)" aria-hidden="true" role="dialog" aria-labelledby="modal-venue-title">
+        <div class="map-modal-card" onclick="event.stopPropagation()">
+            <!-- Botón cerrar -->
+            <button class="map-modal-close" onclick="closeMapModal()" aria-label="Cerrar mapa">&times;</button>
+            
+            <!-- Encabezado del modal -->
+            <div class="map-modal-header">
+                <span class="map-modal-badge serif">CEREMONIA & RECEPCIÓN</span>
+                <h3 id="modal-venue-title" class="map-modal-title">AZUL TERRAZA</h3>
+                <p class="map-modal-address">Palomas km 1.8, El Armadillo, 63792 Tepic, Nay.</p>
+            </div>
+
+            <!-- Contenedor del Mapa de Google Maps -->
+            <div class="map-iframe-container">
+                <iframe 
+                    id="map-iframe"
+                    src=""
+                    data-src="https://maps.google.com/maps?q=21.4497084,-104.8488423&amp;hl=es&amp;z=15&amp;output=embed"
+                    title="Ubicación de Azul Terraza"
+                    loading="lazy"
+                    allowfullscreen=""
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Botón para abrir en la app de GPS -->
+            <div class="map-modal-actions">
+                <a href="https://maps.app.goo.gl/onuwvL4tyU1zq8Xy6" target="_blank" rel="noopener noreferrer" class="map-gps-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: text-bottom;">
+                        <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    ABRIR EN GOOGLE MAPS / WAZE
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Interactivo para Agregar al Calendario (Diseño Editorial & Elegante) -->
+    <div id="calendar-modal" class="map-modal-backdrop" onclick="closeCalendarModal(event)" aria-hidden="true" role="dialog" aria-labelledby="cal-modal-title">
+        <div class="cal-modal-card" onclick="event.stopPropagation()">
+            <!-- Marco decorativo interior de alta papelería -->
+            <div class="cal-modal-inner-border"></div>
+
+            <!-- Botón cerrar -->
+            <button class="cal-modal-close" onclick="closeCalendarModal()" aria-label="Cerrar">&times;</button>
+            
+            <!-- Encabezado con alianzas y caligrafía -->
+            <div class="cal-modal-header">
+                <img src="assets/images/gallery/anillos.png" alt="Alianzas" class="cal-modal-rings">
+                <span class="cal-modal-eyebrow">SAVE THE DATE</span>
+                <h3 id="cal-modal-title" class="cal-modal-script script-font">Reserva nuestra fecha</h3>
+                <p class="cal-modal-names font-alta">KEVIN & MAYALLI</p>
+            </div>
+
+            <!-- Ficha elegante de fecha y lugar estilo boleto nupcial -->
+            <div class="cal-event-ticket">
+                <div class="cal-ticket-col-date">
+                    <span class="cal-ticket-weekday serif">VIERNES</span>
+                    <span class="cal-ticket-day font-alta">04</span>
+                    <span class="cal-ticket-month-year serif">DIC • 2026</span>
+                </div>
+                <div class="cal-ticket-divider"></div>
+                <div class="cal-ticket-col-info">
+                    <div class="cal-ticket-line">
+                        <svg class="cal-ticket-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>2:00 PM</span>
+                    </div>
+                    <div class="cal-ticket-line venue-line">
+                        <svg class="cal-ticket-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <strong>AZUL TERRAZA</strong>
+                    </div>
+                    <p class="cal-ticket-city">Tepic, Nayarit</p>
+                </div>
+            </div>
+
+            <!-- Nota de recordatorios programados -->
+            <div class="cal-reminder-ribbon">
+                <span class="ribbon-sparkle">✦</span>
+                <span>Incluye recordatorios automáticos (1 semana y 1 día antes)</span>
+                <span class="ribbon-sparkle">✦</span>
+            </div>
+
+            <!-- Cuadrícula de plataformas de calendario estilo azulejo de lujo -->
+            <div class="cal-modal-body">
+                <p class="cal-choose-prompt serif">Añadir a tu agenda:</p>
+                
+                <div class="cal-luxury-grid">
+                    <!-- Google Calendar -->
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Kevin+%26+Mayalli&dates=20261204T140000/20261205T020000&ctz=America/Mazatlan&details=%C2%A1Nos+casamos!+Acomp%C3%A1%C3%B1anos+a+celebrar+nuestro+gran+d%C3%ADa.%0A%0ACeremonia%3A+2%3A00+PM%0ARecepci%C3%B3n%3A+3%3A00+PM%0ALugar%3A+Azul+Terraza&location=Azul+Terraza%2C+Palomas+km+1.8%2C+El+Armadillo%2C+63792+Tepic%2C+Nay." target="_blank" rel="noopener noreferrer" class="cal-luxury-tile">
+                        <div class="cal-tile-icon-wrap">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#bfa054" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                <circle cx="12" cy="15" r="1.5" fill="#bfa054"/>
+                            </svg>
+                        </div>
+                        <div class="cal-tile-info">
+                            <strong class="cal-tile-name">Google</strong>
+                            <span>Android / Web</span>
+                        </div>
+                    </a>
+
+                    <!-- Apple Calendar -->
+                    <button type="button" onclick="downloadWeddingIcs()" class="cal-luxury-tile">
+                        <div class="cal-tile-icon-wrap">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#bfa054">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 1.01-2.85-.9.04-2 .6-2.65 1.35-.58.66-.99 1.72-.94 2.76 1 .08 1.96-.51 2.58-1.26z"/>
+                            </svg>
+                        </div>
+                        <div class="cal-tile-info">
+                            <strong class="cal-tile-name">Apple</strong>
+                            <span>iPhone / iPad / Mac</span>
+                        </div>
+                    </button>
+
+                    <!-- Outlook / Windows -->
+                    <a href="https://outlook.live.com/calendar/0/deeplink/compose?subject=Boda+de+Kevin+%26+Mayalli&startdt=2026-12-04T14:00:00&enddt=2026-12-05T02:00:00&location=Azul+Terraza%2C+Palomas+km+1.8%2C+El+Armadillo%2C+63792+Tepic%2C+Nay.&body=%C2%A1Nos+casamos!+Acomp%C3%A1%C3%B1anos+a+celebrar+nuestro+gran+d%C3%ADa.%0A%0ACeremonia%3A+2%3A00+PM%0ARecepci%C3%B3n%3A+3%3A00+PM%0ALugar%3A+Azul+Terraza" target="_blank" rel="noopener noreferrer" class="cal-luxury-tile">
+                        <div class="cal-tile-icon-wrap">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#bfa054" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="M22 7l-10 7L2 7"/>
+                            </svg>
+                        </div>
+                        <div class="cal-tile-info">
+                            <strong class="cal-tile-name">Outlook</strong>
+                            <span>Windows / PC</span>
+                        </div>
+                    </a>
+
+                    <!-- Archivo Universal (.ics) -->
+                    <button type="button" onclick="downloadWeddingIcs()" class="cal-luxury-tile">
+                        <div class="cal-tile-icon-wrap">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#bfa054" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                        </div>
+                        <div class="cal-tile-info">
+                            <strong class="cal-tile-name">Otro (.ics)</strong>
+                            <span>Cualquier Dispositivo</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Script de configuración GAS -->
