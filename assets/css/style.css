@@ -9,6 +9,7 @@
     --serenity-bg: #e4ebf5;
 
     --olive: #5e6f47;
+    --olive-moss: #586e26;
     --olive-dark: #465533;
     --olive-card: #6d7f57;
 
@@ -224,8 +225,8 @@ body {
     cursor: pointer;
     transform-origin: center bottom;
     transition: transform 0.95s cubic-bezier(0.25, 1, 0.35, 1),
-                filter 0.85s ease,
-                z-index 0.2s ease;
+        filter 0.85s ease,
+        z-index 0.2s ease;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
 }
 
@@ -280,6 +281,66 @@ body {
     bottom: 145px;
     right: 0px;
     width: 60px;
+}
+
+/* Indicador sutil de interacción "Haz clic en la imagen" */
+.hero-click-hint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Alta', 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    color: var(--primary-blue-dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: -10px auto 25px;
+    padding: 7px 18px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 20px;
+    border: 1px solid rgba(142, 164, 200, 0.3);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(100, 123, 159, 0.08);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.35, 1);
+    animation: hintPulse 2.4s ease-in-out infinite;
+}
+
+.hero-click-hint:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(142, 164, 200, 0.55);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 18px rgba(100, 123, 159, 0.18);
+    color: #435c82;
+}
+
+.hero-click-hint:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.hero-click-hint.photo-opened {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+}
+
+.hero-click-hint .hint-icon {
+    stroke: var(--primary-blue-dark);
+    transition: transform 0.3s ease;
+}
+
+.hero-click-hint:hover .hint-icon {
+    transform: rotate(15deg) scale(1.15);
+}
+
+@keyframes hintPulse {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
 /* =========================================================
@@ -441,9 +502,11 @@ body {
 .countdown-title.script-font {
     font-family: 'Great Vibes', cursive;
     font-size: 4.2rem;
-    color: #4b583e;
+    color: var(--olive-moss);
     margin-bottom: 2px;
     font-weight: normal;
+    position: relative;
+    left: 20%;
 
 }
 
@@ -474,25 +537,25 @@ body {
 }
 
 .cd-inline-num {
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 2.8rem;
-    color: #3b4630;
+    color: var(--olive-moss);
     line-height: 1;
     font-weight: 500;
 }
 
 .cd-inline-lbl {
-    font-family: 'Helvetica', sans-serif;
-    font-size: 0.65rem;
-    color: #4b583e;
-    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.72rem;
+    color: var(--olive-moss);
+    letter-spacing: 1.2px;
     margin-top: 6px;
 }
 
 .cd-inline-sep {
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 2.2rem;
-    color: #3b4630;
+    color: var(--olive-moss);
     margin-bottom: 14px;
 }
 
@@ -516,9 +579,11 @@ body {
 }
 
 .cal-header-minimal .cal-month {
-    font-size: 2.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.1rem;
+    font-weight: 500;
     letter-spacing: 3px;
-    color: #4b583e;
+    color: var(--olive-moss);
     display: block;
 }
 
@@ -537,9 +602,10 @@ body {
 }
 
 .cal-year-line .year {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    color: #4b583e;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--olive-moss);
     letter-spacing: 3px;
 }
 
@@ -551,17 +617,18 @@ body {
 }
 
 .cal-grid .day-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
-    color: #4b583e;
-    font-size: 1rem;
+    color: var(--olive-moss);
+    font-size: 0.92rem;
     letter-spacing: 1px;
 }
 
 .cal-grid .day-num {
-    color: #4b583e;
-    font-family: 'Cormorant Garamond', serif;
+    color: var(--olive-moss);
+    font-family: 'Times New Roman', Times, serif;
     font-size: 1.2rem;
+    font-weight: 400;
     font-variant-numeric: lining-nums;
     -moz-font-feature-settings: "lnum";
     -webkit-font-feature-settings: "lnum";
@@ -577,7 +644,7 @@ body {
 
 /* Día objetivo con círculo verde */
 .cal-grid .day-num.target-date {
-    background-color: #4b583e;
+    background-color: var(--olive-moss);
     color: #ffffff;
     border-radius: 50%;
     font-weight: 600;
@@ -602,29 +669,25 @@ body {
     display: block;
     -webkit-mask-image: linear-gradient(to bottom,
             transparent 0%,
-            rgba(0, 0, 0, 0.005) 3%,
-            rgba(0, 0, 0, 0.08) 10%,
-            rgba(0, 0, 0, 0.28) 18%,
-            rgba(0, 0, 0, 0.65) 28%,
-            black 40%,
-            black 60%,
-            rgba(0, 0, 0, 0.65) 72%,
-            rgba(0, 0, 0, 0.28) 82%,
-            rgba(0, 0, 0, 0.08) 90%,
-            rgba(0, 0, 0, 0.005) 97%,
+            rgba(0, 0, 0, 0.05) 3%,
+            rgba(0, 0, 0, 0.3) 7%,
+            rgba(0, 0, 0, 0.7) 11%,
+            black 16%,
+            black 84%,
+            rgba(0, 0, 0, 0.7) 89%,
+            rgba(0, 0, 0, 0.3) 93%,
+            rgba(0, 0, 0, 0.05) 97%,
             transparent 100%);
     mask-image: linear-gradient(to bottom,
             transparent 0%,
-            rgba(0, 0, 0, 0.005) 3%,
-            rgba(0, 0, 0, 0.08) 10%,
-            rgba(0, 0, 0, 0.28) 18%,
-            rgba(0, 0, 0, 0.65) 28%,
-            black 40%,
-            black 60%,
-            rgba(0, 0, 0, 0.65) 72%,
-            rgba(0, 0, 0, 0.28) 82%,
-            rgba(0, 0, 0, 0.08) 90%,
-            rgba(0, 0, 0, 0.005) 97%,
+            rgba(0, 0, 0, 0.05) 3%,
+            rgba(0, 0, 0, 0.3) 7%,
+            rgba(0, 0, 0, 0.7) 11%,
+            black 16%,
+            black 84%,
+            rgba(0, 0, 0, 0.7) 89%,
+            rgba(0, 0, 0, 0.3) 93%,
+            rgba(0, 0, 0, 0.05) 97%,
             transparent 100%);
 }
 
@@ -864,22 +927,22 @@ body {
 /* Flor blanca al lado izquierdo del arco */
 .event-flower.flower-left {
     top: 360px;
-    left: 0;
+    left: 5px;
     width: 85px;
     transform: rotate(5deg);
 }
 
 /* Flor verde arriba a la derecha de la tarjeta de recepción */
 .event-flower.flower-top-right {
-    top: 161px;
-    right: -30px;
+    top: 150px;
+    right: -10px;
     width: 65px;
     transform: rotate(5deg);
 }
 
 /* Flor colgante en esquina polaroid */
 .event-flower.flower-polaroid {
-    bottom: -55px;
+    bottom: -110px;
     right: -18px;
     width: 62px;
     z-index: 6;
@@ -1144,21 +1207,48 @@ body {
     display: block;
 }
 
-/* Margen extendido y fondo de transición para la foto en el bloque azul del código de vestimenta */
+/* Fondo extendido que abarca ampliamente el azul superior y transiciona hacia crema abajo */
 .dress-photo-wrap {
     width: calc(100% + 40px);
     margin-left: -20px;
     margin-right: -20px;
-    margin-top: 10px;
+    margin-top: 15px;
+    position: relative;
     background-image:
         linear-gradient(to bottom,
             rgba(166, 185, 214, 0.74) 0%,
-            rgba(166, 185, 214, 0.4) 40%,
-            rgba(247, 245, 240, 0.35) 75%,
-            rgba(247, 245, 240, 0.6) 100%),
+            rgba(166, 185, 214, 0.74) 45%,
+            rgba(166, 185, 214, 0.35) 65%,
+            rgba(247, 245, 240, 0.4) 82%,
+            rgba(247, 245, 240, 0.8) 100%),
         url('../images/backgrounds/fondo-1.png');
     background-size: cover;
     background-position: center;
+}
+
+/* Difuminado suave arriba que se disuelve en el fondo azul y difuminado normal abajo */
+.dress-photo-wrap .photo-fade-img {
+    object-position: center 28%;
+    -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 6%,
+            rgba(0, 0, 0, 0.4) 14%,
+            rgba(0, 0, 0, 0.8) 22%,
+            black 32%,
+            black 82%,
+            rgba(0, 0, 0, 0.65) 90%,
+            rgba(0, 0, 0, 0.2) 96%,
+            transparent 100%);
+    mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 6%,
+            rgba(0, 0, 0, 0.4) 14%,
+            rgba(0, 0, 0, 0.8) 22%,
+            black 32%,
+            black 82%,
+            rgba(0, 0, 0, 0.65) 90%,
+            rgba(0, 0, 0, 0.2) 96%,
+            transparent 100%);
 }
 
 /* =========================================================
@@ -1437,10 +1527,10 @@ body {
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom,
-            rgba(164, 185, 214, 0.68) 0%,
-            rgba(164, 185, 214, 0.62) 30%,
-            rgba(164, 185, 214, 0.58) 70%,
-            rgba(164, 185, 214, 0.75) 100%);
+            rgba(110, 138, 175, 0.65) 0%,
+            rgba(95, 124, 162, 0.58) 30%,
+            rgba(88, 116, 154, 0.55) 70%,
+            rgba(105, 134, 172, 0.70) 100%);
     pointer-events: none;
     z-index: 1;
 }
@@ -1456,11 +1546,15 @@ body {
 .rsvp-script-title {
     font-family: 'Sloop Script', 'Great Vibes', cursive;
     font-size: 3.8rem;
-    font-weight: lighter;
+    font-weight: 500;
+    -webkit-text-stroke: 0.35px #e5be85;
     color: #e5be85;
     margin: 0 0 10px 0;
     line-height: 1;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(229, 190, 133, 0.2);
+    text-shadow:
+        0 2px 10px rgba(15, 30, 50, 0.75),
+        0 1px 3px rgba(0, 0, 0, 0.65),
+        0 0 1px rgba(0, 0, 0, 0.4);
 }
 
 /* Subtítulo Fecha Límite */
@@ -1469,11 +1563,13 @@ body {
     font-size: 0.98rem;
     line-height: 1.5;
     color: #e8c68c;
-    letter-spacing: 2.4px;
+    letter-spacing: 2.2px;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
     margin: 0 0 32px 0;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    text-shadow:
+        0 2px 8px rgba(15, 30, 50, 0.7),
+        0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 /* Contenedor del Sobre y Tarjeta */
@@ -1643,31 +1739,125 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 12px;
-    margin: 6px 0;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(43, 69, 97, 0.15);
+    padding: 11px 14px;
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(43, 69, 97, 0.18);
     border-radius: 8px;
     text-align: left;
     font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: #2b4561;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.guest-option:hover {
+    border-color: #355375;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(43, 69, 97, 0.08);
+}
+
+.guest-option.selected {
+    background: rgba(53, 83, 117, 0.06);
+    border-color: #355375;
+    font-weight: 600;
 }
 
 .guest-option input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 19px;
+    height: 19px;
     accent-color: #355375;
     cursor: pointer;
 }
 
 .badge-count {
+    display: inline-block;
     color: #b88a44;
+    background: rgba(184, 138, 68, 0.1);
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(184, 138, 68, 0.25);
     font-family: 'Alta', sans-serif;
     font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    margin: 4px 0 12px;
+    font-size: 0.8rem;
+    letter-spacing: 1.2px;
+    margin: 2px 0 10px;
+    text-transform: uppercase;
+}
+
+.rsvp-actions-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.rsvp-decline-btn {
+    background: none;
+    border: none;
+    color: #728aa0;
+    font-family: 'Alta', 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 6px 10px;
+    transition: color 0.2s ease;
+}
+
+.rsvp-decline-btn:hover {
+    color: #355375;
+}
+
+.rsvp-edit-btn {
+    background: rgba(53, 83, 117, 0.08);
+    border: 1px solid rgba(53, 83, 117, 0.2);
+    color: #355375;
+    font-family: 'Alta', 'Montserrat', sans-serif;
+    font-size: 0.76rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.rsvp-edit-btn:hover {
+    background: #355375;
+    color: #ffffff;
+}
+
+.rsvp-success-icon {
+    font-size: 1.6rem;
+    color: #bfa054;
+    margin-bottom: 4px;
+}
+
+.rsvp-loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 0;
+}
+
+.rsvp-spinner {
+    width: 26px;
+    height: 26px;
+    border: 2px solid rgba(53, 83, 117, 0.2);
+    border-top-color: #355375;
+    border-radius: 50%;
+    animation: rsvpSpin 0.8s linear infinite;
+}
+
+@keyframes rsvpSpin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Despedida Con Cariño & Nombres */
@@ -1678,22 +1868,28 @@ body {
 .rsvp-con-carino {
     font-family: 'Alta', 'Cormorant Garamond', serif;
     font-size: 1.02rem;
-    letter-spacing: 3.5px;
+    letter-spacing: 3.2px;
     color: #e5be85;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
     margin: 0 0 6px 0;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    text-shadow:
+        0 2px 8px rgba(15, 30, 50, 0.7),
+        0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .rsvp-names-footer {
     font-family: 'Sloop Script', 'Great Vibes', cursive;
     font-size: 3.3rem;
-    font-weight: lighter;
+    font-weight: 500;
+    -webkit-text-stroke: 0.35px #e5be85;
     color: #e5be85;
     margin: 0;
     line-height: 1;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(229, 190, 133, 0.2);
+    text-shadow:
+        0 2px 10px rgba(15, 30, 50, 0.75),
+        0 1px 3px rgba(0, 0, 0, 0.65),
+        0 0 1px rgba(0, 0, 0, 0.4);
 }
 
 /* =========================================================

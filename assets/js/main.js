@@ -7,15 +7,30 @@ AOS.init({
 });
 
 const photoWrapper = document.querySelector('.env-photo-wrapper');
+const clickHint = document.querySelector('.hero-click-hint');
+
+function toggleHeroPhoto(e) {
+    if (e) e.stopPropagation();
+    if (!photoWrapper) return;
+    const isOpening = !photoWrapper.classList.contains('opened');
+    photoWrapper.classList.toggle('opened');
+    if (clickHint) {
+        clickHint.classList.toggle('photo-opened', isOpening);
+    }
+}
+
 if (photoWrapper) {
-    photoWrapper.addEventListener('click', (e) => {
-        e.stopPropagation();
-        photoWrapper.classList.toggle('opened');
-    });
+    photoWrapper.addEventListener('click', toggleHeroPhoto);
+    if (clickHint) {
+        clickHint.addEventListener('click', toggleHeroPhoto);
+    }
 
     document.addEventListener('click', (e) => {
-        if (!photoWrapper.contains(e.target) && photoWrapper.classList.contains('opened')) {
+        if (!photoWrapper.contains(e.target) && (!clickHint || !clickHint.contains(e.target)) && photoWrapper.classList.contains('opened')) {
             photoWrapper.classList.remove('opened');
+            if (clickHint) {
+                clickHint.classList.remove('photo-opened');
+            }
         }
     });
 }
