@@ -1627,7 +1627,7 @@ body {
     margin: 0 auto;
     width: 68px;
     height: 68px;
-    z-index: 4;
+    z-index: 6;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
     transition: transform 0.3s ease;
     display: flex;
@@ -1649,7 +1649,7 @@ body {
 /* Tarjeta Crema Superpuesta */
 .rsvp-letter-card {
     position: relative;
-    margin: -70px auto 0;
+    margin: -94px auto 0;
     width: 82%;
     max-width: 275px;
     background-color: #ece8df;
@@ -1661,7 +1661,7 @@ body {
     border-radius: 3px;
     padding: 34px 18px 24px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-    z-index: 5;
+    z-index: 4;
     text-align: center;
 }
 
