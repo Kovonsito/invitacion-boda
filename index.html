@@ -23,6 +23,58 @@
 
 <body>
 
+    <!-- PORTADA DE BIENVENIDA / SPLASH OVERLAY CON SOBRE INTERACTIVO -->
+    <div id="welcome-splash" class="welcome-splash-overlay" role="dialog" aria-modal="true" aria-label="Bienvenida a Nuestra Boda">
+        <!-- Fondo con foto difuminada de los novios -->
+        <div class="splash-bg-backdrop"></div>
+
+        <!-- Marco vertical de contenido estilo tarjeta móvil -->
+        <div class="splash-content-frame">
+            <!-- Encabezado Superior -->
+            <div class="splash-header-box">
+                <h1 class="splash-main-title script-font">Nuestra Boda</h1>
+                <p class="splash-instruction-text font-alta">DA CLIC AL SOBRE PARA ABRIR</p>
+            </div>
+
+            <!-- Área Central con el Sobre y el Sello Interactivo -->
+            <div class="splash-envelope-area" id="splash-envelope-area">
+                <!-- Flores de esquina izquierda -->
+                <img src="assets/images/gallery/flor1-asistencia.png" alt="Flores decorativas" class="splash-flower-decor splash-flower-left">
+                <!-- Flores de esquina derecha -->
+                <img src="assets/images/gallery/flor2-asistencia.png" alt="Flores decorativas" class="splash-flower-decor splash-flower-right">
+
+                <div class="splash-envelope-wrapper" id="splash-envelope-wrapper">
+                    <!-- Sobre Cerrado -->
+                    <img src="assets/images/gallery/sobre-cerrado-asistencia-inicio.png" alt="Sobre cerrado de boda" class="splash-envelope-closed" id="splash-env-closed">
+
+                    <!-- Sobre Abierto (fondo grabado con rosas) -->
+                    <img src="assets/images/gallery/sobre-abierto-clean.png" alt="Sobre abierto de boda" class="splash-envelope-open" id="splash-env-open">
+
+                    <!-- Tarjeta interior que asoma suavemente -->
+                    <div class="splash-inner-letter">
+                        <p class="splash-letter-date">04 . 12 . 2026</p>
+                        <h2 class="splash-letter-names font-script">Kevin & Mayalli</h2>
+                        <p class="splash-letter-phrase">Nuestra Invitación de Boda</p>
+                    </div>
+
+                    <!-- Sello de Cera Dorado KM Interactivo -->
+                    <button type="button" class="splash-wax-seal" id="splash-wax-seal" onclick="openWelcomeEnvelope(event)" aria-label="Abrir sobre de invitación">
+                        <img src="assets/images/gallery/sello-sobre-asistencia.png" alt="Sello de cera dorado KM" class="splash-wax-seal-img">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pie de Portada: Fecha y Mensaje -->
+            <div class="splash-footer-box">
+                <p class="splash-date-text font-alta">04.12.2026</p>
+                <p class="splash-legend-text font-alta">
+                    EL DÍA MÁS IMPORTANTE DE NUESTRAS VIDAS HA<br>
+                    LLEGADO Y SERÁ UN HONOR QUE NOS ACOMPAÑES
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- Contenedor Principal (Estilo Invitación Móvil) -->
     <div class="app-container">
 
@@ -495,40 +547,12 @@
 
                     <!-- Ilustración / Capa del Sobre Cerrado -->
                     <div class="rsvp-envelope-body">
-                        <!-- Pliegues en SVG del Sobre Cerrado Sereno -->
-                        <svg class="rsvp-envelope-svg" viewBox="0 0 320 220" preserveAspectRatio="none">
-                            <defs>
-                                <linearGradient id="envGradBack" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#b6c8e2" />
-                                    <stop offset="100%" stop-color="#9eb2ce" />
-                                </linearGradient>
-                                <linearGradient id="envGradFlap" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#c1d2eb" />
-                                    <stop offset="100%" stop-color="#a4b8d4" />
-                                </linearGradient>
-                                <filter id="envShadow" x="-10%" y="-10%" width="120%" height="120%">
-                                    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-opacity="0.18" />
-                                </filter>
-                            </defs>
-                            <!-- Cuerpo base -->
-                            <rect x="0" y="0" width="320" height="220" rx="3" fill="url(#envGradBack)" />
-                            <!-- Pliegue inferior -->
-                            <polygon points="0,220 160,110 320,220" fill="#9db0cc" opacity="0.6" stroke="#879cb8"
-                                stroke-width="1.2" />
-                            <!-- Pliegue izquierdo -->
-                            <polygon points="0,0 160,110 0,220" fill="#a4b8d4" opacity="0.5" stroke="#879cb8"
-                                stroke-width="1.2" />
-                            <!-- Pliegue derecho -->
-                            <polygon points="320,0 160,110 320,220" fill="#a4b8d4" opacity="0.5" stroke="#879cb8"
-                                stroke-width="1.2" />
-                            <!-- Solapa superior triangular que apunta al centro -->
-                            <polygon points="0,0 160,125 320,0" fill="url(#envGradFlap)" filter="url(#envShadow)"
-                                stroke="#879cb8" stroke-width="1.2" />
-                        </svg>
+                        <!-- Imagen real del Sobre Cerrado generado por Gemini -->
+                        <img src="assets/images/gallery/sobre-cerrado-asistencia.png" alt="Sobre cerrado" class="rsvp-envelope-img">
 
                         <!-- Sello de Cera Dorado KM sobre la punta del sobre -->
                         <div class="rsvp-wax-seal-wrap">
-                            <img src="assets/images/gallery/sello-sobre-asistencia.png" alt="Sello de cera KM"
+                            <img src="assets/images/gallery/sello-km-gemini.png" alt="Sello de cera KM"
                                 class="rsvp-wax-seal-img" data-aos="zoom-in" data-aos-delay="350">
                         </div>
                     </div>

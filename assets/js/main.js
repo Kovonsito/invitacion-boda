@@ -159,3 +159,70 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// =========================================================
+// INTERACCIÓN DE PORTADA / SOBRE DE BIENVENIDA
+// =========================================================
+let isEnvelopeOpening = false;
+
+function openWelcomeEnvelope(e) {
+    if (e && e.stopPropagation) e.stopPropagation();
+    if (isEnvelopeOpening) return;
+    isEnvelopeOpening = true;
+
+    const splashOverlay = document.getElementById('welcome-splash');
+    const envArea = document.getElementById('splash-envelope-area');
+    const bgMusicEl = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-toggle');
+    const musicIco = document.getElementById('music-icon');
+    const playBtn = document.getElementById('player-play-btn');
+
+    // Iniciar la música de fondo en respuesta al gesto del usuario
+    if (bgMusicEl && bgMusicEl.paused) {
+        bgMusicEl.play().then(() => {
+            if (typeof isPlaying !== 'undefined') isPlaying = true;
+            if (musicBtn) musicBtn.classList.add('playing');
+            if (musicIco) musicIco.innerHTML = '&#10074;&#10074;';
+            if (playBtn) playBtn.innerHTML = '&#10074;&#10074;';
+        }).catch(err => {
+            console.log("Audio no pudo iniciar automáticamente:", err);
+        });
+    }
+
+    if (!envArea || !splashOverlay) return;
+
+    // Paso 1: El sello vibra, se despega y flota hacia arriba desvaneciéndose
+    envArea.classList.add('anim-unseal');
+
+    // Paso 2: A los 400ms, el sobre cerrado se abre y emerge la tarjeta interior
+    setTimeout(() => {
+        envArea.classList.add('anim-opening');
+    }, 450);
+
+    // Paso 3: A los 1700ms, la portada completa hace desvanecimiento suave hacia la invitación
+    setTimeout(() => {
+        splashOverlay.classList.add('splash-closing');
+        document.body.style.overflow = ''; // Habilitar scroll de la página
+        // Desplazar suavemente a la parte superior de la invitación
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Refrescar AOS para que las animaciones de la invitación se sincronicen
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+    }, 1800);
+
+    // Paso 4: Retirar del DOM visual tras completar la transición
+    setTimeout(() => {
+        splashOverlay.classList.add('splash-hidden');
+    }, 3000);
+}
+
+// Bloquear el scroll de fondo mientras la portada de bienvenida esté visible
+document.addEventListener('DOMContentLoaded', () => {
+    const splash = document.getElementById('welcome-splash');
+    if (splash && !splash.classList.contains('splash-hidden')) {
+        document.body.style.overflow = 'hidden';
+    }
+});
+
