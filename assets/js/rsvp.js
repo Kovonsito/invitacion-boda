@@ -24,10 +24,14 @@ function initRSVP() {
     if (!guestId) {
         if (loadingEl) loadingEl.style.display = 'none';
         if (noIdEl) noIdEl.style.display = 'block';
+        if (formEl) formEl.style.display = 'none';
+        if (confirmedEl) confirmedEl.style.display = 'none';
         return;
     }
 
     // 2. Consultar datos del invitado a Google Sheets
+    if (loadingEl) loadingEl.style.display = 'flex';
+    if (noIdEl) noIdEl.style.display = 'none';
     fetch(`${SCRIPT_URL}?id=${encodeURIComponent(guestId)}`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la conexión con el servidor');

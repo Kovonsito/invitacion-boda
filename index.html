@@ -634,7 +634,7 @@
                         <p class="rsvp-honor-text">
                             SERÁ UN HONOR<br>
                             CONTAR<br>
-                            CON TÚ PRESENCIA
+                            CON TU PRESENCIA
                         </p>
 
                         <p class="rsvp-te-esperamos">¡Te esperamos!</p>
@@ -645,18 +645,32 @@
 
                         <!-- Módulo Interactivo de Pases / Confirmación GAS -->
                         <div class="rsvp-interactive-module">
-                            <div id="loading-state" class="rsvp-loading-state">
+                            <div id="loading-state" class="rsvp-loading-state" style="display: none;">
                                 <div class="rsvp-spinner"></div>
                                 <span id="loading-text">Cargando tus datos de pase...</span>
                             </div>
 
-                            <!-- Estado: Sin ID en el enlace -->
-                            <div id="no-id-state" style="display: none;" class="rsvp-notice-box">
-                                <p class="rsvp-notice-title font-alta">ENLACE PERSONALIZADO</p>
-                                <p class="rsvp-notice-desc">Para consultar tus pases y confirmar asistencia, por favor
-                                    ingresa con el enlace que
-                                    te enviamos por WhatsApp.</p>
-                                <a href="?id=2" class="rsvp-demo-link">¿Hacer prueba con pase de demostración?</a>
+                            <!-- Estado Base: Muestra / Mockup de Invitación (Visible cuando no hay ID en la URL) -->
+                            <div id="no-id-state" class="rsvp-mockup-state">
+                                <div class="rsvp-mockup-badge font-alta">MUESTRA DE INVITACIÓN</div>
+                                <h3 class="serif rsvp-guest-name">Familia Ejemplo</h3>
+                                <div class="badge-count">2 pases de muestra</div>
+                                <p class="rsvp-select-label">Pases de demostración:</p>
+
+                                <div class="rsvp-guests-list rsvp-mockup-list">
+                                    <div class="guest-option selected rsvp-mockup-option">
+                                        <span class="guest-label-text">Invitado 1</span>
+                                        <input type="checkbox" checked disabled>
+                                    </div>
+                                    <div class="guest-option selected rsvp-mockup-option">
+                                        <span class="guest-label-text">Invitado 2</span>
+                                        <input type="checkbox" checked disabled>
+                                    </div>
+                                </div>
+
+                                <div class="rsvp-mockup-footer-note">
+                                    <p class="rsvp-notice-desc">Esta es una vista previa de muestra. Para consultar tus pases personalizados y confirmar tu asistencia, ingresa con tu enlace personal enviado por WhatsApp.</p>
+                                </div>
                             </div>
 
                             <!-- Estado: Formulario de selección y confirmación -->

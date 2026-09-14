@@ -154,8 +154,13 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
     width: 100vw;
+    height: 100%;
     height: 100vh;
+    height: 100dvh;
     z-index: 99999;
     background-color: #121820;
     display: flex;
@@ -694,13 +699,14 @@ body {
 
 .env-photo-img {
     position: absolute;
-    top: 5.5%;
-    left: 6%;
-    width: 88%;
-    height: 69%;
+    top: 9.8%;
+    left: 4.8%;
+    width: 83.8%;
+    height: 61.6%;
     object-fit: cover;
     object-position: 45% 20%;
     display: block;
+    border-radius: 1px;
 }
 
 .env-photo-frame {
@@ -1257,12 +1263,12 @@ body {
 .event-arch-card {
     position: relative;
     z-index: 2;
-    width: 65%;
-    max-width: 275px;
-    margin-left: 5px;
+    width: 68%;
+    max-width: 290px;
+    margin-left: 0;
     background: var(--card-cream);
     border-radius: 140px 140px 20px 20px;
-    padding: 45px 18px 30px;
+    padding: 45px 22px 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     display: flex;
     flex-direction: column;
@@ -1386,8 +1392,8 @@ body {
 /* 2. Tarjeta Rectangular Dorada: Recepción (Superpuesta) */
 .event-gold-card {
     position: absolute;
-    top: 250px;
-    right: 4px;
+    top: 295px;
+    right: 2px;
     width: 48%;
     max-width: 205px;
     background-color: #d8af69;
@@ -1404,8 +1410,8 @@ body {
 /* 3. Marco Polaroid inferior izquierdo */
 .event-polaroid-wrap {
     position: absolute;
-    top: 480px;
-    left: 24px;
+    top: 510px;
+    left: 20px;
     width: 52%;
     max-width: 215px;
     z-index: 3;
@@ -1436,8 +1442,8 @@ body {
 
 /* Flor blanca al lado izquierdo del arco */
 .event-flower.flower-left {
-    top: 360px;
-    left: 5px;
+    top: 385px;
+    left: 2px;
     width: 85px;
     transform: rotate(5deg);
 }
@@ -2419,7 +2425,53 @@ body {
 }
 
 /* --- MÓDULO INTERACTIVO DE ASISTENCIA DINÁMICA (RSVP) --- */
-/* Caja de aviso cuando el enlace no cuenta con un ID registrado */
+/* Estado Mockup / Muestra cuando no hay ID en la URL */
+.rsvp-mockup-state {
+    padding: 6px 0 2px;
+}
+
+.rsvp-mockup-badge {
+    display: inline-block;
+    background: rgba(191, 160, 84, 0.15);
+    color: var(--gold-dark);
+    border: 1px solid rgba(191, 160, 84, 0.35);
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.rsvp-mockup-list {
+    opacity: 0.95;
+}
+
+.rsvp-mockup-option {
+    cursor: default;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.rsvp-mockup-option input[type="checkbox"] {
+    cursor: default;
+}
+
+.rsvp-mockup-footer-note {
+    background: rgba(53, 83, 117, 0.05);
+    border: 1px dashed rgba(53, 83, 117, 0.22);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 14px;
+}
+
+.rsvp-mockup-footer-note .rsvp-notice-desc {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+/* Caja de aviso tradicional cuando el enlace no cuenta con un ID registrado */
 .rsvp-notice-box {
     background: rgba(53, 83, 117, 0.05);
     border: 1px dashed rgba(53, 83, 117, 0.25);
