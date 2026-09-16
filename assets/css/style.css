@@ -7,37 +7,62 @@
     --primary-blue: #8ea4c8;
     --primary-blue-light: #b4c6e2;
     --primary-blue-dark: #647b9f;
-    --navy-deep: #355375;           /* Azul marino profundo de títulos RSVP, modales y acentos */
-    --navy-dark: #2b4561;           /* Azul medianoche profundo para fondos oscuros */
-    --slate-muted: #5a738e;         /* Azul pizarra tenue para subtítulos y textos secundarios */
-    --blue-serenity-soft: #9ab0cf;  /* Azul serenidad suave de transición */
-    --serenity-bg: #e4ebf5;         /* Fondo azul serenidad suave */
+    --navy-deep: #355375;
+    /* Azul marino profundo de títulos RSVP, modales y acentos */
+    --navy-dark: #2b4561;
+    /* Azul medianoche profundo para fondos oscuros */
+    --slate-muted: #5a738e;
+    /* Azul pizarra tenue para subtítulos y textos secundarios */
+    --blue-serenity-soft: #9ab0cf;
+    /* Azul serenidad suave de transición */
+    --serenity-bg: #e4ebf5;
+    /* Fondo azul serenidad suave */
 
     /* --- PALETA DE VERDES OLIVA --- */
-    --olive: #5e6f47;               /* Verde oliva principal de acentos y naturaleza */
-    --olive-moss: #586e26;          /* Verde musgo para elementos del calendario */
-    --olive-dark: #465533;          /* Verde oliva profundo */
-    --olive-card: #6d7f57;          /* Verde oliva suave para fondos de tarjetas */
+    --olive: #5e6f47;
+    /* Verde oliva principal de acentos y naturaleza */
+    --olive-moss: #586e26;
+    /* Verde musgo para elementos del calendario */
+    --olive-dark: #465533;
+    /* Verde oliva profundo */
+    --olive-card: #6d7f57;
+    /* Verde oliva suave para fondos de tarjetas */
 
     /* --- PALETA DE DORADOS & BRONCES --- */
-    --gold: #bfa054;                /* Dorado satinado principal */
-    --gold-light: #e6ce8a;          /* Dorado claro brillante para reflejos y bordes */
-    --gold-dark: #917531;           /* Dorado profundo sombreado */
-    --gold-warm: #c29b53;           /* Dorado cálido / Oro nupcial para títulos y líneas */
-    --gold-radiant: #d6ad66;        /* Dorado luminoso para bordes interactivos */
-    --gold-champagne: #e5be85;      /* Dorado champaña para íconos de regalo y detalles */
-    --gold-bronze: #b88a44;         /* Bronce dorado para contrastes y sombras ricas */
-    --text-cream-light: #eeddbb;    /* Texto crema suave para fondos oscuros */
-    --text-cream-gold: #f1dfbf;     /* Texto crema dorado para titulares en tarjeta verde */
+    --gold: #bfa054;
+    /* Dorado satinado principal */
+    --gold-light: #e6ce8a;
+    /* Dorado claro brillante para reflejos y bordes */
+    --gold-dark: #917531;
+    /* Dorado profundo sombreado */
+    --gold-warm: #c29b53;
+    /* Dorado cálido / Oro nupcial para títulos y líneas */
+    --gold-radiant: #d6ad66;
+    /* Dorado luminoso para bordes interactivos */
+    --gold-champagne: #e5be85;
+    /* Dorado champaña para íconos de regalo y detalles */
+    --gold-bronze: #b88a44;
+    /* Bronce dorado para contrastes y sombras ricas */
+    --text-cream-light: #eeddbb;
+    /* Texto crema suave para fondos oscuros */
+    --text-cream-gold: #f1dfbf;
+    /* Texto crema dorado para titulares en tarjeta verde */
 
     /* --- FONDOS & PAPELERÍA NUPCIAL --- */
-    --paper-bg: #f7f5f0;            /* Fondo papel apergaminado del cuerpo de página */
-    --bg-app: #faf8f5;              /* Fondo marfil del contenedor móvil de la invitación */
-    --card-cream: #fdfbf7;          /* Crema marfil claro para tarjetas interiores */
-    --card-cream-warm: #faf6ee;     /* Crema cálido para módulos y cajas de aviso */
-    --white: #ffffff;               /* Blanco puro */
-    --text-main: #333a42;           /* Gris carbón principal para máxima legibilidad */
-    --text-muted: #6f7782;          /* Gris neutro para textos secundarios de apoyo */
+    --paper-bg: #f7f5f0;
+    /* Fondo papel apergaminado del cuerpo de página */
+    --bg-app: #faf8f5;
+    /* Fondo marfil del contenedor móvil de la invitación */
+    --card-cream: #fdfbf7;
+    /* Crema marfil claro para tarjetas interiores */
+    --card-cream-warm: #faf6ee;
+    /* Crema cálido para módulos y cajas de aviso */
+    --white: #ffffff;
+    /* Blanco puro */
+    --text-main: #333a42;
+    /* Gris carbón principal para máxima legibilidad */
+    --text-muted: #6f7782;
+    /* Gris neutro para textos secundarios de apoyo */
 
     /* --- SOMBRAS & EFECTOS DE ELEVACIÓN --- */
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -679,7 +704,7 @@ body {
     left: 50%;
     transform: translateX(-50%) rotate(8deg);
     width: 145px;
-    height: 165px;
+    height: 181px;
     z-index: 2;
     cursor: pointer;
     transform-origin: center bottom;
@@ -699,14 +724,14 @@ body {
 
 .env-photo-img {
     position: absolute;
-    top: 9.8%;
-    left: 4.8%;
-    width: 83.8%;
-    height: 61.6%;
+    top: 9.3%;
+    left: 11.2%;
+    width: 78%;
+    height: 62.6%;
     object-fit: cover;
     object-position: 45% 20%;
     display: block;
-    border-radius: 1px;
+    border-radius: 2px;
 }
 
 .env-photo-frame {
@@ -716,8 +741,10 @@ body {
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: fill;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
     pointer-events: none;
+    z-index: 2;
 }
 
 .env-front {
