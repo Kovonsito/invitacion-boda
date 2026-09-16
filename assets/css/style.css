@@ -1448,7 +1448,7 @@ body {
     left: 20px;
     width: 52%;
     max-width: 215px;
-    z-index: 3;
+    z-index: 4;
 }
 
 .event-polaroid-frame {
@@ -1484,7 +1484,7 @@ body {
 
 /* Flor verde arriba a la derecha de la tarjeta de recepción */
 .event-flower.flower-top-right {
-    top: 150px;
+    top: 190px;
     right: -10px;
     width: 65px;
     transform: rotate(5deg);
