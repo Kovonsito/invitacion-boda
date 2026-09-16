@@ -724,10 +724,10 @@ body {
 
 .env-photo-img {
     position: absolute;
-    top: 9.3%;
-    left: 11.2%;
-    width: 78%;
-    height: 62.6%;
+    top: 10%;
+    left: 6%;
+    width: 80%;
+    height: 50%;
     object-fit: cover;
     object-position: 45% 20%;
     display: block;
