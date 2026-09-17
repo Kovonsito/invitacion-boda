@@ -156,9 +156,9 @@ body {
 
 /* Textura compartida para fondos con fondo-1.png */
 .bg-texture-cover {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
 }
 
 /* Contenedor principal estilo móvil/tarjeta estilizada */
@@ -640,8 +640,9 @@ body {
 .hero-section {
     padding: 50px 20px 50px;
     background-image: url(../images/backgrounds/fondo-1.png);
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     position: relative;
     overflow: hidden;
 }
@@ -859,10 +860,11 @@ body {
    Tarjeta interactiva con alianzas, barra de progreso y botones de reproducción
    ========================================================= */
 .music-banner-section {
-    padding: 35px 20px 45px;
+    padding: 35px 20px 25px;
     background-image: url(../images/backgrounds/fondo-1.png);
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1027,12 +1029,11 @@ body {
    Contador en tiempo real, mini calendario editorial y botón para agendar fecha
    ========================================================= */
 .countdown-section {
-    padding: 60px 15px 40px 15px;
+    padding: 25px 15px 40px 15px;
     background-image: url(../images/backgrounds/fondo-1.png);
-    background-size: 100% 100%;
-    /* Ocupa el 100% de ancho y 100% de alto exactos */
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1048,6 +1049,7 @@ body {
     font-family: 'Great Vibes', cursive;
     font-size: 4.2rem;
     color: var(--olive-moss);
+    margin-top: 30px;
     margin-bottom: 2px;
     font-weight: normal;
     position: relative;
@@ -1059,10 +1061,13 @@ body {
 .countdown-subtitle {
     font-family: var(--font-display);
     font-size: 1.35rem;
+    font-weight: 700;
     color: var(--gold-warm);
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
+    text-shadow: 0 0.5px 1px rgba(145, 117, 49, 0.35);
+    margin-top: -20px;
     margin-bottom: 25px;
-    width: 60%;
+    width: 80%;
     text-align: right;
 }
 
@@ -1108,8 +1113,10 @@ body {
 .countdown-tagline {
     font-family: var(--font-display);
     font-size: 1.15rem;
+    font-weight: 700;
     color: var(--gold-warm);
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
+    text-shadow: 0 0.5px 1px rgba(145, 117, 49, 0.35);
     margin-bottom: 25px;
 }
 
@@ -1141,7 +1148,7 @@ body {
 }
 
 .cal-year-line .line {
-    height: 1px;
+    height: 1.5px;
     width: 90px;
     background: var(--gold-warm);
 }
@@ -1257,8 +1264,9 @@ body {
             rgba(170, 190, 220, 0.5) 60%,
             rgba(170, 190, 220, 0.85) 100%),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
 }
 
 .photo-break {
@@ -1280,9 +1288,9 @@ body {
     background-image:
         linear-gradient(rgba(170, 190, 220, 0.68), rgba(170, 190, 220, 0.72)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     overflow: hidden;
 }
 
@@ -1508,9 +1516,9 @@ body {
     background-image:
         linear-gradient(rgba(247, 244, 238, 0.65), rgba(247, 244, 238, 0.65)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     position: relative;
     text-align: center;
 }
@@ -1657,8 +1665,9 @@ body {
     background-image:
         linear-gradient(rgba(146, 169, 203, 0.82), rgba(146, 169, 203, 0.86)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     text-align: center;
 }
 
@@ -1720,8 +1729,9 @@ body {
     background-image:
         linear-gradient(rgba(146, 169, 203, 0.82), rgba(146, 169, 203, 0.86)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     text-align: center;
     overflow: hidden;
 }
@@ -1822,8 +1832,9 @@ body {
     background-image:
         linear-gradient(rgba(247, 245, 240, 0.55), rgba(247, 245, 240, 0.55)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     overflow: hidden;
 }
 
@@ -2014,8 +2025,9 @@ body {
     background-image:
         linear-gradient(rgba(247, 245, 240, 0.65), rgba(247, 245, 240, 0.65)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     overflow: hidden;
 }
 
@@ -2024,8 +2036,9 @@ body {
     background-image:
         linear-gradient(rgba(247, 245, 240, 0.65), rgba(247, 245, 240, 0.65)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
 }
 
 .kids-photo-wrap .photo-fade-img {
