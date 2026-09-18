@@ -4,6 +4,13 @@
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRzIDX3n2NREAz5-vHVM-_8Bx9VP_2h_7btv2sa0eHj-QvpvpXC95UGjtsWjoUo1-Czw/exec';
 
+// Fecha límite de confirmación: 15 de Noviembre de 2026 a las 23:59:59 (GMT-6 / Hora de Nayarit)
+const FECHA_LIMITE_RSVP = new Date('2026-11-15T23:59:59-06:00');
+
+function haExpiradoFechaLimite() {
+    return new Date() > FECHA_LIMITE_RSVP;
+}
+
 // Identificadores fijos de ID y nombres oficiales para distinguir a los Padrinos:
 // - Isaac Huerta: id=11
 // - Norma Cortés: id=13
@@ -139,6 +146,13 @@ function initRSVP() {
             }
             currentGuestData = data;
 
+            // Saludo personalizado con el nombre en la portada de bienvenida
+            const splashGreeting = document.getElementById('splash-guest-greeting');
+            if (splashGreeting && data.contacto) {
+                splashGreeting.innerText = `¡HOLA, ${data.contacto.trim().toUpperCase()}!`;
+                splashGreeting.style.display = 'block';
+            }
+
             // Confirmar condición de padrino con los datos recibidos de la hoja
             if (esInvitadoPadrino(data.id, data.contacto, data.listaNombres)) {
                 activarModoPadrinos();
@@ -152,18 +166,36 @@ function initRSVP() {
         });
 }
 
-// Procesa si el invitado ya confirmó previamente o si debe mostrar el formulario
+// Procesa si el invitado ya confirmó previamente, si expiró la fecha límite, o si debe mostrar el formulario
 function procesarEstadoInvitado(data) {
     const loadingEl = document.getElementById('loading-state');
     const confirmedEl = document.getElementById('confirmed-state');
     const confirmedMsg = document.getElementById('confirmed-msg');
     const confirmedTitle = document.getElementById('confirmed-title');
+    const formEl = document.getElementById('form-state');
+    const expiredEl = document.getElementById('expired-state');
+    const expiredGuestName = document.getElementById('expired-guest-name');
+    const btnEditRsvp = document.getElementById('btn-edit-rsvp');
 
     if (loadingEl) loadingEl.style.display = 'none';
+    if (formEl) formEl.style.display = 'none';
+    if (expiredEl) expiredEl.style.display = 'none';
+    if (confirmedEl) confirmedEl.style.display = 'none';
 
     const esConfirmado = data.estado === 'Confirmado' || (typeof data.confirmados === 'number' && data.confirmados > 0);
     const esNoAsiste = data.estado === 'Rechazado' || data.estado === 'No asistirá' || (data.confirmados === 0 && (data.estado === 'Rechazado' || data.estado === 'No asistirá'));
+    const expirado = haExpiradoFechaLimite();
 
+    // 1. Si la fecha límite expiró y el invitado NO había confirmado previamente:
+    if (expirado && !esConfirmado) {
+        if (expiredEl) expiredEl.style.display = 'block';
+        if (expiredGuestName && data.contacto) {
+            expiredGuestName.innerText = `¡Hola, ${data.contacto.trim()}!`;
+        }
+        return;
+    }
+
+    // 2. Si ya estaba confirmado (antes o después):
     if (esConfirmado) {
         if (confirmedEl) confirmedEl.style.display = 'block';
         if (confirmedTitle) confirmedTitle.innerText = '¡Asistencia Confirmada!';
@@ -171,27 +203,53 @@ function procesarEstadoInvitado(data) {
         if (confirmedMsg) {
             confirmedMsg.innerHTML = `¡Hola, <strong>${data.contacto.trim()}</strong>!<br>Ya registraste tu asistencia para <strong>${total} ${total === 1 ? 'persona' : 'personas'}</strong>.<br>¡Nos dará muchísimo gusto verte!`;
         }
-    } else if (esNoAsiste) {
-        if (confirmedEl) confirmedEl.style.display = 'block';
-        if (confirmedTitle) confirmedTitle.innerText = 'Respuesta Registrada';
-        if (confirmedMsg) {
-            confirmedMsg.innerHTML = `¡Hola, <strong>${data.contacto.trim()}</strong>!<br>Registraste que no podrás acompañarnos. Lamentamos que no puedas asistir, ¡muchas gracias por avisarnos!`;
+        // Si ya expiró la fecha límite, ocultar el botón de modificar para congelar el registro
+        if (btnEditRsvp) {
+            btnEditRsvp.style.display = expirado ? 'none' : 'inline-block';
         }
-    } else {
-        // Aún no ha respondido: mostrar formulario
-        mostrarFormulario(data);
+        return;
     }
+
+    // 3. Si ya había marcado explícitamente que no asiste:
+    if (esNoAsiste) {
+        if (expirado) {
+            if (expiredEl) expiredEl.style.display = 'block';
+            if (expiredGuestName && data.contacto) {
+                expiredGuestName.innerText = `¡Hola, ${data.contacto.trim()}!`;
+            }
+        } else {
+            if (confirmedEl) confirmedEl.style.display = 'block';
+            if (confirmedTitle) confirmedTitle.innerText = 'Respuesta Registrada';
+            if (confirmedMsg) {
+                confirmedMsg.innerHTML = `¡Hola, <strong>${data.contacto.trim()}</strong>!<br>Registraste que no podrás acompañarnos. Lamentamos que no puedas asistir, ¡muchas gracias por avisarnos!`;
+            }
+            if (btnEditRsvp) {
+                btnEditRsvp.style.display = 'inline-block';
+            }
+        }
+        return;
+    }
+
+    // 4. Aún no ha respondido y estamos dentro del plazo permitido:
+    mostrarFormulario(data);
 }
 
 // Construye la lista interactiva de pases y nombres
 function mostrarFormulario(data) {
+    if (haExpiradoFechaLimite()) {
+        procesarEstadoInvitado(data);
+        return;
+    }
+
     const formEl = document.getElementById('form-state');
     const confirmedEl = document.getElementById('confirmed-state');
+    const expiredEl = document.getElementById('expired-state');
     const guestNameEl = document.getElementById('guest-name');
     const badgePasesEl = document.getElementById('badge-pases');
     const listContainer = document.getElementById('guests-list');
 
     if (confirmedEl) confirmedEl.style.display = 'none';
+    if (expiredEl) expiredEl.style.display = 'none';
     if (formEl) formEl.style.display = 'block';
 
     if (guestNameEl) guestNameEl.innerText = `¡Hola, ${data.contacto.trim()}!`;
@@ -231,6 +289,12 @@ function actualizarSeleccion(checkbox) {
 
 // Envía la confirmación hacia Google Sheets
 function enviarRSVP(tipo) {
+    if (haExpiradoFechaLimite()) {
+        alert('El periodo de confirmación concluyó el 15 de Noviembre de 2026.');
+        if (currentGuestData) procesarEstadoInvitado(currentGuestData);
+        return;
+    }
+
     const btnSubmit = document.getElementById('btn-submit');
     const btnDecline = document.getElementById('btn-decline');
 
@@ -311,6 +375,11 @@ function enviarRSVP(tipo) {
 
 // Permite reabrir el formulario para corregir o cambiar la confirmación
 function editarRSVP() {
+    if (haExpiradoFechaLimite()) {
+        alert('El periodo de confirmación concluyó el 15 de Noviembre de 2026.');
+        if (currentGuestData) procesarEstadoInvitado(currentGuestData);
+        return;
+    }
     if (currentGuestData) {
         mostrarFormulario(currentGuestData);
     }

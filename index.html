@@ -50,6 +50,7 @@
             <!-- Encabezado Superior -->
             <div class="splash-header-box">
                 <h1 class="splash-main-title script-font">Nuestra Boda</h1>
+                <p class="splash-guest-greeting font-alta" id="splash-guest-greeting" style="display: none;"></p>
                 <p class="splash-instruction-text font-alta">DA CLIC AL SOBRE PARA ABRIR</p>
             </div>
 
@@ -389,11 +390,12 @@
                      APARTADO CONDICIONAL EXCLUSIVO PARA PADRINOS
                      Visible solo para: Lupita Mercado, Norma Cortés e Isaac Huerta
                      ========================================== -->
-                <div id="padrinos-dresscode-card" class="padrinos-dresscode-card" style="display: none;" data-aos="fade-up" data-aos-delay="100">
+                <div id="padrinos-dresscode-card" class="padrinos-dresscode-card" style="display: none;"
+                    data-aos="fade-up" data-aos-delay="100">
                     <div class="padrinos-badge">✦ DISTINCIÓN ESPECIAL ✦</div>
                     <h2 class="padrinos-card-title">CÓDIGO DE VESTIMENTA – PADRINOS ✨</h2>
                     <p class="padrinos-style-text"><strong>Estilo:</strong> Formal Campestre | Día</p>
-                    
+
                     <p class="padrinos-palette-label">Paleta asignada:</p>
                     <div class="padrinos-palette-bubbles">
                         <div class="padrinos-bubble-item">
@@ -405,10 +407,6 @@
                             <span class="padrinos-bubble-name">Azul marino</span>
                         </div>
                     </div>
-
-                    <p class="padrinos-note">
-                        (Agradecemos su apoyo reservando el color blanco y el azul serenity/cielo exclusivamente para los novios).
-                    </p>
                 </div>
 
                 <!-- Botón para ver u ocultar la paleta general en vista padrino -->
@@ -422,7 +420,8 @@
                      PALETA GENERAL DE INVITADOS
                      ========================================== -->
                 <div id="general-guest-palette" class="general-guest-palette">
-                    <h2 class="dresscode-title script-font suggested-title" data-aos="fade-up" data-aos-delay="100">Colores
+                    <h2 class="dresscode-title script-font suggested-title" data-aos="fade-up" data-aos-delay="100">
+                        Colores
                         sugeridos</h2>
                     <p class="dresscode-recommend-label" data-aos="fade-up" data-aos-delay="150">RECOMENDAMOS
                         UTILIZAR<br>COLORES COMO</p>
@@ -715,7 +714,8 @@
 
                             <!-- Estado: Formulario de selección y confirmación -->
                             <div id="form-state" style="display: none;">
-                                <div id="padrino-badge-rsvp" class="padrino-honor-badge" style="display: none;">✦ DISTINCIÓN DE HONOR: PADRINOS ✦</div>
+                                <div id="padrino-badge-rsvp" class="padrino-honor-badge" style="display: none;">✦
+                                    DISTINCIÓN DE HONOR: PADRINOS ✦</div>
                                 <h3 class="serif rsvp-guest-name" id="guest-name"></h3>
                                 <div class="badge-count" id="badge-pases"></div>
                                 <p class="rsvp-select-label">Selecciona quiénes asistirán:</p>
@@ -739,8 +739,28 @@
                                 <div class="rsvp-success-icon">✦</div>
                                 <h3 class="serif rsvp-confirmed-title" id="confirmed-title">¡Respuesta Registrada!</h3>
                                 <p id="confirmed-msg" class="rsvp-confirmed-msg"></p>
-                                <button type="button" class="rsvp-edit-btn" onclick="editarRSVP()">Modificar mi
+                                <button type="button" class="rsvp-edit-btn" id="btn-edit-rsvp"
+                                    onclick="editarRSVP()">Modificar mi
                                     respuesta</button>
+                            </div>
+
+                            <!-- Estado: Plazo de confirmación finalizado (posterior al 15 de noviembre) -->
+                            <div id="expired-state" class="rsvp-expired-state" style="display: none;">
+                                <div class="rsvp-expired-badge font-alta">PERIODO DE CONFIRMACIÓN CERRADO</div>
+                                <h3 class="serif rsvp-guest-name" id="expired-guest-name"></h3>
+                                <div class="rsvp-expired-box">
+                                    <div class="rsvp-expired-icon">⏳</div>
+                                    <h4 class="rsvp-expired-title serif">Fecha límite concluida</h4>
+                                    <p class="rsvp-expired-msg">
+                                        El plazo para confirmar asistencia finalizó el <strong>15 de Noviembre de
+                                            2026</strong>.
+                                    </p>
+                                    <p class="rsvp-expired-desc">
+                                        Por cuestiones de reservación y logística con el salón de eventos, el registro
+                                        de pases se encuentra cerrado y tu estado ha quedado registrado como <strong>No
+                                            asistirá</strong>.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
