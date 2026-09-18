@@ -2,13 +2,13 @@
 // MÓDULO DE ASISTENCIA DINÁMICA (RSVP) CON GOOGLE SHEETS
 // =========================================================
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLF2vbVxl-pFc31h5tcISSU58n-DR6xXI3OoEI7vyXvGtM8lL_lDNci1vFsx2N3g0mrQ/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRzIDX3n2NREAz5-vHVM-_8Bx9VP_2h_7btv2sa0eHj-QvpvpXC95UGjtsWjoUo1-Czw/exec';
 
-// Identificadores de fila y de enlace para distinguir a los Padrinos:
-// - Isaac Huerta: id=11 en enlace (fila 16 en hoja)
-// - Norma Cortés: id=13 en enlace (fila 18 en hoja)
-// - Lupita Mercado: id=26 en enlace (fila 31 en hoja)
-const PADRINO_IDS = ['11', '13', '26', '16', '18', '31', '12', '14', '27'];
+// Identificadores fijos de ID y nombres oficiales para distinguir a los Padrinos:
+// - Isaac Huerta: id=11
+// - Norma Cortés: id=13
+// - Lupita Mercado: id=26
+const PADRINO_IDS = ['11', '13', '26'];
 const PADRINO_NAMES = ['lupita mercado', 'norma cortes', 'isaac huerta'];
 
 let guestId = null;
@@ -266,47 +266,47 @@ function enviarRSVP(tipo) {
         method: 'POST',
         body: JSON.stringify(payload)
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.error) throw new Error(data.error);
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) throw new Error(data.error);
 
-        // Actualizar datos locales
-        if (currentGuestData) {
-            currentGuestData.estado = tipo;
-            currentGuestData.confirmados = seleccionados.length;
-        }
-
-        const formEl = document.getElementById('form-state');
-        const confirmedEl = document.getElementById('confirmed-state');
-        const confirmedTitle = document.getElementById('confirmed-title');
-        const confirmedMsg = document.getElementById('confirmed-msg');
-
-        if (formEl) formEl.style.display = 'none';
-        if (confirmedEl) confirmedEl.style.display = 'block';
-
-        if (tipo === 'Confirmado') {
-            if (confirmedTitle) confirmedTitle.innerText = '¡Asistencia Confirmada!';
-            if (confirmedMsg) {
-                confirmedMsg.innerHTML = `Muchas gracias por confirmar.<br>Asistencia registrada para <strong>${seleccionados.length} ${seleccionados.length === 1 ? 'persona' : 'personas'}</strong>.<br>¡Te esperamos con mucha emoción!`;
+            // Actualizar datos locales
+            if (currentGuestData) {
+                currentGuestData.estado = tipo;
+                currentGuestData.confirmados = seleccionados.length;
             }
-        } else {
-            if (confirmedTitle) confirmedTitle.innerText = 'Muchas Gracias';
-            if (confirmedMsg) {
-                confirmedMsg.innerHTML = `Lamentamos que no puedas acompañarnos.<br>¡Agradecemos mucho que nos hayas avisado!`;
+
+            const formEl = document.getElementById('form-state');
+            const confirmedEl = document.getElementById('confirmed-state');
+            const confirmedTitle = document.getElementById('confirmed-title');
+            const confirmedMsg = document.getElementById('confirmed-msg');
+
+            if (formEl) formEl.style.display = 'none';
+            if (confirmedEl) confirmedEl.style.display = 'block';
+
+            if (tipo === 'Confirmado') {
+                if (confirmedTitle) confirmedTitle.innerText = '¡Asistencia Confirmada!';
+                if (confirmedMsg) {
+                    confirmedMsg.innerHTML = `Muchas gracias por confirmar.<br>Asistencia registrada para <strong>${seleccionados.length} ${seleccionados.length === 1 ? 'persona' : 'personas'}</strong>.<br>¡Te esperamos con mucha emoción!`;
+                }
+            } else {
+                if (confirmedTitle) confirmedTitle.innerText = 'Muchas Gracias';
+                if (confirmedMsg) {
+                    confirmedMsg.innerHTML = `Lamentamos que no puedas acompañarnos.<br>¡Agradecemos mucho que nos hayas avisado!`;
+                }
             }
-        }
-    })
-    .catch(err => {
-        console.error('Error al guardar confirmación:', err);
-        alert('Hubo un inconveniente al guardar tu respuesta. Por favor intenta de nuevo en unos segundos.');
-    })
-    .finally(() => {
-        if (btnSubmit) {
-            btnSubmit.disabled = false;
-            btnSubmit.innerText = 'Confirmar Asistencia';
-        }
-        if (btnDecline) btnDecline.disabled = false;
-    });
+        })
+        .catch(err => {
+            console.error('Error al guardar confirmación:', err);
+            alert('Hubo un inconveniente al guardar tu respuesta. Por favor intenta de nuevo en unos segundos.');
+        })
+        .finally(() => {
+            if (btnSubmit) {
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = 'Confirmar Asistencia';
+            }
+            if (btnDecline) btnDecline.disabled = false;
+        });
 }
 
 // Permite reabrir el formulario para corregir o cambiar la confirmación
