@@ -4,8 +4,11 @@
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLF2vbVxl-pFc31h5tcISSU58n-DR6xXI3OoEI7vyXvGtM8lL_lDNci1vFsx2N3g0mrQ/exec';
 
-// Identificadores de fila y nombres oficiales para distinguir a los Padrinos
-const PADRINO_IDS = ['12', '14', '27'];
+// Identificadores de fila y de enlace para distinguir a los Padrinos:
+// - Isaac Huerta: id=11 en enlace (fila 16 en hoja)
+// - Norma Cortés: id=13 en enlace (fila 18 en hoja)
+// - Lupita Mercado: id=26 en enlace (fila 31 en hoja)
+const PADRINO_IDS = ['11', '13', '26', '16', '18', '31', '12', '14', '27'];
 const PADRINO_NAMES = ['lupita mercado', 'norma cortes', 'isaac huerta'];
 
 let guestId = null;
@@ -159,7 +162,7 @@ function procesarEstadoInvitado(data) {
     if (loadingEl) loadingEl.style.display = 'none';
 
     const esConfirmado = data.estado === 'Confirmado' || (typeof data.confirmados === 'number' && data.confirmados > 0);
-    const esNoAsiste = data.estado === 'No asistirá' || (data.confirmados === 0 && data.estado === 'No asistirá');
+    const esNoAsiste = data.estado === 'Rechazado' || data.estado === 'No asistirá' || (data.confirmados === 0 && (data.estado === 'Rechazado' || data.estado === 'No asistirá'));
 
     if (esConfirmado) {
         if (confirmedEl) confirmedEl.style.display = 'block';
