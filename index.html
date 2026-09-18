@@ -385,27 +385,65 @@
                         class="dresscode-couple-img">
                 </div>
 
-                <h2 class="dresscode-title script-font suggested-title" data-aos="fade-up" data-aos-delay="100">Colores
-                    sugeridos</h2>
-                <p class="dresscode-recommend-label" data-aos="fade-up" data-aos-delay="150">RECOMENDAMOS
-                    UTILIZAR<br>COLORES COMO</p>
+                <!-- ==========================================
+                     APARTADO CONDICIONAL EXCLUSIVO PARA PADRINOS
+                     Visible solo para: Lupita Mercado, Norma Cortés e Isaac Huerta
+                     ========================================== -->
+                <div id="padrinos-dresscode-card" class="padrinos-dresscode-card" style="display: none;" data-aos="fade-up" data-aos-delay="100">
+                    <div class="padrinos-badge">✦ DISTINCIÓN ESPECIAL ✦</div>
+                    <h2 class="padrinos-card-title">CÓDIGO DE VESTIMENTA – PADRINOS ✨</h2>
+                    <p class="padrinos-style-text"><strong>Estilo:</strong> Formal Campestre | Día</p>
+                    
+                    <p class="padrinos-palette-label">Paleta asignada:</p>
+                    <div class="padrinos-palette-bubbles">
+                        <div class="padrinos-bubble-item">
+                            <div class="padrinos-bubble c-dorado-mate" title="Dorado mate / Champán"></div>
+                            <span class="padrinos-bubble-name">Dorado mate / Champán</span>
+                        </div>
+                        <div class="padrinos-bubble-item">
+                            <div class="padrinos-bubble c-azul-marino" title="Azul marino"></div>
+                            <span class="padrinos-bubble-name">Azul marino</span>
+                        </div>
+                    </div>
 
-                <ul class="dresscode-color-list" data-aos="fade-up" data-aos-delay="200">
-                    <li>VERDE OLIVO</li>
-                    <li>CAMEL</li>
-                    <li>AZUL MARINO</li>
-                    <li>CAFÉ CLARO</li>
-                    <li>DORADO MATE</li>
-                    <li>AZUL ACERO</li>
-                </ul>
+                    <p class="padrinos-note">
+                        (Agradecemos su apoyo reservando el color blanco y el azul serenity/cielo exclusivamente para los novios).
+                    </p>
+                </div>
 
-                <div class="color-palette-bubbles" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="color-bubble c-verde-olivo" title="Verde Olivo"></div>
-                    <div class="color-bubble c-camel" title="Camel"></div>
-                    <div class="color-bubble c-azul-marino" title="Azul Marino"></div>
-                    <div class="color-bubble c-cafe-claro" title="Café Claro"></div>
-                    <div class="color-bubble c-dorado-mate" title="Dorado Mate"></div>
-                    <div class="color-bubble c-azul-acero" title="Azul Acero"></div>
+                <!-- Botón para ver u ocultar la paleta general en vista padrino -->
+                <div id="padrinos-toggle-wrap" class="padrinos-general-toggle-wrap" style="display: none;">
+                    <button type="button" class="padrinos-toggle-btn" onclick="toggleGeneralPalette()">
+                        <span id="padrinos-toggle-text">Ver paleta de invitados generales ▾</span>
+                    </button>
+                </div>
+
+                <!-- ==========================================
+                     PALETA GENERAL DE INVITADOS
+                     ========================================== -->
+                <div id="general-guest-palette" class="general-guest-palette">
+                    <h2 class="dresscode-title script-font suggested-title" data-aos="fade-up" data-aos-delay="100">Colores
+                        sugeridos</h2>
+                    <p class="dresscode-recommend-label" data-aos="fade-up" data-aos-delay="150">RECOMENDAMOS
+                        UTILIZAR<br>COLORES COMO</p>
+
+                    <ul class="dresscode-color-list" data-aos="fade-up" data-aos-delay="200">
+                        <li>VERDE OLIVO</li>
+                        <li>TERRACOTA O TEJA</li>
+                        <li>MELOCOTÓN</li>
+                        <li>CAMEL O CAFÉ CLARO</li>
+                        <li>AZUL ACERO</li>
+                        <li>GRIS PIEDRA</li>
+                    </ul>
+
+                    <div class="color-palette-bubbles" data-aos="zoom-in" data-aos-delay="250">
+                        <div class="color-bubble c-verde-oliva" title="Verde Oliva"></div>
+                        <div class="color-bubble c-terracota" title="Terracota o Teja"></div>
+                        <div class="color-bubble c-melocoton" title="Melocotón"></div>
+                        <div class="color-bubble c-camel" title="Camel o Café Claro"></div>
+                        <div class="color-bubble c-azul-acero" title="Azul Acero"></div>
+                        <div class="color-bubble c-gris-piedra" title="Gris Piedra"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -677,6 +715,7 @@
 
                             <!-- Estado: Formulario de selección y confirmación -->
                             <div id="form-state" style="display: none;">
+                                <div id="padrino-badge-rsvp" class="padrino-honor-badge" style="display: none;">✦ DISTINCIÓN DE HONOR: PADRINOS ✦</div>
                                 <h3 class="serif rsvp-guest-name" id="guest-name"></h3>
                                 <div class="badge-count" id="badge-pases"></div>
                                 <p class="rsvp-select-label">Selecciona quiénes asistirán:</p>

@@ -1618,12 +1618,31 @@ body {
     transform: scale(1.12);
 }
 
-.c-verde-olivo {
+.c-verde-olivo,
+.c-verde-oliva {
     background-color: #556839;
 }
 
-.c-camel {
+.c-terracota,
+.c-teja {
+    background-color: #c37349;
+}
+
+.c-melocoton {
+    background-color: #efa25d;
+}
+
+.c-camel,
+.c-cafe-claro {
     background-color: #bb8d56;
+}
+
+.c-azul-acero {
+    background-color: #437ea8;
+}
+
+.c-gris-piedra {
+    background-color: #8c8d88;
 }
 
 .c-azul-marino {
@@ -1634,16 +1653,175 @@ body {
     background-color: #f7b8c7;
 }
 
-.c-cafe-claro {
-    background-color: #947b56;
-}
-
 .c-dorado-mate {
     background-color: var(--gold-champagne);
 }
 
-.c-azul-acero {
-    background-color: #437ea8;
+/* =========================================================
+   10.1 APARTADO CONDICIONAL EXCLUSIVO: PADRINOS DE BODA
+   Diseño de gala con detalles dorados y azul marino
+   ========================================================= */
+.padrinos-dresscode-card {
+    background: linear-gradient(145deg, #1b2f48 0%, #101d2d 100%);
+    border: 1.5px solid rgba(229, 190, 133, 0.65);
+    border-radius: 20px;
+    padding: 26px 20px;
+    margin: 10px auto 24px;
+    width: 92%;
+    max-width: 370px;
+    box-shadow: 0 12px 30px rgba(16, 29, 45, 0.25), 0 0 20px rgba(214, 173, 102, 0.15);
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    text-align: center;
+}
+
+.padrinos-dresscode-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #e5be85, #d6ad66, transparent);
+}
+
+.padrinos-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(229, 190, 133, 0.16);
+    border: 1px solid rgba(229, 190, 133, 0.5);
+    color: #f1dfbf;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 14px;
+}
+
+.padrinos-card-title {
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    letter-spacing: 2px;
+    color: #eeddbb;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.35;
+}
+
+.padrinos-style-text {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: #ffffff;
+    font-weight: 400;
+    margin: 0 0 16px 0;
+    letter-spacing: 0.5px;
+}
+
+.padrinos-style-text strong {
+    color: #e5be85;
+    font-weight: 600;
+}
+
+.padrinos-palette-label {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: #eeddbb;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+}
+
+.padrinos-palette-bubbles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 10px 0 16px 0;
+}
+
+.padrinos-bubble-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.padrinos-bubble {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    transition: transform 0.25s ease;
+    cursor: pointer;
+}
+
+.padrinos-bubble:hover {
+    transform: scale(1.12);
+}
+
+.padrinos-bubble-name {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: #eeddbb;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.padrinos-note {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #d8dee8;
+    margin: 14px 0 0 0;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(229, 190, 133, 0.35);
+}
+
+.padrinos-general-toggle-wrap {
+    margin: 10px auto 22px auto;
+    text-align: center;
+}
+
+.padrinos-toggle-btn {
+    background: #fdfbf7;
+    border: 1px solid #d8cfc0;
+    border-radius: 20px;
+    color: var(--slate-muted);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    padding: 7px 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+}
+
+.padrinos-toggle-btn:hover {
+    background: #f5efe4;
+    color: var(--text-main);
+    border-color: #bfa054;
+}
+
+.padrino-honor-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(184, 138, 68, 0.12), rgba(229, 190, 133, 0.22));
+    border: 1px solid var(--gold-radiant);
+    color: var(--gold-bronze);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
 /* =========================================================
