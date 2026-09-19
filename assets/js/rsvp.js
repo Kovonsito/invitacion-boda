@@ -322,6 +322,7 @@ function enviarRSVP(tipo) {
 
     const payload = {
         id: guestId,
+        contacto: currentGuestData?.contacto,
         confirmados: seleccionados,
         estado: tipo
     };
