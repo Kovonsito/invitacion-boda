@@ -3218,17 +3218,18 @@ body {
 .cal-modal-card {
     position: relative;
     width: 100%;
-    max-width: 440px;
+    max-width: 410px;
+    max-height: 90vh;
+    overflow-y: auto;
     background-color: var(--card-cream);
     background-image:
         linear-gradient(rgba(253, 251, 247, 0.95), rgba(253, 251, 247, 0.95)),
         url('../images/backgrounds/fondo-1.png');
     background-size: cover;
-    border-radius: 22px;
+    border-radius: 20px;
     border: 1px solid rgba(191, 160, 84, 0.38);
-    box-shadow: 0 25px 60px -10px rgba(18, 30, 48, 0.35), 0 0 0 5px rgba(253, 251, 247, 0.55);
-    padding: 30px 24px 26px;
-    overflow: hidden;
+    box-shadow: 0 25px 60px -10px rgba(18, 30, 48, 0.35), 0 0 0 4px rgba(253, 251, 247, 0.55);
+    padding: 22px 18px 20px;
     transform: scale(0.92) translateY(20px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
     box-sizing: border-box;
@@ -3281,57 +3282,57 @@ body {
 /* Encabezado */
 .cal-modal-header {
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .cal-modal-rings {
-    width: 34px;
+    width: 30px;
     height: auto;
     display: block;
-    margin: 0 auto 6px;
+    margin: 0 auto 4px;
     filter: drop-shadow(0 2px 5px rgba(191, 160, 84, 0.25));
 }
 
 .cal-modal-eyebrow {
     font-family: var(--font-display);
-    font-size: 0.72rem;
-    letter-spacing: 3px;
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
     color: var(--gold-bronze);
     text-transform: uppercase;
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
     font-weight: 600;
 }
 
 .cal-modal-script {
     font-family: var(--font-script);
-    font-size: 2.9rem;
+    font-size: 2.5rem;
     color: var(--gold-warm);
     font-weight: normal;
     line-height: 1;
-    margin: 2px 0 6px;
+    margin: 1px 0 4px;
 }
 
 .cal-modal-names {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     color: var(--navy-deep);
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
     font-weight: 500;
     margin: 0;
 }
 
 /* Boleto Nupcial / Ficha del Evento */
 .cal-event-ticket {
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(191, 160, 84, 0.3);
     border-radius: 12px;
-    padding: 12px 16px;
+    padding: 10px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .cal-ticket-col-date {
@@ -3339,28 +3340,28 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 88px;
+    min-width: 80px;
 }
 
 .cal-ticket-weekday {
-    font-size: 0.74rem;
-    letter-spacing: 2px;
+    font-size: 0.7rem;
+    letter-spacing: 1.8px;
     color: var(--gold-bronze);
     font-weight: 600;
     line-height: 1;
 }
 
 .cal-ticket-day {
-    font-size: 2.1rem;
+    font-size: 1.85rem;
     color: var(--navy-deep);
     font-weight: 700;
     line-height: 1.05;
-    margin: 2px 0;
+    margin: 1px 0;
 }
 
 .cal-ticket-month-year {
-    font-size: 0.74rem;
-    letter-spacing: 1.5px;
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
     color: var(--gold-bronze);
     font-weight: 600;
     line-height: 1;
@@ -3368,9 +3369,9 @@ body {
 
 .cal-ticket-divider {
     width: 1px;
-    height: 48px;
+    height: 42px;
     background: rgba(191, 160, 84, 0.3);
-    margin: 0 14px;
+    margin: 0 12px;
 }
 
 .cal-ticket-col-info {
@@ -3386,16 +3387,16 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.96rem;
+    font-size: 0.9rem;
     color: var(--text-main);
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 
 .cal-ticket-line.venue-line {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     color: var(--navy-deep);
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
 }
 
 .cal-ticket-icon {
@@ -3404,7 +3405,7 @@ body {
 }
 
 .cal-ticket-city {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #7b838f;
     margin: 0 0 0 21px;
     line-height: 1.2;
@@ -3415,22 +3416,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     background: #fbf7ee;
     border: 1px solid rgba(191, 160, 84, 0.22);
     border-radius: 20px;
-    padding: 6px 14px;
+    padding: 5px 12px;
     font-family: var(--font-serif);
-    font-size: 0.92rem;
+    font-size: 0.84rem;
     font-style: italic;
     color: #8c6a28;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .ribbon-sparkle {
     color: var(--gold-warm);
     font-style: normal;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 /* Cuadrícula de Azulejos de Lujo */
@@ -3439,18 +3440,18 @@ body {
 }
 
 .cal-choose-prompt {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-style: italic;
     letter-spacing: 0.5px;
     color: #6b7582;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     text-align: center;
 }
 
 .cal-luxury-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
 }
 
 .cal-luxury-tile {
@@ -3460,13 +3461,13 @@ body {
     justify-content: center;
     background: var(--white);
     border: 1px solid rgba(191, 160, 84, 0.28);
-    border-radius: 12px;
-    padding: 12px 10px;
+    border-radius: 10px;
+    padding: 10px 8px;
     text-decoration: none;
     color: var(--text-main);
     cursor: pointer;
     transition: all 0.25s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     text-align: center;
     box-sizing: border-box;
 }
@@ -3479,15 +3480,15 @@ body {
 }
 
 .cal-tile-icon-wrap {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: var(--card-cream-warm);
     border: 1px solid rgba(191, 160, 84, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     transition: transform 0.25s ease, background 0.25s ease;
 }
 
@@ -3505,7 +3506,7 @@ body {
 .cal-tile-info strong,
 .cal-tile-name {
     font-family: var(--font-sans);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--navy-deep);
     letter-spacing: 0.8px;
@@ -3515,37 +3516,43 @@ body {
 
 .cal-tile-info span {
     font-family: var(--font-sans);
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     color: #8c94a0;
-    margin-top: 2px;
+    margin-top: 1px;
 }
 
 @media (max-width: 440px) {
     .cal-modal-card {
-        padding: 24px 16px 20px;
+        padding: 18px 14px 16px;
+        max-width: 94%;
     }
 
     .cal-modal-script {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .cal-event-ticket {
-        padding: 10px 12px;
+        padding: 8px 10px;
     }
 
     .cal-ticket-day {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     .cal-ticket-divider {
-        margin: 0 10px;
+        margin: 0 8px;
     }
 
     .cal-luxury-grid {
-        gap: 8px;
+        gap: 6px;
     }
 
     .cal-luxury-tile {
-        padding: 10px 6px;
+        padding: 8px 4px;
+    }
+
+    .cal-reminder-ribbon {
+        font-size: 0.76rem;
+        padding: 4px 8px;
     }
 }
