@@ -4,7 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save The Date | Karla & Kevin</title>
+    <title>Save The Date | Kevin & Mayalli</title>
+
+    <!-- Vista previa para WhatsApp y redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Save The Date | Kevin & Mayalli">
+    <meta property="og:description" content="¡Nos casamos! Acompáñanos a celebrar este día tan especial con nosotros.">
+    <meta property="og:image" content="https://invitacion-boda-two-rust.vercel.app/assets/images/preview/preview.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:url" content="https://invitacion-boda-two-rust.vercel.app">
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,8 +34,14 @@
 
 <body>
 
-    <!-- PORTADA DE BIENVENIDA / SPLASH OVERLAY CON SOBRE INTERACTIVO -->
-    <div id="welcome-splash" class="welcome-splash-overlay" role="dialog" aria-modal="true" aria-label="Bienvenida a Nuestra Boda">
+    <!-- =========================================================
+         00. PORTADA DE BIENVENIDA / SPLASH OVERLAY INTERACTIVO
+         Pantalla inicial con fondo difuminado de los novios,
+         sobre tridimensional cerrado y sello de cera dorado KM
+         que al hacer clic desata la animación de apertura y música.
+         ========================================================= -->
+    <div id="welcome-splash" class="welcome-splash-overlay" role="dialog" aria-modal="true"
+        aria-label="Bienvenida a Nuestra Boda">
         <!-- Fondo con foto difuminada de los novios -->
         <div class="splash-bg-backdrop"></div>
 
@@ -33,22 +50,27 @@
             <!-- Encabezado Superior -->
             <div class="splash-header-box">
                 <h1 class="splash-main-title script-font">Nuestra Boda</h1>
+                <p class="splash-guest-greeting font-alta" id="splash-guest-greeting" style="display: none;"></p>
                 <p class="splash-instruction-text font-alta">DA CLIC AL SOBRE PARA ABRIR</p>
             </div>
 
             <!-- Área Central con el Sobre y el Sello Interactivo -->
             <div class="splash-envelope-area" id="splash-envelope-area">
                 <!-- Flores de esquina izquierda -->
-                <img src="assets/images/gallery/flor1-asistencia.png" alt="Flores decorativas" class="splash-flower-decor splash-flower-left">
+                <img src="assets/images/gallery/flores-esquina-izquierda.png" alt="Flores decorativas"
+                    class="splash-flower-decor splash-flower-left">
                 <!-- Flores de esquina derecha -->
-                <img src="assets/images/gallery/flor2-asistencia.png" alt="Flores decorativas" class="splash-flower-decor splash-flower-right">
+                <img src="assets/images/gallery/flores-esquina-derecha.png" alt="Flores decorativas"
+                    class="splash-flower-decor splash-flower-right">
 
                 <div class="splash-envelope-wrapper" id="splash-envelope-wrapper">
                     <!-- Sobre Cerrado -->
-                    <img src="assets/images/gallery/sobre-cerrado-asistencia-inicio.png" alt="Sobre cerrado de boda" class="splash-envelope-closed" id="splash-env-closed">
+                    <img src="assets/images/gallery/sobre-cerrado-nupcial.png" alt="Sobre cerrado de boda"
+                        class="splash-envelope-closed" id="splash-env-closed">
 
                     <!-- Sobre Abierto (fondo grabado con rosas) -->
-                    <img src="assets/images/gallery/sobre-abierto-clean.png" alt="Sobre abierto de boda" class="splash-envelope-open" id="splash-env-open">
+                    <img src="assets/images/gallery/sobre-abierto-clean.png" alt="Sobre abierto de boda"
+                        class="splash-envelope-open" id="splash-env-open">
 
                     <!-- Tarjeta interior que asoma suavemente -->
                     <div class="splash-inner-letter">
@@ -58,8 +80,10 @@
                     </div>
 
                     <!-- Sello de Cera Dorado KM Interactivo -->
-                    <button type="button" class="splash-wax-seal" id="splash-wax-seal" onclick="openWelcomeEnvelope(event)" aria-label="Abrir sobre de invitación">
-                        <img src="assets/images/gallery/sello-sobre-asistencia.png" alt="Sello de cera dorado KM" class="splash-wax-seal-img">
+                    <button type="button" class="splash-wax-seal" id="splash-wax-seal"
+                        onclick="openWelcomeEnvelope(event)" aria-label="Abrir sobre de invitación">
+                        <img src="assets/images/gallery/sello-cera-dorado-km.png" alt="Sello de cera dorado KM"
+                            class="splash-wax-seal-img">
                     </button>
                 </div>
             </div>
@@ -75,18 +99,26 @@
         </div>
     </div>
 
-    <!-- Contenedor Principal (Estilo Invitación Móvil) -->
+    <!-- =========================================================
+         CONTENEDOR PRINCIPAL DE LA INVITACIÓN
+         Marco vertical estilo tarjeta móvil de alta papelería con
+         fondo apergaminado marfil y sombra envolvente.
+         ========================================================= -->
     <div class="app-container">
 
-        <!-- Botón Flotante de Música -->
+        <!-- BOTÓN FLOTANTE DE CONTROL DE MÚSICA & ELEMENTO DE AUDIO -->
         <button id="music-toggle" class="music-btn" onclick="toggleMusic()" aria-label="Música de fondo">
             <span id="music-icon">&#9654;</span>
         </button>
         <audio id="bg-music" loop preload="auto">
-            <source src="assets/audio/Bruno Mars - Risk It All.mp3" type="audio/mp3">
+            <source src="assets/audio/cant-take-my-eyes-off-you.mp3" type="audio/mp3">
         </audio>
 
-        <!-- 1. HERO CON SOBRE Y FOTO -->
+        <!-- =========================================================
+         01. SECCIÓN HERO: NOMBRES DE LOS NOVIOS & SOBRE INTERACTIVO
+         Encabezado con nombres de Kevin y Mayalli, sobre interactivo
+         con foto polaroid desplegable al clic y cita bíblica de Colosenses.
+         ========================================================= -->
         <section class="hero-section">
             <h1 class="couple-names-header script-font" data-aos="fade-down" data-aos-duration="1000">
                 <span class="name first">Kevin</span>
@@ -116,7 +148,11 @@
 
             <!-- Indicador sutil de interacción -->
             <p class="hero-click-hint" data-aos="fade-up" data-aos-delay="300">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hint-icon"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="m9 12 2 2 4-4"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="hint-icon">
+                    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
+                    <path d="m9 12 2 2 4-4" />
+                </svg>
                 Haz clic en la imagen
             </p>
 
@@ -131,7 +167,11 @@
             </div>
         </section>
 
-        <!-- 2. SECCIÓN REPRODUCTOR DE MÚSICA CON ALIANZAS -->
+        <!-- =========================================================
+         02. SECCIÓN REPRODUCTOR DE MÚSICA CON ALIANZAS
+         Tarjeta con ilustración de alianzas matrimoniales doradas,
+         mensaje emotivo y reproductor con barra de progreso interactiva.
+         ========================================================= -->
         <section class="music-banner-section">
             <div class="music-player-card" onclick="toggleMusic()" data-aos="fade-up" data-aos-duration="900">
                 <!-- Ilustración de Alianzas -->
@@ -160,7 +200,12 @@
             </div>
         </section>
 
-        <!-- 3. CUENTA REGRESIVA & CALENDARIO -->
+        <!-- =========================================================
+         03. SECCIÓN CUENTA REGRESIVA & CALENDARIO NUPCIAL
+         Contador regresivo dinámico en tiempo real (días, horas, minutos, segundos),
+         mini calendario minimalista destacando el 4 de Diciembre de 2026,
+         y botón interactivo de alta papelería para agendar la fecha.
+         ========================================================= -->
         <section class="countdown-section">
             <h2 class="countdown-title script-font" data-aos="fade-up">Prepárate...</h2>
             <p class="countdown-subtitle" data-aos="fade-up" data-aos-delay="100">SOLO FALTAN</p>
@@ -261,20 +306,25 @@
 
             <!-- Foto de pareja inferior con desvanecido superior e inferior unificado -->
             <div class="photo-fade-container countdown-photo-wrap" data-aos="fade-up">
-                <div class="photo-fade-top fade-cream"></div>
-                <img src="assets/images/gallery/foto-conteo.jpg" alt="Kevin y Karla" class="photo-fade-img">
-                <div class="photo-fade-bottom fade-blue-serenity"></div>
+                <!-- Fotografía de pareja con máscara de desvanecido gradual suave sin cortes duros -->
+                <img src="assets/images/gallery/foto-pareja-exteriores.jpg" alt="Kevin y Mayalli"
+                    class="photo-fade-img">
             </div>
         </section>
 
-        <!-- 5. DÓNDE & CUÁNDO (CEREMONIA Y RECEPCIÓN) -->
+        <!-- =========================================================
+         04. SECCIÓN DÓNDE & CUÁNDO (CEREMONIA Y RECEPCIÓN)
+         Tarjetas informativas de los eventos: Arco ovalado para la Ceremonia (2:00 PM),
+         tarjeta dorada para la Recepción (3:00 PM) en Azul Terraza, botones
+         para abrir el mapa interactivo y composición con foto polaroid.
+         ========================================================= -->
         <section class="events-section">
             <div class="events-container">
                 <!-- Tarjeta Arco Ovalada: Ceremonia -->
                 <div class="event-arch-card" data-aos="fade-up">
                     <h3 class="event-script-title">Ceremonia</h3>
                     <div class="event-illustration-wrap">
-                        <img src="assets/images/gallery/novios-ceremonia.png" alt="Novios Ceremonia"
+                        <img src="assets/images/gallery/ilustracion-pareja-nupcial.png" alt="Novios Ceremonia"
                             class="event-illustration">
                     </div>
                     <div class="event-info-block">
@@ -286,22 +336,22 @@
                 </div>
 
                 <!-- Flor blanca izquierda abajo del arco -->
-                <img src="assets/images/gallery/flores2-ceremonia.png" alt="Flores decorativas"
+                <img src="assets/images/gallery/flores-blancas-decorativas.png" alt="Flores decorativas"
                     class="event-flower flower-left" data-aos="fade-right" data-aos-delay="200">
 
                 <!-- Flor verde derecha arriba de la recepción -->
-                <img src="assets/images/gallery/flores1-ceremonia.png" alt="Flores decorativas"
+                <img src="assets/images/gallery/flores-follaje-verde.png" alt="Flores decorativas"
                     class="event-flower flower-top-right" data-aos="fade-left" data-aos-delay="250">
 
                 <!-- Tarjeta Rectangular Dorada: Recepción -->
                 <div class="event-gold-card" data-aos="fade-left" data-aos-delay="150">
                     <h3 class="event-script-title gold">Recepción</h3>
                     <div class="event-illustration-wrap">
-                        <img src="assets/images/gallery/recepción.png" alt="Copas Recepción"
+                        <img src="assets/images/gallery/ilustracion-copas-brindis.png" alt="Copas Recepción"
                             class="event-illustration toast-glasses">
                     </div>
                     <div class="event-info-block gold">
-                        <p class="event-hour">3:00 PM</p>
+                        <p class="event-hour">1:30 PM</p>
                         <h4 class="event-venue-title">AZUL TERRAZA</h4>
                         <p class="event-venue-address">Palomas km 1.8,<br>El Armadillo,<br>63792 Tepic,<br>Nay.</p>
                         <button type="button" onclick="openMapModal()" class="event-map-btn gold-btn">VER MAPA</button>
@@ -311,53 +361,97 @@
                 <!-- Marco Polaroid abajo izquierda -->
                 <div class="event-polaroid-wrap" data-aos="zoom-in" data-aos-delay="250">
                     <div class="event-polaroid-frame">
-                        <img src="assets/images/gallery/foto-marco-ceremonia.jpeg" alt="Kevin y Karla"
+                        <img src="assets/images/gallery/foto-pareja-polaroid.jpeg" alt="Kevin y Karla"
                             class="event-polaroid-img">
                     </div>
                     <!-- Flor colgante en la esquina inferior derecha de la polaroid -->
-                    <img src="assets/images/gallery/flores3-ceremonia.png" alt="Flor decorativa"
+                    <img src="assets/images/gallery/flores-colgantes-acento.png" alt="Flor decorativa"
                         class="event-flower flower-polaroid" data-aos="zoom-in" data-aos-delay="350">
                 </div>
             </div>
         </section>
 
-        <!-- 6. CÓDIGO DE VESTIMENTA -->
+        <!-- =========================================================
+         05. SECCIÓN CÓDIGO DE VESTIMENTA (DRESS CODE)
+         Etiqueta sugerida "Formal Campestre", ilustración de los novios
+         y muestrario de burbujas con la paleta de colores recomendados.
+         ========================================================= -->
         <section class="dresscode-section">
             <div class="dresscode-inner">
                 <h2 class="dresscode-title script-font" data-aos="fade-up">Código de vestimenta</h2>
                 <h3 class="dresscode-subtitle" data-aos="fade-up" data-aos-delay="100">FORMAL CAMPESTRE</h3>
 
                 <div class="dresscode-illustration-wrap" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="assets/images/gallery/novios-codigo-vestimenta.png" alt="Formal Campestre Pareja"
+                    <img src="assets/images/gallery/ilustracion-pareja-formal.png" alt="Formal Campestre Pareja"
                         class="dresscode-couple-img">
                 </div>
 
-                <h2 class="dresscode-title script-font suggested-title" data-aos="fade-up" data-aos-delay="100">Colores
-                    sugeridos</h2>
-                <p class="dresscode-recommend-label" data-aos="fade-up" data-aos-delay="150">RECOMENDAMOS
-                    UTILIZAR<br>COLORES COMO</p>
+                <!-- ==========================================
+                     APARTADO CONDICIONAL EXCLUSIVO PARA PADRINOS
+                     Visible solo para: Lupita Mercado, Norma Cortés e Isaac Huerta
+                     ========================================== -->
+                <div id="padrinos-dresscode-card" class="padrinos-dresscode-card" style="display: none;"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="padrinos-badge">✦ DISTINCIÓN ESPECIAL ✦</div>
+                    <h2 class="padrinos-card-title">CÓDIGO DE VESTIMENTA – PADRINOS ✨</h2>
+                    <p class="padrinos-style-text"><strong>Estilo:</strong> Formal Campestre | Día</p>
 
-                <ul class="dresscode-color-list" data-aos="fade-up" data-aos-delay="200">
-                    <li>VERDE OLIVO</li>
-                    <li>CAMEL</li>
-                    <li>AZUL MARINO</li>
-                    <li>CAFÉ CLARO</li>
-                    <li>DORADO MATE</li>
-                    <li>AZUL ACERO</li>
-                </ul>
+                    <p class="padrinos-palette-label">Paleta asignada:</p>
+                    <div class="padrinos-palette-bubbles">
+                        <div class="padrinos-bubble-item">
+                            <div class="padrinos-bubble c-dorado-mate" title="Dorado mate / Champán"></div>
+                            <span class="padrinos-bubble-name">Dorado mate / Champán</span>
+                        </div>
+                        <div class="padrinos-bubble-item">
+                            <div class="padrinos-bubble c-azul-marino" title="Azul marino"></div>
+                            <span class="padrinos-bubble-name">Azul marino</span>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="color-palette-bubbles" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="color-bubble c-verde-olivo" title="Verde Olivo"></div>
-                    <div class="color-bubble c-camel" title="Camel"></div>
-                    <div class="color-bubble c-azul-marino" title="Azul Marino"></div>
-                    <div class="color-bubble c-cafe-claro" title="Café Claro"></div>
-                    <div class="color-bubble c-dorado-mate" title="Dorado Mate"></div>
-                    <div class="color-bubble c-azul-acero" title="Azul Acero"></div>
+                <!-- Botón para ver u ocultar la paleta general en vista padrino -->
+                <div id="padrinos-toggle-wrap" class="padrinos-general-toggle-wrap" style="display: none;">
+                    <button type="button" class="padrinos-toggle-btn" onclick="toggleGeneralPalette()">
+                        <span id="padrinos-toggle-text">Ver paleta de invitados generales ▾</span>
+                    </button>
+                </div>
+
+                <!-- ==========================================
+                     PALETA GENERAL DE INVITADOS
+                     ========================================== -->
+                <div id="general-guest-palette" class="general-guest-palette">
+                    <h2 class="dresscode-title script-font suggested-title" data-aos="fade-up" data-aos-delay="100">
+                        Colores
+                        sugeridos</h2>
+                    <p class="dresscode-recommend-label" data-aos="fade-up" data-aos-delay="150">RECOMENDAMOS
+                        UTILIZAR<br>COLORES COMO</p>
+
+                    <ul class="dresscode-color-list" data-aos="fade-up" data-aos-delay="200">
+                        <li>VERDE OLIVO</li>
+                        <li>TERRACOTA O TEJA</li>
+                        <li>MELOCOTÓN</li>
+                        <li>CAMEL O CAFÉ CLARO</li>
+                        <li>AZUL ACERO</li>
+                        <li>GRIS PIEDRA</li>
+                    </ul>
+
+                    <div class="color-palette-bubbles" data-aos="zoom-in" data-aos-delay="250">
+                        <div class="color-bubble c-verde-oliva" title="Verde Oliva"></div>
+                        <div class="color-bubble c-terracota" title="Terracota o Teja"></div>
+                        <div class="color-bubble c-melocoton" title="Melocotón"></div>
+                        <div class="color-bubble c-camel" title="Camel o Café Claro"></div>
+                        <div class="color-bubble c-azul-acero" title="Azul Acero"></div>
+                        <div class="color-bubble c-gris-piedra" title="Gris Piedra"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 7. RECOMENDACIONES DE VESTIMENTA (RESERVADOS Y PROHIBICIONES) -->
+        <!-- =========================================================
+         06. SECCIÓN RECOMENDACIONES DE VESTIMENTA (RESERVADOS & PROHIBICIONES)
+         Avisos de cortesía: Colores reservados exclusivamente para los novios (blanco
+         y azul cielo) y restricciones de etiqueta (evitar negro, mezclilla o tenis).
+         ========================================================= -->
         <section class="dress-rules-section">
             <!-- Bloque Superior Azul: Tonos reservados para los novios -->
             <div class="dress-rules-top">
@@ -368,7 +462,7 @@
                     EXCLUSIVAMENTE PARA LOS NOVIOS.
                 </p>
                 <div class="dress-rules-novios-wrap" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="assets/images/gallery/novios-codigo-vestimenta-cropped.png" alt="Novios reservado"
+                    <img src="assets/images/gallery/ilustracion-pareja-formal-recortada.png" alt="Novios reservado"
                         class="dress-rules-novios-img">
                 </div>
             </div>
@@ -399,23 +493,26 @@
 
                 <!-- Foto de pareja inferior dentro del bloque azul con desvanecido superior e inferior unificado -->
                 <div class="photo-fade-container dress-photo-wrap" data-aos="fade-up" data-aos-delay="150">
-                    <div class="photo-fade-top fade-blue-rules"></div>
-                    <img src="assets/images/gallery/foto-codigo-vestimenta.jpeg" alt="Kevin y Mayalli"
+                    <!-- Fotografía de novios en el bloque de vestimenta con máscara de desvanecido gradual -->
+                    <img src="assets/images/gallery/foto-pareja-formal.jpeg" alt="Kevin y Mayalli"
                         class="photo-fade-img">
-                    <div class="photo-fade-bottom fade-cream"></div>
                 </div>
             </div>
         </section>
 
-        <!-- 8. MESA DE REGALOS & LLUVIA DE SOBRES -->
+        <!-- =========================================================
+         07. SECCIÓN MESA DE REGALOS & LLUVIA DE SOBRES
+         Tarjeta verde olivo con enlace oficial a la Mesa de Regalos Liverpool
+         (Evento 60006286) y anuncio del buzón de recepción para lluvia de sobres.
+         ========================================================= -->
         <section class="gift-section">
             <div class="gift-card-container">
                 <!-- Flor decorativa superior derecha -->
-                <img src="assets/images/gallery/flores1-mesa-regalos.png" alt="Flores decorativas"
+                <img src="assets/images/gallery/flores-ramillete-superior.png" alt="Flores decorativas"
                     class="gift-flower flower-top-right" data-aos="fade-down-left" data-aos-delay="200">
 
                 <!-- Flor decorativa inferior izquierda -->
-                <img src="assets/images/gallery/flores2-mesa-regalos.png" alt="Flores decorativas"
+                <img src="assets/images/gallery/flores-ramillete-delicado.png" alt="Flores decorativas"
                     class="gift-flower flower-bottom-left" data-aos="fade-up-right" data-aos-delay="250">
 
                 <!-- Tarjeta Verde Oliva Central -->
@@ -477,7 +574,8 @@
 
                         <!-- Ilustración Sobre -->
                         <div class="gift-envelope-wrap" data-aos="zoom-in" data-aos-delay="250">
-                            <img src="assets/images/gallery/sobre.png" alt="Sobre" class="gift-envelope-img">
+                            <img src="assets/images/gallery/icono-sobre-carta.png" alt="Sobre"
+                                class="gift-envelope-img">
                         </div>
 
                         <!-- Texto descriptivo buzón -->
@@ -491,13 +589,17 @@
             </div>
         </section>
 
-        <!-- 9. FOTO PAREJA & SECCIÓN ESPACIO INFANTIL / NIÑOS -->
+        <!-- =========================================================
+         08. SECCIÓN ESPACIO INFANTIL / ÁREA PARA NIÑOS
+         Fotografía de transición y tarjeta informativa sobre el espacio
+         especial para el cuidado y diversión de los niños durante el evento.
+         ========================================================= -->
         <section class="kids-section">
             <!-- Foto de pareja con desvanecido gradual superior e inferior unificado -->
             <div class="photo-fade-container kids-photo-wrap" data-aos="fade-up" data-aos-duration="900">
-                <div class="photo-fade-top fade-cream"></div>
-                <img src="assets/images/gallery/foto-mesa-regalo.jpeg" alt="Kevin y Mayalli" class="photo-fade-img">
-                <div class="photo-fade-bottom fade-cream"></div>
+                <!-- Fotografía de pareja con máscara de desvanecido gradual suave -->
+                <img src="assets/images/gallery/foto-pareja-romantica.jpeg" alt="Kevin y Mayalli"
+                    class="photo-fade-img">
             </div>
 
             <!-- Bloque de texto con fondo texturizado y flor decorativa -->
@@ -518,12 +620,16 @@
                 </p>
 
                 <!-- Flor decorativa inferior derecha -->
-                <img src="assets/images/gallery/flor-ninos.png" alt="Flor decorativa" class="kids-flower-decor"
-                    data-aos="zoom-in" data-aos-delay="300">
+                <img src="assets/images/gallery/flores-acento-calido.png" alt="Flor decorativa"
+                    class="kids-flower-decor" data-aos="zoom-in" data-aos-delay="300">
             </div>
         </section>
 
-        <!-- 10. ASISTENCIA & CONFIRMACIÓN (SOBRE AZUL Y LAGO) -->
+        <!-- =========================================================
+         09. SECCIÓN DE ASISTENCIA & CONFIRMACIÓN (RSVP DINÁMICO)
+         Composición estética con sobre azul sereno, flores de esquina, sello de cera
+         dorado KM y tarjeta interior interactiva sincronizada con Google Sheets.
+         ========================================================= -->
         <section class="rsvp-section">
             <div class="rsvp-bg-overlay"></div>
 
@@ -534,27 +640,28 @@
                 <!-- Subtítulo Fecha Límite -->
                 <p class="rsvp-deadline-text" data-aos="fade-up" data-aos-delay="100">
                     POR FAVOR CONFIRMA TU ASISTENCIA<br>
-                    ANTES DEL 20 DE NOVIEMBRE
+                    ANTES DEL 15 DE NOVIEMBRE
                 </p>
 
                 <!-- Composición del Sobre con Flores, Sello y Tarjeta -->
                 <div class="rsvp-envelope-container" data-aos="zoom-in" data-aos-duration="900" data-aos-delay="150">
                     <!-- Flores Superpuestas en las esquinas del sobre -->
-                    <img src="assets/images/gallery/flor1-asistencia.png" alt="Flores decorativas"
+                    <img src="assets/images/gallery/flores-esquina-izquierda.png" alt="Flores decorativas"
                         class="rsvp-flower rsvp-flower-left" data-aos="fade-right" data-aos-delay="250">
-                    <img src="assets/images/gallery/flor2-asistencia.png" alt="Flores decorativas"
+                    <img src="assets/images/gallery/flores-esquina-derecha.png" alt="Flores decorativas"
                         class="rsvp-flower rsvp-flower-right" data-aos="fade-left" data-aos-delay="250">
 
                     <!-- Ilustración / Capa del Sobre Cerrado -->
                     <div class="rsvp-envelope-body">
                         <!-- Imagen real del Sobre Cerrado generado por Gemini -->
-                        <img src="assets/images/gallery/sobre-cerrado-asistencia.png" alt="Sobre cerrado" class="rsvp-envelope-img">
+                        <img src="assets/images/gallery/sobre-cerrado-nupcial.png" alt="Sobre cerrado"
+                            class="rsvp-envelope-img">
+                    </div>
 
-                        <!-- Sello de Cera Dorado KM sobre la punta del sobre -->
-                        <div class="rsvp-wax-seal-wrap">
-                            <img src="assets/images/gallery/sello-km-gemini.png" alt="Sello de cera KM"
-                                class="rsvp-wax-seal-img" data-aos="zoom-in" data-aos-delay="350">
-                        </div>
+                    <!-- Sello de Cera Dorado KM sobre la punta del sobre y al frente de la tarjeta -->
+                    <div class="rsvp-wax-seal-wrap">
+                        <img src="assets/images/gallery/sello-cera-relieve-km.png" alt="Sello de cera KM"
+                            class="rsvp-wax-seal-img" data-aos="zoom-in" data-aos-delay="350">
                     </div>
 
                     <!-- Tarjeta Crema Superpuesta de Asistencia y Confirmación -->
@@ -564,51 +671,64 @@
                         <p class="rsvp-honor-text">
                             SERÁ UN HONOR<br>
                             CONTAR<br>
-                            CON TÚ PRESENCIA
+                            CON TU PRESENCIA
                         </p>
 
                         <p class="rsvp-te-esperamos">¡Te esperamos!</p>
 
                         <!-- Flor sutil en la esquina inferior derecha de la tarjeta -->
-                        <img src="assets/images/gallery/flores2-mesa-regalos.png" alt="Flor sutil"
+                        <img src="assets/images/gallery/flores-ramillete-delicado.png" alt="Flor sutil"
                             class="rsvp-letter-flower" data-aos="zoom-in" data-aos-delay="400">
 
                         <!-- Módulo Interactivo de Pases / Confirmación GAS -->
                         <div class="rsvp-interactive-module">
-                            <div id="loading-state" class="rsvp-loading-state">
+                            <div id="loading-state" class="rsvp-loading-state" style="display: none;">
                                 <div class="rsvp-spinner"></div>
                                 <span id="loading-text">Cargando tus datos de pase...</span>
                             </div>
 
-                            <!-- Estado: Sin ID en el enlace -->
-                            <div id="no-id-state" style="display: none;" class="rsvp-notice-box">
-                                <p style="font-size: 0.88rem; color: #355375; font-family: 'Alta', serif; margin-bottom: 8px; font-weight: 600;">
-                                    ENLACE PERSONALIZADO
-                                </p>
-                                <p style="font-size: 0.82rem; color: #5a738e; line-height: 1.45; margin-bottom: 12px;">
-                                    Para consultar tus pases y confirmar asistencia, por favor ingresa con el enlace que te enviamos por WhatsApp.
-                                </p>
-                                <a href="?id=2" class="rsvp-demo-link" style="font-size: 0.78rem; color: #bfa054; text-decoration: underline;">
-                                    ¿Hacer prueba con pase de demostración?
-                                </a>
+                            <!-- Estado Base: Muestra / Mockup de Invitación (Visible cuando no hay ID en la URL) -->
+                            <div id="no-id-state" class="rsvp-mockup-state">
+                                <div class="rsvp-mockup-badge font-alta">MUESTRA DE INVITACIÓN</div>
+                                <h3 class="serif rsvp-guest-name">Familia Ejemplo</h3>
+                                <div class="badge-count">2 pases de muestra</div>
+                                <p class="rsvp-select-label">Pases de demostración:</p>
+
+                                <div class="rsvp-guests-list rsvp-mockup-list">
+                                    <div class="guest-option selected rsvp-mockup-option">
+                                        <span class="guest-label-text">Invitado 1</span>
+                                        <input type="checkbox" checked disabled>
+                                    </div>
+                                    <div class="guest-option selected rsvp-mockup-option">
+                                        <span class="guest-label-text">Invitado 2</span>
+                                        <input type="checkbox" checked disabled>
+                                    </div>
+                                </div>
+
+                                <div class="rsvp-mockup-footer-note">
+                                    <p class="rsvp-notice-desc">Esta es una vista previa de muestra. Para consultar tus
+                                        pases personalizados y confirmar tu asistencia, ingresa con tu enlace personal
+                                        enviado por WhatsApp.</p>
+                                </div>
                             </div>
 
                             <!-- Estado: Formulario de selección y confirmación -->
                             <div id="form-state" style="display: none;">
-                                <h3 class="serif" id="guest-name"
-                                    style="font-size: 1.25rem; color: #355375; margin-bottom: 4px;"></h3>
+                                <div id="padrino-badge-rsvp" class="padrino-honor-badge" style="display: none;">✦
+                                    DISTINCIÓN DE HONOR: PADRINOS ✦</div>
+                                <h3 class="serif rsvp-guest-name" id="guest-name"></h3>
                                 <div class="badge-count" id="badge-pases"></div>
-                                <p style="font-size: 0.82rem; color: #5a738e; margin-bottom: 10px;">
-                                    Selecciona quiénes asistirán:
-                                </p>
+                                <p class="rsvp-select-label">Selecciona quiénes asistirán:</p>
 
-                                <div id="guests-list" style="margin-bottom: 14px;"></div>
+                                <div id="guests-list" class="rsvp-guests-list"></div>
 
                                 <div class="rsvp-actions-wrap">
-                                    <button class="btn rsvp-submit-btn" id="btn-submit" onclick="enviarRSVP('Confirmado')">
+                                    <button class="btn rsvp-submit-btn" id="btn-submit"
+                                        onclick="enviarRSVP('Confirmado')">
                                         Confirmar Asistencia
                                     </button>
-                                    <button type="button" class="rsvp-decline-btn" id="btn-decline" onclick="enviarRSVP('No asistirá')">
+                                    <button type="button" class="rsvp-decline-btn" id="btn-decline"
+                                        onclick="enviarRSVP('No asistirá')">
                                         No podré asistir
                                     </button>
                                 </div>
@@ -617,13 +737,30 @@
                             <!-- Estado: Confirmado o Guardado -->
                             <div id="confirmed-state" style="display: none;">
                                 <div class="rsvp-success-icon">✦</div>
-                                <h3 class="serif" id="confirmed-title" style="font-size: 1.3rem; color: #355375; margin-bottom: 6px;">
-                                    ¡Respuesta Registrada!
-                                </h3>
-                                <p id="confirmed-msg" style="margin-top: 6px; font-size: 0.85rem; color: #4a6279; line-height: 1.45;"></p>
-                                <button type="button" class="rsvp-edit-btn" onclick="editarRSVP()" style="margin-top: 14px;">
-                                    Modificar mi respuesta
-                                </button>
+                                <h3 class="serif rsvp-confirmed-title" id="confirmed-title">¡Respuesta Registrada!</h3>
+                                <p id="confirmed-msg" class="rsvp-confirmed-msg"></p>
+                                <button type="button" class="rsvp-edit-btn" id="btn-edit-rsvp"
+                                    onclick="editarRSVP()">Modificar mi
+                                    respuesta</button>
+                            </div>
+
+                            <!-- Estado: Plazo de confirmación finalizado (posterior al 15 de noviembre) -->
+                            <div id="expired-state" class="rsvp-expired-state" style="display: none;">
+                                <div class="rsvp-expired-badge font-alta">PERIODO DE CONFIRMACIÓN CERRADO</div>
+                                <h3 class="serif rsvp-guest-name" id="expired-guest-name"></h3>
+                                <div class="rsvp-expired-box">
+                                    <div class="rsvp-expired-icon">⏳</div>
+                                    <h4 class="rsvp-expired-title serif">Fecha límite concluida</h4>
+                                    <p class="rsvp-expired-msg">
+                                        El plazo para confirmar asistencia finalizó el <strong>15 de Noviembre de
+                                            2026</strong>.
+                                    </p>
+                                    <p class="rsvp-expired-desc">
+                                        Por cuestiones de reservación y logística con el salón de eventos, el registro
+                                        de pases se encuentra cerrado y tu estado ha quedado registrado como <strong>No
+                                            asistirá</strong>.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -639,7 +776,11 @@
 
     </div>
 
-    <!-- Modal Interactivo de Ubicación / Mapa -->
+    <!-- =========================================================
+         MODAL 1: UBICACIÓN & MAPA INTERACTIVO (AZUL TERRAZA)
+         Ventana emergente accesible con Google Maps embebido (carga diferida)
+         y acceso directo a navegación GPS en Google Maps o Waze.
+         ========================================================= -->
     <div id="map-modal" class="map-modal-backdrop" onclick="closeMapModal(event)" aria-hidden="true" role="dialog"
         aria-labelledby="modal-venue-title">
         <div class="map-modal-card" onclick="event.stopPropagation()">
@@ -667,8 +808,7 @@
                 <a href="https://maps.app.goo.gl/onuwvL4tyU1zq8Xy6" target="_blank" rel="noopener noreferrer"
                     class="map-gps-btn">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round"
-                        style="margin-right: 6px; vertical-align: text-bottom;">
+                        stroke-linecap="round" stroke-linejoin="round" class="map-gps-icon">
                         <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
                         <circle cx="12" cy="10" r="3" />
                     </svg>
@@ -678,7 +818,11 @@
         </div>
     </div>
 
-    <!-- Modal Interactivo para Agregar al Calendario (Diseño Editorial & Elegante) -->
+    <!-- =========================================================
+         MODAL 2: AGREGAR AL CALENDARIO (ESTILO ALTA PAPELERÍA)
+         Ventana emergente con boleto de gala nupcial y accesos para agendar
+         el evento en Google Calendar, Apple Calendar, Outlook y archivo universal .ics.
+         ========================================================= -->
     <div id="calendar-modal" class="map-modal-backdrop" onclick="closeCalendarModal(event)" aria-hidden="true"
         role="dialog" aria-labelledby="cal-modal-title">
         <div class="cal-modal-card" onclick="event.stopPropagation()">
@@ -808,7 +952,10 @@
 
 
 
-    <!-- Librerías JS & Módulos -->
+    <!-- =========================================================
+         SCRIPTS & MÓDULOS JAVASCRIPT
+         Librería de animaciones AOS, cuenta regresiva, audio de fondo y RSVP dinámico.
+         ========================================================= -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/rsvp.js"></script>
     <script src="assets/js/main.js"></script>

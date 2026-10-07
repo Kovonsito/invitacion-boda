@@ -1,33 +1,96 @@
 /* =========================================================
-   VARIABLES & DESIGN TOKENS
+   00. VARIABLES DE DISEÑO & DESIGN TOKENS
+   Paleta de colores centralizada, tokens tipográficos y sombras.
    ========================================================= */
 :root {
+    /* --- PALETA DE AZULES --- */
     --primary-blue: #8ea4c8;
     --primary-blue-light: #b4c6e2;
     --primary-blue-dark: #647b9f;
-
+    --navy-deep: #355375;
+    /* Azul marino profundo de títulos RSVP, modales y acentos */
+    --navy-dark: #2b4561;
+    /* Azul medianoche profundo para fondos oscuros */
+    --slate-muted: #5a738e;
+    /* Azul pizarra tenue para subtítulos y textos secundarios */
+    --blue-serenity-soft: #9ab0cf;
+    /* Azul serenidad suave de transición */
     --serenity-bg: #e4ebf5;
+    /* Fondo azul serenidad suave */
 
+    /* --- PALETA DE VERDES OLIVA --- */
     --olive: #5e6f47;
+    /* Verde oliva principal de acentos y naturaleza */
     --olive-moss: #586e26;
+    /* Verde musgo para elementos del calendario */
     --olive-dark: #465533;
+    /* Verde oliva profundo */
     --olive-card: #6d7f57;
+    /* Verde oliva suave para fondos de tarjetas */
 
+    /* --- PALETA DE DORADOS & BRONCES --- */
     --gold: #bfa054;
+    /* Dorado satinado principal */
     --gold-light: #e6ce8a;
+    /* Dorado claro brillante para reflejos y bordes */
     --gold-dark: #917531;
+    /* Dorado profundo sombreado */
+    --gold-warm: #c29b53;
+    /* Dorado cálido / Oro nupcial para títulos y líneas */
+    --gold-radiant: #d6ad66;
+    /* Dorado luminoso para bordes interactivos */
+    --gold-champagne: #e5be85;
+    /* Dorado champaña para íconos de regalo y detalles */
+    --gold-bronze: #b88a44;
+    /* Bronce dorado para contrastes y sombras ricas */
+    --text-cream-light: #eeddbb;
+    /* Texto crema suave para fondos oscuros */
+    --text-cream-gold: #f1dfbf;
+    /* Texto crema dorado para titulares en tarjeta verde */
 
+    /* --- FONDOS & PAPELERÍA NUPCIAL --- */
     --paper-bg: #f7f5f0;
+    /* Fondo papel apergaminado del cuerpo de página */
+    --bg-app: #faf8f5;
+    /* Fondo marfil del contenedor móvil de la invitación */
     --card-cream: #fdfbf7;
+    /* Crema marfil claro para tarjetas interiores */
+    --card-cream-warm: #faf6ee;
+    /* Crema cálido para módulos y cajas de aviso */
     --white: #ffffff;
+    /* Blanco puro */
     --text-main: #333a42;
+    /* Gris carbón principal para máxima legibilidad */
     --text-muted: #6f7782;
+    /* Gris neutro para textos secundarios de apoyo */
 
+    /* --- SOMBRAS & EFECTOS DE ELEVACIÓN --- */
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
     --shadow-card: 0 15px 35px rgba(94, 111, 71, 0.08);
     --shadow-floating: 0 12px 28px rgba(0, 0, 0, 0.12);
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --gold-glow: rgba(191, 160, 84, 0.25);
+
+    /* --- ESTÁNDAR TIPOGRÁFICO UNIFICADO --- */
+    /* Rol 1: Caligrafía Romántica / Nombres de novios y títulos clave */
+    --font-script: 'Sloop Script', 'Great Vibes', 'Alex Brush', cursive;
+
+    /* Rol 2: Display Editorial / Subtítulos en mayúsculas de gala y fechas */
+    --font-display: 'Alta', 'Cormorant Garamond', serif;
+
+    /* Rol 3: Serif Clásica / Citas bíblicas, textos literarios y calendario */
+    --font-serif: 'Cormorant Garamond', serif;
+
+    /* Rol 4: Lectura General / Párrafos informativos, botones y formularios */
+    --font-sans: 'Montserrat', sans-serif;
 }
 
+/* =========================================================
+   01. DECLARACIÓN DE FUENTES LOCALES (@font-face)
+   Archivos woff2 optimizados ubicados en assets/fonts/
+   ========================================================= */
+/* Sloop Script: Caligrafía manuscrita estilizada para nombres y encabezados principales */
 @font-face {
     font-family: 'Sloop Script';
     src: url('../fonts/Sloop Script.woff2') format('woff2');
@@ -36,6 +99,7 @@
     font-display: swap;
 }
 
+/* Alta: Tipografía display con serifas elegantes en mayúsculas para papelería de gala */
 @font-face {
     font-family: 'Alta';
     src: url('../fonts/Alta_Regular.woff2') format('woff2');
@@ -44,6 +108,7 @@
     font-display: swap;
 }
 
+/* Helvetica: Disponible en el repositorio como respaldo sans-serif local */
 @font-face {
     font-family: 'Helvetica';
     src: url('../fonts/Helvetica.woff2') format('woff2');
@@ -52,11 +117,9 @@
     font-display: swap;
 }
 
-
-
-
 /* =========================================================
-   BASE STYLES & RESET
+   02. BASE STYLES, RESET & CONTENEDOR GLOBAL
+   Normalización universal, contenedor móvil y clases de ayuda tipográfica
    ========================================================= */
 * {
     box-sizing: border-box;
@@ -69,7 +132,7 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-sans);
     background-color: var(--paper-bg);
     color: var(--text-main);
     overflow-x: hidden;
@@ -79,37 +142,568 @@ body {
 
 .script-font,
 .font-script {
-    font-family: 'Sloop Script', cursive;
+    font-family: var(--font-script);
 }
 
 .serif,
 .font-serif {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
 }
 
 .font-alta {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
 }
 
 /* Textura compartida para fondos con fondo-1.png */
 .bg-texture-cover {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
 }
 
 /* Contenedor principal estilo móvil/tarjeta estilizada */
 .app-container {
     max-width: 480px;
     margin: 0 auto;
-    background-color: #faf8f5;
+    background-color: var(--bg-app);
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
 }
 
 /* =========================================================
-   BOTÓN FLOTANTE DE MÚSICA
+   03. PORTADA DE BIENVENIDA / SPLASH OVERLAY CON SOBRE INTERACTIVO
+   Pantalla de apertura con sobre tridimensional y sello de cera dorado KM
+   ========================================================= */
+.welcome-splash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    width: 100vw;
+    height: 100%;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 99999;
+    background-color: #121820;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.welcome-splash-overlay.splash-closing {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.04);
+}
+
+.welcome-splash-overlay.splash-hidden {
+    display: none !important;
+}
+
+/* Telón de fondo: foto-pareja-polaroid.jpeg con lienzo azul traslúcido suave */
+.splash-bg-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/gallery/foto-pareja-polaroid.jpeg');
+    background-size: cover;
+    background-position: center 30%;
+    filter: blur(4px) saturate(0.85);
+    transform: scale(1.06);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Lienzo azul sereno traslúcido suave que unifica la paleta */
+.splash-bg-backdrop::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,
+            rgba(35, 50, 72, 0.58) 0%,
+            rgba(48, 67, 95, 0.54) 50%,
+            rgba(30, 44, 64, 0.65) 100%);
+}
+
+/* Marco vertical tipo móvil con borde sutil */
+.splash-content-frame {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 420px;
+    height: auto;
+    max-height: 92vh;
+    max-height: 92dvh;
+    padding: 24px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 18px;
+    background: rgba(18, 28, 42, 0.32);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Encabezado Superior: "Nuestra Boda" perfectamente centrado */
+.splash-header-box {
+    width: 100%;
+    margin-top: 2px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.splash-main-title {
+    font-family: var(--font-script);
+    font-size: 4.4rem;
+    color: var(--white);
+    line-height: 1.1;
+    margin: 0 auto;
+    padding: 0 10px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    /* Ajuste fino para mantener el flourished terminal de la 'a' completamente contenido */
+    transform: translateX(0);
+    text-shadow: 0 3px 14px rgba(15, 25, 40, 0.65), 0 1px 3px rgba(0, 0, 0, 0.85);
+    letter-spacing: 0;
+    overflow: visible;
+}
+
+.splash-guest-greeting {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin: 4px auto 2px;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 12px rgba(230, 206, 138, 0.4);
+    animation: fadeInGreeting 0.8s ease forwards;
+}
+
+@keyframes fadeInGreeting {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.splash-instruction-text {
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin: 2px auto 0;
+    text-align: center;
+    opacity: 0.92;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+/* Área Central del Sobre */
+.splash-envelope-area {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    height: 250px;
+    margin: 10px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Decoraciones Florales en las esquinas superiores del sobre */
+.splash-flower-decor {
+    position: absolute;
+    pointer-events: none;
+    z-index: 15;
+    height: auto;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.splash-flower-decor.splash-flower-left {
+    top: -40px;
+    left: 5px;
+    width: 82px;
+}
+
+.splash-flower-decor.splash-flower-right {
+    top: -50px;
+    right: 10px;
+    width: 78px;
+}
+
+/* Envoltorio del sobre interactivo */
+.splash-envelope-wrapper {
+    position: relative;
+    width: 320px;
+    height: 242px;
+    filter: drop-shadow(0 16px 36px rgba(15, 28, 45, 0.45));
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Capa: Sobre Cerrado Completo y Sin Recortes */
+.splash-envelope-closed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+    z-index: 4;
+    transition: opacity 0.55s ease, transform 0.7s ease;
+    border-radius: 4px;
+}
+
+/* Capa: Sobre Abierto (detrás del cerrado inicialmente) */
+.splash-envelope-open {
+    position: absolute;
+    top: -64px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.25, 1, 0.35, 1);
+    pointer-events: none;
+}
+
+/* Carta / Tarjeta interior que emerge */
+.splash-inner-letter {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px) scale(0.88);
+    width: 84%;
+    background-color: #faf7f2;
+    background-image:
+        linear-gradient(rgba(250, 247, 242, 0.9), rgba(250, 247, 242, 0.9)),
+        url('../images/backgrounds/fondo-1.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    padding: 24px 18px 20px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.9s cubic-bezier(0.25, 1, 0.35, 1) 0.3s,
+        opacity 0.7s ease 0.25s;
+}
+
+.splash-letter-date {
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    letter-spacing: 3px;
+    color: #3b506b;
+    margin: 0 0 6px 0;
+}
+
+.splash-letter-names {
+    font-family: var(--font-script);
+    font-size: 2.8rem;
+    color: var(--navy-dark);
+    line-height: 1;
+    margin: 0 0 8px 0;
+}
+
+.splash-letter-phrase {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #556c86;
+    margin: 0;
+}
+
+/* Sello de Cera Dorado KM Centrado en la punta de la solapa */
+.splash-wax-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 82px;
+    height: 82px;
+    z-index: 10;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    outline: none;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        filter 0.35s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.splash-wax-seal:hover {
+    transform: translate(-50%, -50%) scale(1.09);
+    filter: drop-shadow(0 8px 20px rgba(220, 185, 95, 0.55));
+}
+
+.splash-wax-seal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+}
+
+/* Pulsación sutil y elegante en el sello de cera */
+.splash-wax-seal::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 0 rgba(230, 206, 138, 0.6);
+    animation: sealGlowPulse 2.4s infinite;
+    pointer-events: none;
+}
+
+@keyframes sealGlowPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(230, 206, 138, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 16px rgba(230, 206, 138, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(230, 206, 138, 0);
+    }
+}
+
+/* --- ESTADOS DE ANIMACIÓN AL ABRIR EL SOBRE --- */
+/* Paso 1: El sello vibra, se despega y se desvanece suavemente hacia arriba */
+.splash-envelope-area.anim-unseal .splash-wax-seal {
+    animation: unsealEffect 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    pointer-events: none;
+}
+
+@keyframes unsealEffect {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    25% {
+        transform: translate(-50%, -50%) scale(1.18) rotate(-6deg);
+        filter: drop-shadow(0 14px 28px rgba(230, 206, 138, 0.8));
+    }
+
+    60% {
+        transform: translate(-50%, -68%) scale(1.28) rotate(4deg);
+        opacity: 0.9;
+        filter: drop-shadow(0 20px 35px rgba(230, 206, 138, 0.9));
+    }
+
+    100% {
+        transform: translate(-50%, -100%) scale(0.7) rotate(12deg);
+        opacity: 0;
+        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+    }
+}
+
+/* Paso 2: Transición de sobre cerrado a sobre abierto */
+.splash-envelope-area.anim-opening .splash-envelope-closed {
+    opacity: 0;
+    transform: scale(0.96);
+    pointer-events: none;
+}
+
+.splash-envelope-area.anim-opening .splash-envelope-open {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Paso 3: La tarjeta interior se desliza elegantemente hacia afuera */
+.splash-envelope-area.anim-opening .splash-inner-letter {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-65px) scale(1);
+    z-index: 20;
+}
+
+/* Sección Inferior de la Portada */
+.splash-footer-box {
+    width: 100%;
+    margin-bottom: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.splash-date-text {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    color: var(--white);
+    letter-spacing: 5px;
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.splash-legend-text {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0.94;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive para pantallas móviles */
+@media (max-width: 480px) {
+    .splash-content-frame {
+        width: 90%;
+        max-width: 380px;
+        padding: 20px 14px 16px;
+    }
+
+    .splash-main-title {
+        font-size: 3.9rem;
+    }
+
+    .splash-guest-greeting {
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+    }
+
+    .splash-instruction-text {
+        font-size: 0.78rem;
+        letter-spacing: 2.2px;
+    }
+
+    .splash-envelope-area {
+        height: 220px;
+        margin: 6px 0 12px;
+    }
+
+    .splash-envelope-wrapper {
+        width: 275px;
+        height: 208px;
+    }
+
+    .splash-flower-decor.splash-flower-left {
+        width: 70px;
+        top: -24px;
+    }
+
+    .splash-flower-decor.splash-flower-right {
+        width: 68px;
+        top: -26px;
+    }
+
+    .splash-wax-seal {
+        width: 70px;
+        height: 70px;
+    }
+
+    .splash-date-text {
+        font-size: 1.35rem;
+        letter-spacing: 4px;
+    }
+
+    .splash-legend-text {
+        font-size: 0.75rem;
+        line-height: 1.6;
+        letter-spacing: 1.5px;
+    }
+}
+
+/* Pantallas móviles muy compactas o con barra de navegación grande */
+@media (max-width: 360px),
+(max-height: 700px) {
+    .splash-content-frame {
+        padding: 16px 12px 14px;
+    }
+
+    .splash-main-title {
+        font-size: 3.4rem;
+    }
+
+    .splash-guest-greeting {
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+    }
+
+    .splash-instruction-text {
+        font-size: 0.72rem;
+        letter-spacing: 1.8px;
+    }
+
+    .splash-envelope-area {
+        height: 195px;
+        margin: 4px 0 8px;
+    }
+
+    .splash-envelope-wrapper {
+        width: 245px;
+        height: 185px;
+    }
+
+    .splash-wax-seal {
+        width: 62px;
+        height: 62px;
+    }
+
+    .splash-date-text {
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+    }
+
+    .splash-legend-text {
+        font-size: 0.7rem;
+        line-height: 1.5;
+        letter-spacing: 1.2px;
+    }
+}
+
+/* =========================================================
+   04. BOTÓN FLOTANTE DE MÚSICA & AUDIO
+   Acceso rápido fijado en la esquina superior derecha con animación de giro
    ========================================================= */
 .music-btn {
     position: fixed;
@@ -149,13 +743,15 @@ body {
 }
 
 /* =========================================================
-   1. HERO / HEADER CON SOBRE
+   05. SECCIÓN 1: HERO & SOBRE PRINCIPAL CON POLAROID
+   Nombres de los novios, sobre en capas con polaroid desplegable y cita bíblica
    ========================================================= */
 .hero-section {
     padding: 50px 20px 50px;
     background-image: url(../images/backgrounds/fondo-1.png);
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     position: relative;
     overflow: hidden;
 }
@@ -188,9 +784,7 @@ body {
     margin-right: 5%;
 }
 
-/* =========================================================
-   ESTRUCTURA DEL SOBRE Y CAPAS
-   ========================================================= */
+/* --- ESTRUCTURA DEL SOBRE TRIDIMENSIONAL & CAPAS --- */
 .envelope-container {
     position: relative;
     width: 320px;
@@ -220,7 +814,7 @@ body {
     left: 50%;
     transform: translateX(-50%) rotate(8deg);
     width: 145px;
-    height: 165px;
+    height: 181px;
     z-index: 2;
     cursor: pointer;
     transform-origin: center bottom;
@@ -240,13 +834,14 @@ body {
 
 .env-photo-img {
     position: absolute;
-    top: 5.5%;
-    left: 6%;
-    width: 88%;
-    height: 69%;
+    top: 6.5%;
+    left: 6.5%;
+    width: 87%;
+    height: 71%;
     object-fit: cover;
-    object-position: 45% 20%;
+    object-position: center 25%;
     display: block;
+    border-radius: 2px;
 }
 
 .env-photo-frame {
@@ -256,8 +851,10 @@ body {
     width: 100%;
     height: 100%;
     display: block;
+    object-fit: fill;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
     pointer-events: none;
+    z-index: 2;
 }
 
 .env-front {
@@ -289,7 +886,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    font-family: 'Alta', 'Montserrat', sans-serif;
+    font-family: var(--font-display);
     font-size: 0.78rem;
     color: var(--primary-blue-dark);
     letter-spacing: 2px;
@@ -335,17 +932,18 @@ body {
 }
 
 @keyframes hintPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-3px);
     }
 }
 
-/* =========================================================
-   CITA BÍBLICA (GARAMOND)
-   ========================================================= */
+/* --- CITA BÍBLICA EN SERIF CLÁSICA --- */
 .bible-quote-container {
     margin-top: 20px;
 }
@@ -367,41 +965,44 @@ body {
 }
 
 /* =========================================================
-   2. SECCIÓN REPRODUCTOR DE MÚSICA CON ALIANZAS
+   06. SECCIÓN 2: REPRODUCTOR DE MÚSICA CON ALIANZAS
+   Tarjeta interactiva con alianzas, barra de progreso y botones de reproducción
    ========================================================= */
 .music-banner-section {
-    padding: 35px 20px 45px;
+    padding: 35px 20px 25px;
     background-image: url(../images/backgrounds/fondo-1.png);
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .music-player-card {
-    background-color: rgba(160, 174, 210, 0.72);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background-color: rgba(160, 174, 210, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     width: 100%;
-    max-width: 320px;
-    padding: 30px 24px 24px;
-    border-radius: 4px;
-    box-shadow: 0 10px 25px rgba(100, 123, 159, 0.18);
+    max-width: 330px;
+    padding: 32px 24px 26px;
+    border-radius: 16px;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 14px 32px rgba(100, 123, 159, 0.25);
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .music-player-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 30px rgba(100, 123, 159, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(100, 123, 159, 0.32);
 }
 
 .player-rings-icon {
     display: flex;
     justify-content: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .player-rings-img {
@@ -409,35 +1010,45 @@ body {
     max-width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.5));
 }
 
 .player-quote {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-display);
     color: var(--white);
-    font-size: 0.92rem;
-    font-weight: 400;
-    letter-spacing: 1.8px;
-    line-height: 1.4;
-    margin: 12px 0 22px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 0.96rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 1.45;
+    margin: 14px 0 24px;
+    text-shadow: 0 1px 4px rgba(35, 58, 85, 0.3);
 }
 
-/* Barra de progreso dorada */
+/* Contenedor de controles del reproductor */
+.player-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Barra de progreso de alto contraste sobre el fondo azul claro */
 .player-progress-bar {
     width: 100%;
-    height: 3px;
-    background: rgba(230, 206, 138, 0.45);
-    border-radius: 2px;
+    height: 6px;
+    background: rgba(53, 83, 117, 0.22);
+    border-radius: 4px;
     position: relative;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .player-progress-fill {
     width: 35%;
     height: 100%;
-    background: var(--gold-light);
-    border-radius: 2px;
+    background: linear-gradient(90deg, var(--navy-deep) 0%, var(--navy-dark) 100%);
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(43, 69, 97, 0.35);
     transition: width 0.3s linear;
 }
 
@@ -446,50 +1057,92 @@ body {
     left: 35%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 9px;
-    height: 9px;
-    background: var(--gold-light);
+    width: 14px;
+    height: 14px;
+    background: var(--gold-warm);
+    border: 2.5px solid var(--white);
     border-radius: 50%;
-    box-shadow: 0 0 6px rgba(191, 160, 84, 0.6);
+    box-shadow: 0 2px 6px rgba(43, 69, 97, 0.4), 0 0 8px rgba(194, 155, 83, 0.7);
     transition: left 0.3s linear;
 }
 
+/* Botonera de reproducción con alto contraste sobre el fondo azul original */
 .player-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 28px;
-    color: var(--gold-light);
+    gap: 22px;
+    margin-top: 4px;
 }
 
+/* Botones secundarios (retroceder y adelantar 10s) en azul marino profundo */
 .control-btn {
-    background: none;
-    border: none;
-    color: inherit;
-    font-size: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--navy-deep);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    color: var(--white);
+    font-size: 1.05rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     line-height: 1;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    opacity: 0.9;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(53, 83, 117, 0.3);
 }
 
 .control-btn:hover {
-    transform: scale(1.15);
-    opacity: 1;
+    background: var(--navy-dark);
+    color: var(--gold-light);
+    border-color: var(--gold-radiant);
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(43, 69, 97, 0.4);
 }
 
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+/* Botón principal circular Play / Pausa en contraste dorado nupcial con icono marino */
 .play-pause-btn {
-    font-size: 1.25rem;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-warm) 0%, var(--gold-dark) 100%);
+    border: 2px solid var(--white);
+    color: var(--white);
+    font-size: 1.35rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(145, 117, 49, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+.play-pause-btn:hover {
+    background: linear-gradient(135deg, var(--gold-radiant) 0%, var(--gold-warm) 100%);
+    color: var(--white);
+    transform: scale(1.12);
+    box-shadow: 0 8px 24px rgba(191, 160, 84, 0.65), 0 3px 8px rgba(0, 0, 0, 0.2);
+    border-color: var(--white);
+}
+
+.play-pause-btn:active {
+    transform: scale(0.96);
 }
 
 /* =========================================================
-   3. CUENTA REGRESIVA & CALENDARIO
+   07. SECCIÓN 3: CUENTA REGRESIVA & CALENDARIO NUPCIAL
+   Contador en tiempo real, mini calendario editorial y botón para agendar fecha
    ========================================================= */
 .countdown-section {
-    padding: 60px 15px 0 15px;
+    padding: 25px 15px 40px 15px;
     background-image: url(../images/backgrounds/fondo-1.png);
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -498,11 +1151,14 @@ body {
     overflow: hidden;
 }
 
+
+
 /* 1. Título "Prepárate..." */
 .countdown-title.script-font {
     font-family: 'Great Vibes', cursive;
     font-size: 4.2rem;
     color: var(--olive-moss);
+    margin-top: 30px;
     margin-bottom: 2px;
     font-weight: normal;
     position: relative;
@@ -512,12 +1168,15 @@ body {
 
 /* 2. Subtítulo "SOLO FALTAN" */
 .countdown-subtitle {
-    font-family: 'Alta', sans-serif;
+    font-family: var(--font-display);
     font-size: 1.35rem;
-    color: #c29b53;
-    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--gold-warm);
+    letter-spacing: 2.5px;
+    text-shadow: 0 0.5px 1px rgba(145, 117, 49, 0.35);
+    margin-top: -20px;
     margin-bottom: 25px;
-    width: 60%;
+    width: 80%;
     text-align: right;
 }
 
@@ -537,7 +1196,7 @@ body {
 }
 
 .cd-inline-num {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-size: 2.8rem;
     color: var(--olive-moss);
     line-height: 1;
@@ -545,7 +1204,7 @@ body {
 }
 
 .cd-inline-lbl {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-size: 0.72rem;
     color: var(--olive-moss);
     letter-spacing: 1.2px;
@@ -553,7 +1212,7 @@ body {
 }
 
 .cd-inline-sep {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-size: 2.2rem;
     color: var(--olive-moss);
     margin-bottom: 14px;
@@ -561,10 +1220,12 @@ body {
 
 /* 4. Tagline "¡PARA NUESTRO GRAN DÍA!" */
 .countdown-tagline {
-    font-family: 'Alta', sans-serif;
+    font-family: var(--font-display);
     font-size: 1.15rem;
-    color: #c29b53;
-    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: var(--gold-warm);
+    letter-spacing: 2px;
+    text-shadow: 0 0.5px 1px rgba(145, 117, 49, 0.35);
     margin-bottom: 25px;
 }
 
@@ -579,7 +1240,7 @@ body {
 }
 
 .cal-header-minimal .cal-month {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-size: 2.1rem;
     font-weight: 500;
     letter-spacing: 3px;
@@ -596,13 +1257,13 @@ body {
 }
 
 .cal-year-line .line {
-    height: 1px;
+    height: 1.5px;
     width: 90px;
-    background: #c29b53;
+    background: var(--gold-warm);
 }
 
 .cal-year-line .year {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-size: 2rem;
     font-weight: 400;
     color: var(--olive-moss);
@@ -617,7 +1278,7 @@ body {
 }
 
 .cal-grid .day-name {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-weight: 600;
     color: var(--olive-moss);
     font-size: 0.92rem;
@@ -626,7 +1287,7 @@ body {
 
 .cal-grid .day-num {
     color: var(--olive-moss);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-size: 1.2rem;
     font-weight: 400;
     font-variant-numeric: lining-nums;
@@ -645,13 +1306,14 @@ body {
 /* Día objetivo con círculo verde */
 .cal-grid .day-num.target-date {
     background-color: var(--olive-moss);
-    color: #ffffff;
+    color: var(--white);
     border-radius: 50%;
     font-weight: 600;
 }
 
 /* =========================================================
-   4. FOTOS DE PAREJA (INTERCALADAS CON DESVANECIDO)
+   08. COMPONENTE DE TRANSICIÓN FOTOGRÁFICA (DESVANECIDO SUAVE)
+   Imágenes de pareja fusionadas suavemente con máscara de gradiente vertical
    ========================================================= */
 .photo-fade-container {
     width: 100%;
@@ -703,15 +1365,17 @@ body {
     margin-left: -15px;
     margin-right: -15px;
     margin-top: 15px;
+    margin-bottom: 0;
     background-image:
         linear-gradient(to bottom,
             rgba(247, 245, 240, 0) 0%,
-            rgba(247, 245, 240, 0) 25%,
-            rgba(170, 190, 220, 0.35) 65%,
-            rgba(170, 190, 220, 0.7) 100%),
+            rgba(247, 245, 240, 0) 20%,
+            rgba(170, 190, 220, 0.5) 60%,
+            rgba(170, 190, 220, 0.85) 100%),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
 }
 
 .photo-break {
@@ -722,17 +1386,20 @@ body {
 }
 
 /* =========================================================
-   5. DONDE & CUANDO (CEREMONIA / RECEPCION)
+   09. SECCIÓN 4: DÓNDE & CUÁNDO (CEREMONIA Y RECEPCIÓN)
+   Tarjeta arco para la Ceremonia y tarjeta rectangular dorada para la Recepción
    ========================================================= */
 .events-section {
     position: relative;
     padding: 70px 15px 90px;
+    margin-top: -55px;
+    z-index: 1;
     background-image:
         linear-gradient(rgba(170, 190, 220, 0.68), rgba(170, 190, 220, 0.72)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     overflow: hidden;
 }
 
@@ -747,12 +1414,12 @@ body {
 .event-arch-card {
     position: relative;
     z-index: 2;
-    width: 65%;
-    max-width: 275px;
-    margin-left: 5px;
-    background: #fdfbf7;
+    width: 68%;
+    max-width: 290px;
+    margin-left: 0;
+    background: var(--card-cream);
     border-radius: 140px 140px 20px 20px;
-    padding: 45px 18px 30px;
+    padding: 45px 22px 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     display: flex;
     flex-direction: column;
@@ -761,16 +1428,16 @@ body {
 }
 
 .event-script-title {
-    font-family: 'Sloop Script', 'Great Vibes', cursive;
+    font-family: var(--font-script);
     font-size: 3.6rem;
-    color: #c29b53;
+    color: var(--gold-warm);
     font-weight: normal;
     line-height: 1;
     margin-bottom: 8px;
 }
 
 .event-script-title.gold {
-    color: #ffffff;
+    color: var(--white);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -801,18 +1468,18 @@ body {
 }
 
 .event-hour {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: 1.45rem;
-    color: #c29b53;
+    color: var(--gold-warm);
     font-weight: 500;
     letter-spacing: 2px;
     margin-bottom: 2px;
 }
 
 .event-venue-title {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 1.25rem;
-    color: #c29b53;
+    color: var(--gold-warm);
     letter-spacing: 2px;
     font-weight: normal;
     margin-bottom: 4px;
@@ -820,9 +1487,9 @@ body {
 }
 
 .event-venue-address {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: 0.92rem;
-    color: #c29b53;
+    color: var(--gold-warm);
     line-height: 1.35;
     margin-bottom: 14px;
 }
@@ -831,16 +1498,16 @@ body {
 .event-info-block.gold .event-hour,
 .event-info-block.gold .event-venue-title,
 .event-info-block.gold .event-venue-address {
-    color: #ffffff;
+    color: var(--white);
 }
 
 /* Botones VER MAPA y estilo Píldora Reutilizable */
 .btn-pill,
 .event-map-btn {
     display: inline-block;
-    background-color: #d6ad66;
-    color: #ffffff;
-    font-family: 'Alta', 'Montserrat', sans-serif;
+    background-color: var(--gold-radiant);
+    color: var(--white);
+    font-family: var(--font-display);
     font-size: 0.82rem;
     letter-spacing: 2px;
     padding: 7px 24px;
@@ -857,27 +1524,27 @@ body {
 .event-map-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 14px rgba(214, 173, 102, 0.4);
-    color: #ffffff;
+    color: var(--white);
 }
 
 .btn-pill.btn-cream,
 .event-map-btn.gold-btn {
     background-color: #f7f3eb;
-    color: #c29b53;
+    color: var(--gold-warm);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .btn-pill.btn-cream:hover,
 .event-map-btn.gold-btn:hover {
-    background-color: #ffffff;
+    background-color: var(--white);
     color: #a88139;
 }
 
 /* 2. Tarjeta Rectangular Dorada: Recepción (Superpuesta) */
 .event-gold-card {
     position: absolute;
-    top: 250px;
-    right: 4px;
+    top: 295px;
+    right: 2px;
     width: 48%;
     max-width: 205px;
     background-color: #d8af69;
@@ -894,15 +1561,15 @@ body {
 /* 3. Marco Polaroid inferior izquierdo */
 .event-polaroid-wrap {
     position: absolute;
-    top: 480px;
-    left: 24px;
+    top: 510px;
+    left: 20px;
     width: 52%;
     max-width: 215px;
-    z-index: 3;
+    z-index: 4;
 }
 
 .event-polaroid-frame {
-    background: #ffffff;
+    background: var(--white);
     padding: 10px 10px 34px 10px;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
     border-radius: 2px;
@@ -926,15 +1593,15 @@ body {
 
 /* Flor blanca al lado izquierdo del arco */
 .event-flower.flower-left {
-    top: 360px;
-    left: 5px;
+    top: 385px;
+    left: 2px;
     width: 85px;
     transform: rotate(5deg);
 }
 
 /* Flor verde arriba a la derecha de la tarjeta de recepción */
 .event-flower.flower-top-right {
-    top: 150px;
+    top: 190px;
     right: -10px;
     width: 65px;
     transform: rotate(5deg);
@@ -949,7 +1616,8 @@ body {
 }
 
 /* =========================================================
-   6. CÓDIGO DE VESTIMENTA (DRESS CODE)
+   10. SECCIÓN 5: CÓDIGO DE VESTIMENTA (DRESS CODE)
+   Etiqueta "Formal Campestre", ilustración y paleta de colores sugeridos
    ========================================================= */
 .dresscode-section {
     padding: 70px 24px 60px;
@@ -957,9 +1625,9 @@ body {
     background-image:
         linear-gradient(rgba(247, 244, 238, 0.65), rgba(247, 244, 238, 0.65)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     position: relative;
     text-align: center;
 }
@@ -971,20 +1639,20 @@ body {
 }
 
 .dresscode-title {
-    font-family: 'Sloop Script', 'Alex Brush', cursive;
+    font-family: var(--font-script);
     font-size: 3.2rem;
     font-weight: 300;
-    color: #4b6279;
+    color: var(--slate-muted);
     line-height: 1.1;
     margin-bottom: 8px;
     letter-spacing: 0.5px;
 }
 
 .dresscode-subtitle {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 1.05rem;
     font-weight: normal;
-    color: #4a5c6e;
+    color: var(--slate-muted);
     letter-spacing: 3.5px;
     text-transform: uppercase;
     margin-bottom: 24px;
@@ -1011,10 +1679,10 @@ body {
 }
 
 .dresscode-recommend-label {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 0.95rem;
     line-height: 1.4;
-    color: #4a5c6e;
+    color: var(--slate-muted);
     letter-spacing: 2.8px;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -1030,10 +1698,10 @@ body {
 }
 
 .dresscode-color-list li {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 0.95rem;
     letter-spacing: 2.8px;
-    color: #4a5c6e;
+    color: var(--slate-muted);
     text-transform: uppercase;
     font-weight: 400;
 }
@@ -1059,12 +1727,31 @@ body {
     transform: scale(1.12);
 }
 
-.c-verde-olivo {
+.c-verde-olivo,
+.c-verde-oliva {
     background-color: #556839;
 }
 
-.c-camel {
+.c-terracota,
+.c-teja {
+    background-color: #c37349;
+}
+
+.c-melocoton {
+    background-color: #efa25d;
+}
+
+.c-camel,
+.c-cafe-claro {
     background-color: #bb8d56;
+}
+
+.c-azul-acero {
+    background-color: #437ea8;
+}
+
+.c-gris-piedra {
+    background-color: #8c8d88;
 }
 
 .c-azul-marino {
@@ -1075,20 +1762,176 @@ body {
     background-color: #f7b8c7;
 }
 
-.c-cafe-claro {
-    background-color: #947b56;
-}
-
 .c-dorado-mate {
-    background-color: #e5be85;
-}
-
-.c-azul-acero {
-    background-color: #437ea8;
+    background-color: var(--gold-champagne);
 }
 
 /* =========================================================
-   7. RECOMENDACIONES DE VESTIMENTA (RESERVADOS Y PROHIBICIONES)
+   10.1 APARTADO CONDICIONAL EXCLUSIVO: PADRINOS DE BODA
+   Diseño de gala con detalles dorados y azul marino
+   ========================================================= */
+.padrinos-dresscode-card {
+    background-color: rgba(160, 174, 210, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    padding: 26px 20px;
+    margin: 10px auto 24px;
+    width: 92%;
+    max-width: 370px;
+    box-shadow: 0 14px 32px rgba(100, 123, 159, 0.25);
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    text-align: center;
+}
+
+.padrinos-dresscode-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+}
+
+.padrinos-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(53, 83, 117, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 14px;
+    text-shadow: 0 1px 3px rgba(35, 58, 85, 0.3);
+}
+
+.padrinos-card-title {
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin: 0 0 10px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.35;
+    text-shadow: 0 1px 4px rgba(35, 58, 85, 0.35);
+}
+
+.padrinos-style-text {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 400;
+    margin: 0 0 16px 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(35, 58, 85, 0.25);
+}
+
+.padrinos-style-text strong {
+    color: #fff4d6;
+    font-weight: 600;
+}
+
+.padrinos-palette-label {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--white);
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+    text-shadow: 0 1px 3px rgba(35, 58, 85, 0.3);
+}
+
+.padrinos-palette-bubbles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 10px 0 16px 0;
+}
+
+.padrinos-bubble-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.padrinos-bubble {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    box-shadow: 0 4px 14px rgba(35, 58, 85, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    transition: transform 0.25s ease;
+    cursor: pointer;
+}
+
+.padrinos-bubble:hover {
+    transform: scale(1.12);
+}
+
+.padrinos-bubble-name {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: var(--white);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(35, 58, 85, 0.3);
+}
+
+.padrinos-general-toggle-wrap {
+    margin: 10px auto 22px auto;
+    text-align: center;
+}
+
+.padrinos-toggle-btn {
+    background: #fdfbf7;
+    border: 1px solid #d8cfc0;
+    border-radius: 20px;
+    color: var(--slate-muted);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    padding: 7px 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+}
+
+.padrinos-toggle-btn:hover {
+    background: #f5efe4;
+    color: var(--text-main);
+    border-color: #bfa054;
+}
+
+.padrino-honor-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(184, 138, 68, 0.12), rgba(229, 190, 133, 0.22));
+    border: 1px solid var(--gold-radiant);
+    color: var(--gold-bronze);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   11. SECCIÓN 6: RECOMENDACIONES DE VESTIMENTA (RESERVADOS & PROHIBICIONES)
+   Avisos de cortesía: tonos reservados para novios y prohibición de tenis o mezclilla
    ========================================================= */
 .dress-rules-section {
     width: 100%;
@@ -1100,31 +1943,32 @@ body {
 /* 1. Bloque Superior Azul Pastel Texturizado */
 .dress-rules-top {
     position: relative;
-    padding: 45px 24px 35px;
-    background-color: #a6b9d6;
+    padding: 48px 24px 38px;
+    background-color: var(--blue-serenity-soft);
     background-image:
-        linear-gradient(rgba(166, 185, 214, 0.72), rgba(166, 185, 214, 0.76)),
+        linear-gradient(rgba(146, 169, 203, 0.82), rgba(146, 169, 203, 0.86)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     text-align: center;
 }
 
 .dress-rules-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 0.96rem;
-    line-height: 1.5;
-    color: #ffffff;
-    letter-spacing: 2.2px;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--white);
+    letter-spacing: 2.6px;
     text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 25px;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    font-weight: 700;
+    margin-bottom: 26px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.28), 0 0 1px rgba(0, 0, 0, 0.4);
 }
 
 .dress-rules-novios-wrap {
     width: 100%;
-    max-width: 180px;
+    max-width: 195px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -1134,39 +1978,43 @@ body {
     width: 100%;
     height: auto;
     object-fit: contain;
-    /* Efecto para convertir el trazo a blanco puro con alto contraste */
-    filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+    /* Mayor realce y grosor perceptible con doble drop-shadow y contraste */
+    filter: brightness(0) invert(1) drop-shadow(0 2px 10px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
 }
 
 /* 2. Franja Central Crema Suave */
 .dress-rules-middle {
-    background-color: #fcf8e3;
-    padding: 24px 20px;
+    background-color: #fff8dc;
+    padding: 26px 20px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(218, 194, 137, 0.35);
+    border-bottom: 1px solid rgba(218, 194, 137, 0.35);
 }
 
 .dress-rules-alert-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 0.94rem;
-    line-height: 1.45;
-    color: #4b6b8b;
-    letter-spacing: 2.5px;
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: #2b4566;
+    letter-spacing: 2.8px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 /* 3. Bloque Inferior Azul Pastel Texturizado con Prohibiciones */
 .dress-rules-bottom {
     position: relative;
-    padding: 40px 20px 0;
-    background-color: #a6b9d6;
+    padding: 42px 20px 0;
+    background-color: var(--blue-serenity-soft);
     background-image:
-        linear-gradient(rgba(166, 185, 214, 0.72), rgba(166, 185, 214, 0.76)),
+        linear-gradient(rgba(146, 169, 203, 0.82), rgba(146, 169, 203, 0.86)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     text-align: center;
     overflow: hidden;
 }
@@ -1175,17 +2023,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 32px;
-    margin-bottom: 25px;
+    gap: 36px;
+    margin-bottom: 28px;
 }
 
 .dress-ban-circle {
-    width: 110px;
-    height: 110px;
+    width: 115px;
+    height: 115px;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.18));
     transition: transform 0.3s ease;
 }
 
@@ -1198,7 +2046,7 @@ body {
     height: 100%;
     object-fit: contain;
     display: block;
-    filter: brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
+    filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.22)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
 }
 
 .dress-ban-svg {
@@ -1207,62 +2055,69 @@ body {
     display: block;
 }
 
-/* Fondo extendido que abarca ampliamente el azul superior y transiciona hacia crema abajo */
+/* Fondo extendido que une el bloque azul con la foto y transiciona hacia el color crema texturizado */
 .dress-photo-wrap {
     width: calc(100% + 40px);
     margin-left: -20px;
     margin-right: -20px;
-    margin-top: 15px;
+    margin-top: -35px;
+    margin-bottom: 0;
     position: relative;
+    z-index: 2;
     background-image:
         linear-gradient(to bottom,
-            rgba(166, 185, 214, 0.74) 0%,
-            rgba(166, 185, 214, 0.74) 45%,
-            rgba(166, 185, 214, 0.35) 65%,
-            rgba(247, 245, 240, 0.4) 82%,
-            rgba(247, 245, 240, 0.8) 100%),
-        url('../images/backgrounds/fondo-1.png');
+            transparent 0%,
+            transparent 50%,
+            rgba(247, 245, 240, 0.5) 75%,
+            rgba(247, 245, 240, 0.95) 92%,
+            rgba(247, 245, 240, 1) 100%),
+        linear-gradient(to bottom,
+            transparent 0%,
+            transparent 55%,
+            rgba(255, 255, 255, 0.9) 100%);
     background-size: cover;
     background-position: center;
 }
 
-/* Difuminado suave arriba que se disuelve en el fondo azul y difuminado normal abajo */
+/* Difuminado sutil arriba (solo en cielo/montañas sin invadir las cabezas) y disolución suave abajo */
 .dress-photo-wrap .photo-fade-img {
     object-position: center 28%;
     -webkit-mask-image: linear-gradient(to bottom,
             transparent 0%,
-            rgba(0, 0, 0, 0.1) 6%,
-            rgba(0, 0, 0, 0.4) 14%,
-            rgba(0, 0, 0, 0.8) 22%,
-            black 32%,
-            black 82%,
-            rgba(0, 0, 0, 0.65) 90%,
-            rgba(0, 0, 0, 0.2) 96%,
+            rgba(0, 0, 0, 0.2) 5%,
+            rgba(0, 0, 0, 0.7) 11%,
+            black 17%,
+            black 74%,
+            rgba(0, 0, 0, 0.75) 83%,
+            rgba(0, 0, 0, 0.25) 92%,
             transparent 100%);
     mask-image: linear-gradient(to bottom,
             transparent 0%,
-            rgba(0, 0, 0, 0.1) 6%,
-            rgba(0, 0, 0, 0.4) 14%,
-            rgba(0, 0, 0, 0.8) 22%,
-            black 32%,
-            black 82%,
-            rgba(0, 0, 0, 0.65) 90%,
-            rgba(0, 0, 0, 0.2) 96%,
+            rgba(0, 0, 0, 0.2) 5%,
+            rgba(0, 0, 0, 0.7) 11%,
+            black 17%,
+            black 74%,
+            rgba(0, 0, 0, 0.75) 83%,
+            rgba(0, 0, 0, 0.25) 92%,
             transparent 100%);
 }
 
 /* =========================================================
-   8. MESA DE REGALOS & LLUVIA DE SOBRES
+   12. SECCIÓN 7: MESA DE REGALOS & LLUVIA DE SOBRES
+   Tarjeta verde olivo con enlace a Liverpool y anuncio de buzón para lluvia de sobres
    ========================================================= */
 .gift-section {
     position: relative;
     padding: 70px 18px 80px;
-    background-color: #f7f5f0;
+    margin-top: -30px;
+    z-index: 2;
+    background-color: var(--paper-bg);
     background-image:
         linear-gradient(rgba(247, 245, 240, 0.55), rgba(247, 245, 240, 0.55)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     overflow: hidden;
 }
 
@@ -1315,10 +2170,10 @@ body {
 
 /* Párrafo inicial */
 .gift-intro-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 0.95rem;
     line-height: 1.55;
-    color: #eeddbb;
+    color: var(--text-cream-light);
     letter-spacing: 2px;
     margin-bottom: 38px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
@@ -1326,7 +2181,7 @@ body {
 
 /* Títulos con tipografía caligráfica Sloop Script dorada */
 .gift-script-title {
-    font-family: 'Sloop Script', 'Great Vibes', cursive;
+    font-family: var(--font-script);
     font-size: 3.4rem;
     font-weight: lighter;
     color: #eac587;
@@ -1369,20 +2224,20 @@ body {
 }
 
 .gift-store-info .store-name {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 1.05rem;
     font-weight: 500;
     letter-spacing: 3px;
-    color: #f1dfbf;
+    color: var(--text-cream-gold);
     margin-bottom: 4px;
     text-transform: uppercase;
 }
 
 .gift-store-info .store-number {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 0.98rem;
     letter-spacing: 2.6px;
-    color: #f1dfbf;
+    color: var(--text-cream-gold);
     margin: 0;
     text-transform: uppercase;
 }
@@ -1391,8 +2246,8 @@ body {
 .gift-btn-pill {
     display: inline-block;
     background-color: #faf5e6;
-    color: #bfa054;
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-family: var(--font-display);
     font-size: 0.96rem;
     font-weight: 500;
     letter-spacing: 3.5px;
@@ -1405,7 +2260,7 @@ body {
 }
 
 .gift-btn-pill:hover {
-    background-color: #ffffff;
+    background-color: var(--white);
     color: #9c7e33;
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
@@ -1432,28 +2287,30 @@ body {
 
 /* Descripción del buzón */
 .gift-envelope-desc {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 0.94rem;
     line-height: 1.55;
-    color: #eeddbb;
+    color: var(--text-cream-light);
     letter-spacing: 2px;
     margin: 0;
 }
 
 /* =========================================================
-   8.1 SECCIÓN NIÑOS / ESPACIO INFANTIL
+   13. SECCIÓN 8: ESPACIO INFANTIL / ÁREA PARA NIÑOS
+   Tarjeta informativa con fondo apergaminado para tranquilidad de los papás
    ========================================================= */
 .kids-section {
     position: relative;
     width: 100%;
     margin: 0;
     padding: 0 0 40px;
-    background-color: #f7f5f0;
+    background-color: var(--paper-bg);
     background-image:
         linear-gradient(rgba(247, 245, 240, 0.65), rgba(247, 245, 240, 0.65)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     overflow: hidden;
 }
 
@@ -1462,8 +2319,9 @@ body {
     background-image:
         linear-gradient(rgba(247, 245, 240, 0.65), rgba(247, 245, 240, 0.65)),
         url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
 }
 
 .kids-photo-wrap .photo-fade-img {
@@ -1482,7 +2340,7 @@ body {
 }
 
 .kids-notice-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 0.98rem;
     line-height: 1.62;
     color: #4b6a8a;
@@ -1507,14 +2365,15 @@ body {
 }
 
 /* =========================================================
-   9. ASISTENCIA & CONFIRMACIÓN (SOBRE AZUL Y LAGO)
+   14. SECCIÓN 9: ASISTENCIA & CONFIRMACIÓN (RSVP DINÁMICO)
+   Sobre azul sereno con sello dorado KM y tarjeta interactiva con Google Sheets
    ========================================================= */
 .rsvp-section {
     position: relative;
     width: 100%;
     margin: 0;
     padding: 75px 16px 85px;
-    background-image: url('../images/gallery/asistencia.jpeg');
+    background-image: url('../images/gallery/foto-pareja-fondo-portada.jpeg');
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -1544,11 +2403,11 @@ body {
 
 /* Título Caligráfico Dorado */
 .rsvp-script-title {
-    font-family: 'Sloop Script', 'Great Vibes', cursive;
+    font-family: var(--font-script);
     font-size: 3.8rem;
     font-weight: 500;
-    -webkit-text-stroke: 0.35px #e5be85;
-    color: #e5be85;
+    -webkit-text-stroke: 0.35px var(--gold-champagne);
+    color: var(--gold-champagne);
     margin: 0 0 10px 0;
     line-height: 1;
     text-shadow:
@@ -1559,7 +2418,7 @@ body {
 
 /* Subtítulo Fecha Límite */
 .rsvp-deadline-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 0.98rem;
     line-height: 1.5;
     color: #e8c68c;
@@ -1675,10 +2534,10 @@ body {
 
 /* Texto de Honor */
 .rsvp-honor-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 1.05rem;
     line-height: 1.55;
-    color: #2b4561;
+    color: var(--navy-dark);
     letter-spacing: 2.4px;
     text-transform: uppercase;
     font-weight: 500;
@@ -1687,7 +2546,7 @@ body {
 
 /* Caligrafía ¡Te esperamos! en azul */
 .rsvp-te-esperamos {
-    font-family: 'Sloop Script', 'Great Vibes', cursive;
+    font-family: var(--font-script);
     font-size: 2.9rem;
     font-weight: lighter;
     color: #274566;
@@ -1716,16 +2575,16 @@ body {
 }
 
 #loading-state {
-    font-family: 'Alta', 'Montserrat', sans-serif;
+    font-family: var(--font-display);
     font-size: 0.8rem;
-    color: #5a738e;
+    color: var(--slate-muted);
     letter-spacing: 1px;
 }
 
 .rsvp-submit-btn {
-    background-color: #355375;
-    color: #ffffff;
-    font-family: 'Alta', 'Montserrat', sans-serif;
+    background-color: var(--navy-deep);
+    color: var(--white);
+    font-family: var(--font-display);
     font-size: 0.85rem;
     letter-spacing: 2px;
     padding: 10px 24px;
@@ -1753,40 +2612,40 @@ body {
     border: 1px solid rgba(43, 69, 97, 0.18);
     border-radius: 8px;
     text-align: left;
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 0.88rem;
-    color: #2b4561;
+    color: var(--navy-dark);
     cursor: pointer;
     transition: all 0.25s ease;
 }
 
 .guest-option:hover {
-    border-color: #355375;
-    background: #ffffff;
+    border-color: var(--navy-deep);
+    background: var(--white);
     box-shadow: 0 2px 8px rgba(43, 69, 97, 0.08);
 }
 
 .guest-option.selected {
     background: rgba(53, 83, 117, 0.06);
-    border-color: #355375;
+    border-color: var(--navy-deep);
     font-weight: 600;
 }
 
 .guest-option input[type="checkbox"] {
     width: 19px;
     height: 19px;
-    accent-color: #355375;
+    accent-color: var(--navy-deep);
     cursor: pointer;
 }
 
 .badge-count {
     display: inline-block;
-    color: #b88a44;
+    color: var(--gold-bronze);
     background: rgba(184, 138, 68, 0.1);
     padding: 3px 12px;
     border-radius: 20px;
     border: 1px solid rgba(184, 138, 68, 0.25);
-    font-family: 'Alta', sans-serif;
+    font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.8rem;
     letter-spacing: 1.2px;
@@ -1805,7 +2664,7 @@ body {
     background: none;
     border: none;
     color: #728aa0;
-    font-family: 'Alta', 'Montserrat', sans-serif;
+    font-family: var(--font-display);
     font-size: 0.78rem;
     letter-spacing: 1.2px;
     text-transform: uppercase;
@@ -1816,14 +2675,14 @@ body {
 }
 
 .rsvp-decline-btn:hover {
-    color: #355375;
+    color: var(--navy-deep);
 }
 
 .rsvp-edit-btn {
     background: rgba(53, 83, 117, 0.08);
     border: 1px solid rgba(53, 83, 117, 0.2);
-    color: #355375;
-    font-family: 'Alta', 'Montserrat', sans-serif;
+    color: var(--navy-deep);
+    font-family: var(--font-display);
     font-size: 0.76rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -1834,13 +2693,13 @@ body {
 }
 
 .rsvp-edit-btn:hover {
-    background: #355375;
-    color: #ffffff;
+    background: var(--navy-deep);
+    color: var(--white);
 }
 
 .rsvp-success-icon {
     font-size: 1.6rem;
-    color: #bfa054;
+    color: var(--gold);
     margin-bottom: 4px;
 }
 
@@ -1857,7 +2716,7 @@ body {
     width: 26px;
     height: 26px;
     border: 2px solid rgba(53, 83, 117, 0.2);
-    border-top-color: #355375;
+    border-top-color: var(--navy-deep);
     border-radius: 50%;
     animation: rsvpSpin 0.8s linear infinite;
 }
@@ -1874,10 +2733,10 @@ body {
 }
 
 .rsvp-con-carino {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 1.02rem;
     letter-spacing: 3.2px;
-    color: #e5be85;
+    color: var(--gold-champagne);
     text-transform: uppercase;
     font-weight: 600;
     margin: 0 0 6px 0;
@@ -1887,11 +2746,11 @@ body {
 }
 
 .rsvp-names-footer {
-    font-family: 'Sloop Script', 'Great Vibes', cursive;
+    font-family: var(--font-script);
     font-size: 3.3rem;
     font-weight: 500;
-    -webkit-text-stroke: 0.35px #e5be85;
-    color: #e5be85;
+    -webkit-text-stroke: 0.35px var(--gold-champagne);
+    color: var(--gold-champagne);
     margin: 0;
     line-height: 1;
     text-shadow:
@@ -1900,8 +2759,188 @@ body {
         0 0 1px rgba(0, 0, 0, 0.4);
 }
 
+/* --- MÓDULO INTERACTIVO DE ASISTENCIA DINÁMICA (RSVP) --- */
+/* Estado Mockup / Muestra cuando no hay ID en la URL */
+.rsvp-mockup-state {
+    padding: 6px 0 2px;
+}
+
+.rsvp-mockup-badge {
+    display: inline-block;
+    background: rgba(191, 160, 84, 0.15);
+    color: var(--gold-dark);
+    border: 1px solid rgba(191, 160, 84, 0.35);
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.rsvp-mockup-list {
+    opacity: 0.95;
+}
+
+.rsvp-mockup-option {
+    cursor: default;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.rsvp-mockup-option input[type="checkbox"] {
+    cursor: default;
+}
+
+.rsvp-mockup-footer-note {
+    background: rgba(53, 83, 117, 0.05);
+    border: 1px dashed rgba(53, 83, 117, 0.22);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 14px;
+}
+
+.rsvp-mockup-footer-note .rsvp-notice-desc {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+/* Caja de aviso tradicional cuando el enlace no cuenta con un ID registrado */
+.rsvp-notice-box {
+    background: rgba(53, 83, 117, 0.05);
+    border: 1px dashed rgba(53, 83, 117, 0.25);
+    border-radius: 12px;
+    padding: 16px 14px;
+    margin-top: 10px;
+}
+
+/* Título de la notificación de enlace personalizado */
+.rsvp-notice-title {
+    font-size: 0.88rem;
+    color: var(--navy-deep);
+    font-family: var(--font-display);
+    margin-bottom: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Párrafo explicativo del aviso de enlace */
+.rsvp-notice-desc {
+    font-size: 0.82rem;
+    color: var(--slate-muted);
+    line-height: 1.45;
+    margin-bottom: 12px;
+}
+
+/* Enlace para probar con el pase demo */
+.rsvp-demo-link {
+    font-size: 0.78rem;
+    color: var(--gold);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.rsvp-demo-link:hover {
+    color: var(--gold-dark);
+}
+
+/* Nombre del contacto/invitado principal en el formulario */
+.rsvp-guest-name {
+    font-size: 1.25rem;
+    color: var(--navy-deep);
+    margin-bottom: 4px;
+    font-family: var(--font-serif);
+}
+
+/* Etiqueta de selección de asistentes */
+.rsvp-select-label {
+    font-size: 0.82rem;
+    color: var(--slate-muted);
+    margin-bottom: 10px;
+}
+
+/* Contenedor de la lista de pases dinámicos */
+.rsvp-guests-list {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Título de estado confirmado */
+.rsvp-confirmed-title {
+    font-size: 1.3rem;
+    color: var(--navy-deep);
+    margin-bottom: 6px;
+    font-family: var(--font-serif);
+}
+
+/* Mensaje detallado tras registrar la confirmación */
+.rsvp-confirmed-msg {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: var(--slate-muted);
+    line-height: 1.45;
+}
+
+/* Estado de Fecha Límite Vencida (posterior al 15 de Noviembre) */
+.rsvp-expired-state {
+    padding: 6px 0;
+}
+
+.rsvp-expired-badge {
+    display: inline-block;
+    background: rgba(180, 70, 70, 0.12);
+    color: #9d3838;
+    border: 1px solid rgba(180, 70, 70, 0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.rsvp-expired-box {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(180, 70, 70, 0.2);
+    border-radius: 12px;
+    padding: 16px 14px;
+    margin-top: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.rsvp-expired-icon {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.rsvp-expired-title {
+    font-size: 1.15rem;
+    color: #7b2e2e;
+    margin-bottom: 6px;
+}
+
+.rsvp-expired-msg {
+    font-size: 0.85rem;
+    color: #4a5568;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.rsvp-expired-desc {
+    font-size: 0.78rem;
+    color: #718096;
+    line-height: 1.45;
+    margin-bottom: 0;
+}
+
+
 /* =========================================================
-   BOTONES
+   15. BOTONES GLOBALES & EFECTOS DE INTERACCIÓN
+   Estilos base reutilizables para llamadas a la acción
    ========================================================= */
 .btn {
     display: inline-block;
@@ -1931,7 +2970,7 @@ body {
 }
 
 .btn-gold:hover {
-    background-color: #faf8f5;
+    background-color: var(--bg-app);
     color: var(--gold);
 }
 
@@ -1947,7 +2986,8 @@ body {
 }
 
 /* =========================================================
-   MODAL INTERACTIVO DE MAPA & UBICACIÓN
+   16. MODAL 1: UBICACIÓN & MAPA INTERACTIVO (AZUL TERRAZA)
+   Ventana emergente accesible con Google Maps embebido diferido y botón para Waze
    ========================================================= */
 .map-modal-backdrop {
     position: fixed;
@@ -1980,7 +3020,7 @@ body {
     width: 100%;
     max-width: 460px;
     max-height: 90vh;
-    background: #fdfbf7;
+    background: var(--card-cream);
     border-radius: 20px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(191, 160, 84, 0.25);
     overflow: hidden;
@@ -2016,15 +3056,15 @@ body {
 }
 
 .map-modal-close:hover {
-    background: #d6ad66;
-    color: #ffffff;
+    background: var(--gold-radiant);
+    color: var(--white);
     transform: scale(1.08) rotate(90deg);
 }
 
 .map-modal-header {
     padding: 22px 20px 14px;
     text-align: center;
-    background: #fdfbf7;
+    background: var(--card-cream);
     border-bottom: 1px solid rgba(191, 160, 84, 0.18);
 }
 
@@ -2032,16 +3072,16 @@ body {
     display: inline-block;
     font-size: 0.72rem;
     letter-spacing: 2.5px;
-    color: #917531;
+    color: var(--gold-dark);
     text-transform: uppercase;
     font-weight: 600;
     margin-bottom: 4px;
 }
 
 .map-modal-title {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
+    font-family: var(--font-display);
     font-size: 1.45rem;
-    color: #355375;
+    color: var(--navy-deep);
     letter-spacing: 2px;
     margin: 0 0 4px 0;
     font-weight: 600;
@@ -2049,9 +3089,9 @@ body {
 }
 
 .map-modal-address {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
     font-size: 1.02rem;
-    color: #6f7782;
+    color: var(--text-muted);
     margin: 0;
     line-height: 1.35;
 }
@@ -2082,10 +3122,10 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #d6ad66 0%, #b88a44 100%);
-    color: #ffffff !important;
+    background: linear-gradient(135deg, var(--gold-radiant) 0%, var(--gold-bronze) 100%);
+    color: var(--white) !important;
     text-decoration: none;
-    font-family: 'Alta', 'Montserrat', sans-serif;
+    font-family: var(--font-display);
     font-size: 0.82rem;
     letter-spacing: 1.5px;
     padding: 12px 24px;
@@ -2101,7 +3141,7 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(184, 138, 68, 0.48);
     filter: brightness(1.06);
-    color: #ffffff !important;
+    color: var(--white) !important;
 }
 
 @media (max-width: 480px) {
@@ -2120,8 +3160,16 @@ body {
     }
 }
 
+/* Ícono del botón de abrir mapa en GPS */
+.map-gps-icon {
+    margin-right: 6px;
+    vertical-align: text-bottom;
+}
+
+
 /* =========================================================
-   BOTÓN & MODAL AGREGAR AL CALENDARIO (ESTILO ALTA PAPELERÍA)
+   17. MODAL 2: AGREGAR AL CALENDARIO (ESTILO ALTA PAPELERÍA)
+   Boleto de gala con accesos directos para Google, Apple, Outlook y .ics
    ========================================================= */
 .calendar-action-wrap {
     margin: 24px auto 6px;
@@ -2135,9 +3183,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 9px;
-    background: linear-gradient(135deg, #d6ad66 0%, #b88a44 100%);
-    color: #ffffff;
-    font-family: 'Alta', 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, var(--gold-radiant) 0%, var(--gold-bronze) 100%);
+    color: var(--white);
+    font-family: var(--font-display);
     font-size: 0.82rem;
     letter-spacing: 2px;
     padding: 10px 24px;
@@ -2148,6 +3196,13 @@ body {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Ícono del botón de agregar al calendario */
+.cal-btn-icon {
+    margin-right: 8px;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
 .calendar-add-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(184, 138, 68, 0.45);
@@ -2155,7 +3210,7 @@ body {
 }
 
 .calendar-add-btn svg {
-    stroke: #ffffff;
+    stroke: var(--white);
     vertical-align: middle;
 }
 
@@ -2163,17 +3218,18 @@ body {
 .cal-modal-card {
     position: relative;
     width: 100%;
-    max-width: 440px;
-    background-color: #fdfbf7;
+    max-width: 410px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: var(--card-cream);
     background-image:
         linear-gradient(rgba(253, 251, 247, 0.95), rgba(253, 251, 247, 0.95)),
         url('../images/backgrounds/fondo-1.png');
     background-size: cover;
-    border-radius: 22px;
+    border-radius: 20px;
     border: 1px solid rgba(191, 160, 84, 0.38);
-    box-shadow: 0 25px 60px -10px rgba(18, 30, 48, 0.35), 0 0 0 5px rgba(253, 251, 247, 0.55);
-    padding: 30px 24px 26px;
-    overflow: hidden;
+    box-shadow: 0 25px 60px -10px rgba(18, 30, 48, 0.35), 0 0 0 4px rgba(253, 251, 247, 0.55);
+    padding: 22px 18px 20px;
     transform: scale(0.92) translateY(20px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
     box-sizing: border-box;
@@ -2204,7 +3260,7 @@ body {
     height: 32px;
     border-radius: 50%;
     border: 1px solid rgba(191, 160, 84, 0.35);
-    background: #faf6ee;
+    background: var(--card-cream-warm);
     color: #8a6a28;
     font-size: 1.4rem;
     line-height: 1;
@@ -2217,66 +3273,66 @@ body {
 }
 
 .cal-modal-close:hover {
-    background: #d6ad66;
-    color: #ffffff;
-    border-color: #d6ad66;
+    background: var(--gold-radiant);
+    color: var(--white);
+    border-color: var(--gold-radiant);
     transform: rotate(90deg) scale(1.06);
 }
 
 /* Encabezado */
 .cal-modal-header {
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .cal-modal-rings {
-    width: 34px;
+    width: 30px;
     height: auto;
     display: block;
-    margin: 0 auto 6px;
+    margin: 0 auto 4px;
     filter: drop-shadow(0 2px 5px rgba(191, 160, 84, 0.25));
 }
 
 .cal-modal-eyebrow {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 0.72rem;
-    letter-spacing: 3px;
-    color: #9c7c34;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
+    color: var(--gold-bronze);
     text-transform: uppercase;
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
     font-weight: 600;
 }
 
 .cal-modal-script {
-    font-family: 'Sloop Script', 'Great Vibes', cursive;
-    font-size: 2.9rem;
-    color: #c29b53;
+    font-family: var(--font-script);
+    font-size: 2.5rem;
+    color: var(--gold-warm);
     font-weight: normal;
     line-height: 1;
-    margin: 2px 0 6px;
+    margin: 1px 0 4px;
 }
 
 .cal-modal-names {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    color: #355375;
-    letter-spacing: 3px;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    color: var(--navy-deep);
+    letter-spacing: 2.5px;
     font-weight: 500;
     margin: 0;
 }
 
 /* Boleto Nupcial / Ficha del Evento */
 .cal-event-ticket {
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(191, 160, 84, 0.3);
     border-radius: 12px;
-    padding: 12px 16px;
+    padding: 10px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .cal-ticket-col-date {
@@ -2284,38 +3340,38 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 88px;
+    min-width: 80px;
 }
 
 .cal-ticket-weekday {
-    font-size: 0.74rem;
-    letter-spacing: 2px;
-    color: #9c7c34;
+    font-size: 0.7rem;
+    letter-spacing: 1.8px;
+    color: var(--gold-bronze);
     font-weight: 600;
     line-height: 1;
 }
 
 .cal-ticket-day {
-    font-size: 2.1rem;
-    color: #355375;
+    font-size: 1.85rem;
+    color: var(--navy-deep);
     font-weight: 700;
     line-height: 1.05;
-    margin: 2px 0;
+    margin: 1px 0;
 }
 
 .cal-ticket-month-year {
-    font-size: 0.74rem;
-    letter-spacing: 1.5px;
-    color: #9c7c34;
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    color: var(--gold-bronze);
     font-weight: 600;
     line-height: 1;
 }
 
 .cal-ticket-divider {
     width: 1px;
-    height: 48px;
+    height: 42px;
     background: rgba(191, 160, 84, 0.3);
-    margin: 0 14px;
+    margin: 0 12px;
 }
 
 .cal-ticket-col-info {
@@ -2324,32 +3380,32 @@ body {
     flex-direction: column;
     justify-content: center;
     text-align: left;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-serif);
 }
 
 .cal-ticket-line {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.96rem;
-    color: #333a42;
-    margin-bottom: 2px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 1px;
 }
 
 .cal-ticket-line.venue-line {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    color: #355375;
-    letter-spacing: 1px;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    color: var(--navy-deep);
+    letter-spacing: 0.8px;
 }
 
 .cal-ticket-icon {
-    color: #c29b53;
+    color: var(--gold-warm);
     flex-shrink: 0;
 }
 
 .cal-ticket-city {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #7b838f;
     margin: 0 0 0 21px;
     line-height: 1.2;
@@ -2360,22 +3416,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     background: #fbf7ee;
     border: 1px solid rgba(191, 160, 84, 0.22);
     border-radius: 20px;
-    padding: 6px 14px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.92rem;
+    padding: 5px 12px;
+    font-family: var(--font-serif);
+    font-size: 0.84rem;
     font-style: italic;
     color: #8c6a28;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .ribbon-sparkle {
-    color: #c29b53;
+    color: var(--gold-warm);
     font-style: normal;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 /* Cuadrícula de Azulejos de Lujo */
@@ -2384,18 +3440,18 @@ body {
 }
 
 .cal-choose-prompt {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-style: italic;
     letter-spacing: 0.5px;
     color: #6b7582;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     text-align: center;
 }
 
 .cal-luxury-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
 }
 
 .cal-luxury-tile {
@@ -2403,36 +3459,36 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
+    background: var(--white);
     border: 1px solid rgba(191, 160, 84, 0.28);
-    border-radius: 12px;
-    padding: 12px 10px;
+    border-radius: 10px;
+    padding: 10px 8px;
     text-decoration: none;
-    color: #333a42;
+    color: var(--text-main);
     cursor: pointer;
     transition: all 0.25s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     text-align: center;
     box-sizing: border-box;
 }
 
 .cal-luxury-tile:hover {
     background: #fffcf8;
-    border-color: #c29b53;
+    border-color: var(--gold-warm);
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(194, 155, 83, 0.2);
 }
 
 .cal-tile-icon-wrap {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    background: #faf6ee;
+    background: var(--card-cream-warm);
     border: 1px solid rgba(191, 160, 84, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     transition: transform 0.25s ease, background 0.25s ease;
 }
 
@@ -2449,456 +3505,54 @@ body {
 
 .cal-tile-info strong,
 .cal-tile-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.82rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
     font-weight: 600;
-    color: #355375;
+    color: var(--navy-deep);
     letter-spacing: 0.8px;
     text-transform: uppercase;
     line-height: 1.2;
 }
 
 .cal-tile-info span {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.68rem;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
     color: #8c94a0;
-    margin-top: 2px;
+    margin-top: 1px;
 }
 
 @media (max-width: 440px) {
     .cal-modal-card {
-        padding: 24px 16px 20px;
+        padding: 18px 14px 16px;
+        max-width: 94%;
     }
 
     .cal-modal-script {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .cal-event-ticket {
-        padding: 10px 12px;
+        padding: 8px 10px;
     }
 
     .cal-ticket-day {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     .cal-ticket-divider {
-        margin: 0 10px;
+        margin: 0 8px;
     }
 
     .cal-luxury-grid {
-        gap: 8px;
+        gap: 6px;
     }
 
     .cal-luxury-tile {
-        padding: 10px 6px;
+        padding: 8px 4px;
     }
-}
 
-/* =========================================================
-   PORTADA DE BIENVENIDA / SPLASH OVERLAY CON SOBRE INTERACTIVO
-   ========================================================= */
-.welcome-splash-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 99999;
-    background-color: #121820;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 1.1s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.welcome-splash-overlay.splash-closing {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(1.04);
-}
-
-.welcome-splash-overlay.splash-hidden {
-    display: none !important;
-}
-
-/* Telón de fondo: foto-marco-ceremonia.jpeg con lienzo azul traslúcido suave */
-.splash-bg-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/gallery/foto-marco-ceremonia.jpeg');
-    background-size: cover;
-    background-position: center 30%;
-    filter: blur(4px) saturate(0.85);
-    transform: scale(1.06);
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Lienzo azul sereno traslúcido suave que unifica la paleta */
-.splash-bg-backdrop::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        180deg,
-        rgba(35, 50, 72, 0.58) 0%,
-        rgba(48, 67, 95, 0.54) 50%,
-        rgba(30, 44, 64, 0.65) 100%
-    );
-}
-
-/* Marco vertical tipo móvil con borde sutil */
-.splash-content-frame {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 440px;
-    height: 100%;
-    max-height: 900px;
-    padding: 38px 24px 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    text-align: center;
-    border-left: 1px solid rgba(255, 255, 255, 0.16);
-    border-right: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 0 0 70px rgba(0, 0, 0, 0.45);
-}
-
-/* Encabezado Superior: "Nuestra Boda" perfectamente centrado */
-.splash-header-box {
-    width: 100%;
-    margin-top: 6px;
-    text-align: center;
-}
-
-.splash-main-title {
-    font-family: 'Sloop Script', cursive;
-    font-size: 5.2rem;
-    color: #ffffff;
-    line-height: 1.05;
-    margin: 0 auto 12px;
-    text-align: center;
-    display: block;
-    width: 100%;
-    /* Compensación óptica del flourish caligráfico para alineación visual perfecta al centro */
-    transform: translateX(-0.06em);
-    text-shadow: 0 3px 14px rgba(15, 25, 40, 0.65), 0 1px 3px rgba(0, 0, 0, 0.85);
-    letter-spacing: 0;
-}
-
-.splash-instruction-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    letter-spacing: 3.5px;
-    text-transform: uppercase;
-    color: #ffffff;
-    margin: 0 auto;
-    text-align: center;
-    opacity: 0.95;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
-}
-
-/* Área Central del Sobre */
-.splash-envelope-area {
-    position: relative;
-    width: 100%;
-    max-width: 350px;
-    height: 250px;
-    margin: 10px 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Decoraciones Florales en las esquinas superiores del sobre */
-.splash-flower-decor {
-    position: absolute;
-    pointer-events: none;
-    z-index: 15;
-    height: auto;
-    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
-    transition: transform 0.8s ease, opacity 0.8s ease;
-}
-
-.splash-flower-decor.splash-flower-left {
-    top: -28px;
-    left: -2px;
-    width: 82px;
-}
-
-.splash-flower-decor.splash-flower-right {
-    top: -32px;
-    right: -2px;
-    width: 78px;
-}
-
-/* Envoltorio del sobre interactivo */
-.splash-envelope-wrapper {
-    position: relative;
-    width: 320px;
-    height: 242px;
-    filter: drop-shadow(0 16px 36px rgba(15, 28, 45, 0.45));
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Capa: Sobre Cerrado Completo y Sin Recortes */
-.splash-envelope-closed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    display: block;
-    z-index: 4;
-    transition: opacity 0.55s ease, transform 0.7s ease;
-    border-radius: 4px;
-}
-
-/* Capa: Sobre Abierto (detrás del cerrado inicialmente) */
-.splash-envelope-open {
-    position: absolute;
-    top: -64px;
-    left: 0;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    z-index: 2;
-    opacity: 0;
-    transform: scale(0.96);
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.8s cubic-bezier(0.25, 1, 0.35, 1);
-    pointer-events: none;
-}
-
-/* Carta / Tarjeta interior que emerge */
-.splash-inner-letter {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(30px) scale(0.88);
-    width: 84%;
-    background-color: #faf7f2;
-    background-image:
-        linear-gradient(rgba(250, 247, 242, 0.9), rgba(250, 247, 242, 0.9)),
-        url('../images/backgrounds/fondo-1.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 4px;
-    padding: 24px 18px 20px;
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
-    z-index: 3;
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.9s cubic-bezier(0.25, 1, 0.35, 1) 0.3s,
-                opacity 0.7s ease 0.25s;
-}
-
-.splash-letter-date {
-    font-family: 'Alta', serif;
-    font-size: 0.88rem;
-    letter-spacing: 3px;
-    color: #3b506b;
-    margin: 0 0 6px 0;
-}
-
-.splash-letter-names {
-    font-family: 'Sloop Script', cursive;
-    font-size: 2.8rem;
-    color: #2b4561;
-    line-height: 1;
-    margin: 0 0 8px 0;
-}
-
-.splash-letter-phrase {
-    font-family: 'Alta', serif;
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #556c86;
-    margin: 0;
-}
-
-/* Sello de Cera Dorado KM Centrado en la punta de la solapa */
-.splash-wax-seal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 82px;
-    height: 82px;
-    z-index: 10;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    padding: 0;
-    outline: none;
-    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                filter 0.35s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.splash-wax-seal:hover {
-    transform: translate(-50%, -50%) scale(1.09);
-    filter: drop-shadow(0 8px 20px rgba(220, 185, 95, 0.55));
-}
-
-.splash-wax-seal-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    pointer-events: none;
-}
-
-/* Pulsación sutil y elegante en el sello de cera */
-.splash-wax-seal::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 0 0 rgba(230, 206, 138, 0.6);
-    animation: sealGlowPulse 2.4s infinite;
-    pointer-events: none;
-}
-
-@keyframes sealGlowPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(230, 206, 138, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 16px rgba(230, 206, 138, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(230, 206, 138, 0);
-    }
-}
-
-/* =========================================================
-   ESTADOS DE ANIMACIÓN AL ABRIR EL SOBRE
-   ========================================================= */
-
-/* Paso 1: El sello vibra, se despega y se desvanece suavemente hacia arriba */
-.splash-envelope-area.anim-unseal .splash-wax-seal {
-    animation: unsealEffect 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    pointer-events: none;
-}
-
-@keyframes unsealEffect {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    25% {
-        transform: translate(-50%, -50%) scale(1.18) rotate(-6deg);
-        filter: drop-shadow(0 14px 28px rgba(230, 206, 138, 0.8));
-    }
-    60% {
-        transform: translate(-50%, -68%) scale(1.28) rotate(4deg);
-        opacity: 0.9;
-        filter: drop-shadow(0 20px 35px rgba(230, 206, 138, 0.9));
-    }
-    100% {
-        transform: translate(-50%, -100%) scale(0.7) rotate(12deg);
-        opacity: 0;
-        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-    }
-}
-
-/* Paso 2: Transición de sobre cerrado a sobre abierto */
-.splash-envelope-area.anim-opening .splash-envelope-closed {
-    opacity: 0;
-    transform: scale(0.96);
-    pointer-events: none;
-}
-
-.splash-envelope-area.anim-opening .splash-envelope-open {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Paso 3: La tarjeta interior se desliza elegantemente hacia afuera */
-.splash-envelope-area.anim-opening .splash-inner-letter {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-65px) scale(1);
-    z-index: 20;
-}
-
-/* Sección Inferior de la Portada */
-.splash-footer-box {
-    width: 100%;
-    margin-bottom: 6px;
-    text-align: center;
-}
-
-.splash-date-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 1.55rem;
-    color: #ffffff;
-    letter-spacing: 4.5px;
-    margin: 0 auto 12px;
-    text-align: center;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-}
-
-.splash-legend-text {
-    font-family: 'Alta', 'Cormorant Garamond', serif;
-    font-size: 0.84rem;
-    line-height: 1.6;
-    color: #ffffff;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 0 auto;
-    text-align: center;
-    opacity: 0.94;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-/* Responsive para pantallas pequeñas */
-@media (max-width: 380px) {
-    .splash-main-title {
-        font-size: 4.2rem;
-    }
-    .splash-instruction-text {
-        font-size: 0.8rem;
-        letter-spacing: 2.5px;
-    }
-    .splash-envelope-area {
-        height: 220px;
-    }
-    .splash-envelope-wrapper {
-        width: 280px;
-        height: 212px;
-    }
-    .splash-envelope-open {
-        top: -56px;
-    }
-    .splash-wax-seal {
-        width: 72px;
-        height: 72px;
-    }
-    .splash-date-text {
-        font-size: 1.35rem;
-    }
-    .splash-legend-text {
+    .cal-reminder-ribbon {
         font-size: 0.76rem;
-        letter-spacing: 1.4px;
+        padding: 4px 8px;
     }
 }
