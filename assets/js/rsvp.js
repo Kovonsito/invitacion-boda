@@ -131,10 +131,10 @@ function initRSVP() {
         return;
     }
 
-    // 2. Consultar datos del invitado a Google Sheets
+    // 2. Consultar datos del invitado a Google Sheets (Solo lectura: no registra visitas de bots ni previsualizaciones)
     if (loadingEl) loadingEl.style.display = 'flex';
     if (noIdEl) noIdEl.style.display = 'none';
-    fetch(`${SCRIPT_URL}?id=${encodeURIComponent(guestId)}`)
+    fetch(`${SCRIPT_URL}?id=${encodeURIComponent(guestId)}&action=get_data`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la conexión con el servidor');
             return response.json();
@@ -165,6 +165,21 @@ function initRSVP() {
             mostrarError('No pudimos cargar tus pases en este momento. Por favor intenta nuevamente.');
         });
 }
+
+// Registra la visita humana real en Google Sheets al abrir el sobre
+let haRegistradoApertura = false;
+function registrarAperturaInvitado() {
+    if (!guestId || haRegistradoApertura) return;
+    haRegistradoApertura = true;
+
+    fetch(`${SCRIPT_URL}?id=${encodeURIComponent(guestId)}&action=track_open`, {
+        method: 'GET',
+        mode: 'no-cors' // Petición rápida y silenciosa en segundo plano
+    }).catch(err => {
+        console.warn('Registro de apertura en segundo plano:', err);
+    });
+}
+window.registrarAperturaInvitado = registrarAperturaInvitado;
 
 // Procesa si el invitado ya confirmó previamente, si expiró la fecha límite, o si debe mostrar el formulario
 function procesarEstadoInvitado(data) {
