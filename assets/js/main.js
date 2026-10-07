@@ -170,6 +170,11 @@ function openWelcomeEnvelope(e) {
     if (isEnvelopeOpening) return;
     isEnvelopeOpening = true;
 
+    // Registrar la visita real en Google Sheets al romper el sello del sobre
+    if (typeof registrarAperturaInvitado === 'function') {
+        registrarAperturaInvitado();
+    }
+
     const splashOverlay = document.getElementById('welcome-splash');
     const envArea = document.getElementById('splash-envelope-area');
     const bgMusicEl = document.getElementById('bg-music');

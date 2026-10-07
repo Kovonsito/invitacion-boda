@@ -27,8 +27,8 @@ function initRSVP() {
         return;
     }
 
-    // 2. Consultar datos del invitado a Google Sheets
-    fetch(`${SCRIPT_URL}?id=${encodeURIComponent(guestId)}`)
+    // 2. Consultar datos del invitado a Google Sheets (Solo lectura, no registra visita de bots)
+    fetch(`${SCRIPT_URL}?id=${encodeURIComponent(guestId)}&action=get_data`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la conexión con el servidor');
             return response.json();
@@ -45,6 +45,21 @@ function initRSVP() {
             console.error('Error al cargar datos del invitado:', err);
             mostrarError('No pudimos cargar tus pases en este momento. Por favor intenta nuevamente.');
         });
+}
+
+// Registra la apertura de forma 100% segura únicamente cuando el usuario abre el sobre
+let haRegistradoApertura = false;
+function registrarAperturaInvitado() {
+    if (!guestId || haRegistradoApertura) return;
+    haRegistradoApertura = true;
+
+    // Enviar señal de apertura real (acción humana)
+    fetch(`${SCRIPT_URL}?id=${encodeURIComponent(guestId)}&action=track_open`, {
+        method: 'GET',
+        mode: 'no-cors' // Envío rápido y silencioso en segundo plano
+    }).catch(err => {
+        console.warn('Registro de apertura en segundo plano:', err);
+    });
 }
 
 // Procesa si el invitado ya confirmó previamente o si debe mostrar el formulario
