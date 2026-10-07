@@ -5,7 +5,7 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRzIDX3n2NREAz5-vHVM-_8Bx9VP_2h_7btv2sa0eHj-QvpvpXC95UGjtsWjoUo1-Czw/exec';
 
 // Fecha límite de confirmación: 15 de Noviembre de 2026 a las 23:59:59 (GMT-6 / Hora de Nayarit)
-const FECHA_LIMITE_RSVP = new Date('2026-11-15T23:59:59-06:00');
+const FECHA_LIMITE_RSVP = new Date('2026-11-15T23:59:59-07:00');
 
 function haExpiradoFechaLimite() {
     return new Date() > FECHA_LIMITE_RSVP;
