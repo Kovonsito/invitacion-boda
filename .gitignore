@@ -1,0 +1,9 @@
+# Dependencies
+node_modules/
+planner/node_modules/
+planner/dist/
+
+# Local build and preview files
+planner_preview*.png
+.DS_Store
+Thumbs.db
