@@ -177,9 +177,44 @@ function initRSVP() {
     const urlParams = new URLSearchParams(window.location.search);
     guestId = urlParams.get('id');
 
+    // Saludo instantáneo si viene por parámetro (?n=Nombre o ?nombre=Nombre) o cache
+    const preloadedName = window.__PRELOADED_GUEST_NAME__ || urlParams.get('n') || urlParams.get('nombre') || urlParams.get('guest');
+    const splashGreeting = document.getElementById('splash-guest-greeting');
+    if (splashGreeting && preloadedName) {
+        splashGreeting.innerText = `¡HOLA, ${preloadedName.trim().toUpperCase()}!`;
+        splashGreeting.style.display = 'block';
+    }
+
+    // Si existen datos del invitado en caché, precargarlos de inmediato sin esperar el fetch
+    if (window.__CACHED_GUEST_DATA__) {
+        currentGuestData = window.__CACHED_GUEST_DATA__;
+        if (esInvitadoPadrino(currentGuestData.id, currentGuestData.contacto, currentGuestData.listaNombres, currentGuestData)) {
+            activarModoPadrinos(currentGuestData);
+        }
+        procesarEstadoInvitado(currentGuestData);
+    } else if (guestId) {
+        try {
+            const cachedStr = localStorage.getItem('guest_data_' + guestId);
+            if (cachedStr) {
+                const cachedData = JSON.parse(cachedStr);
+                if (cachedData && cachedData.contacto) {
+                    currentGuestData = cachedData;
+                    if (splashGreeting) {
+                        splashGreeting.innerText = `¡HOLA, ${cachedData.contacto.trim().toUpperCase()}!`;
+                        splashGreeting.style.display = 'block';
+                    }
+                    if (esInvitadoPadrino(cachedData.id, cachedData.contacto, cachedData.listaNombres, cachedData)) {
+                        activarModoPadrinos(cachedData);
+                    }
+                    procesarEstadoInvitado(cachedData);
+                }
+            }
+        } catch(e) {}
+    }
+
     // 0. Detección preliminar inmediata de Padrinos para visualización sin retardo
     if (esInvitadoPadrino(guestId, null, null)) {
-        activarModoPadrinos(data);
+        activarModoPadrinos(currentGuestData || null);
     }
 
     const loadingEl = document.getElementById('loading-state');
@@ -210,6 +245,11 @@ function initRSVP() {
                 return;
             }
             currentGuestData = data;
+            if (guestId && data && !data.error) {
+                try {
+                    localStorage.setItem('guest_data_' + guestId, JSON.stringify(data));
+                } catch(e) {}
+            }
 
             // Saludo personalizado con el nombre en la portada de bienvenida
             const splashGreeting = document.getElementById('splash-guest-greeting');

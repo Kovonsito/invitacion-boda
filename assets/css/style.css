@@ -301,7 +301,7 @@ body {
     margin: 4px auto 2px;
     text-align: center;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 12px rgba(230, 206, 138, 0.4);
-    animation: fadeInGreeting 0.8s ease forwards;
+    animation: fadeInGreeting 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes fadeInGreeting {
