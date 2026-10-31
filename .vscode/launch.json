@@ -1,14 +1,41 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Chrome: Servidor Local (Recomendado)",
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Iniciar Servidor Local"
+        },
+        {
+            "name": "Chrome: Probar Invitado Padrino (?id=11)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8080?id=11",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Iniciar Servidor Local"
+        },
+        {
+            "name": "Chrome: Abrir index.html directo (Sin Servidor)",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${workspaceFolder}/index.html"
+        },
+        {
+            "name": "Edge: Servidor Local",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Iniciar Servidor Local"
+        },
+        {
+            "name": "Chrome: Live Server (Puerto 5500)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://127.0.0.1:5500",
             "webRoot": "${workspaceFolder}"
         }
     ]

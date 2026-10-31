@@ -2,9 +2,9 @@
 // MÓDULO DE ASISTENCIA DINÁMICA (RSVP) CON GOOGLE SHEETS
 // =========================================================
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRzIDX3n2NREAz5-vHVM-_8Bx9VP_2h_7btv2sa0eHj-QvpvpXC95UGjtsWjoUo1-Czw/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBfe6AsBT63D6LXVylOJTFFp51hHcp_ifRIPt7_lcpvP2eJdo6rYaArA-IAFmver9brg/exec';
 
-// Fecha límite de confirmación: 15 de Noviembre de 2026 a las 23:59:59 (GMT-6 / Hora de Nayarit)
+// Fecha límite de confirmación: 15 de Noviembre de 2026 a las 23:59:59 (GMT-7 / Hora de Nayarit)
 const FECHA_LIMITE_RSVP = new Date('2026-11-15T23:59:59-07:00');
 
 function haExpiradoFechaLimite() {
@@ -35,17 +35,48 @@ function normalizarTexto(texto) {
 }
 
 // Determina si el usuario actual es uno de los padrinos asignados
-function esInvitadoPadrino(id, contacto, listaNombres) {
+// Determina si el invitado pertenece al cortejo de honor (padrino, dama, caballero o acompañante)
+function obtenerRolEspecial(guestObj) {
+    if (!guestObj) return null;
+    const rawRol = guestObj.rol || guestObj.padrino || guestObj.esPadrino;
+    if (!rawRol) return null;
+    const r = normalizarTexto(String(rawRol));
+    if (r.includes('dama')) return 'DAMA DE HONOR';
+    if (r.includes('caballero')) return 'CABALLERO DE HONOR';
+    if (r.includes('padrino') || r.includes('madrina')) return 'PADRINO';
+    if (r === 'si' || r === 'true') return 'PADRINO / CORTEJO';
+    return rawRol.toString().toUpperCase();
+}
+
+function esInvitadoPadrino(id, contacto, listaNombres, guestObj) {
     const urlParams = new URLSearchParams(window.location.search);
-    const paramPadrino = urlParams.get('padrino') || urlParams.get('padrinos');
-    if (paramPadrino === 'true' || paramPadrino === '1' || paramPadrino === 'si') {
+    const paramPadrino = urlParams.get('padrino') || urlParams.get('padrinos') || urlParams.get('rol');
+    if (paramPadrino === 'true' || paramPadrino === '1' || paramPadrino === 'si' || paramPadrino === 'dama' || paramPadrino === 'caballero') {
         return true;
     }
 
+    // 1. Verificación directa desde Google Sheets (columna "Rol", "Padrino" o "EsPadrino")
+    if (guestObj) {
+        const rolNorm = normalizarTexto(String(guestObj.rol || guestObj.padrino || guestObj.esPadrino || ''));
+        if (
+            rolNorm.includes('padrino') ||
+            rolNorm.includes('madrina') ||
+            rolNorm.includes('dama') ||
+            rolNorm.includes('caballero') ||
+            rolNorm.includes('cortejo') ||
+            rolNorm === 'si' ||
+            rolNorm === 'true'
+        ) {
+            return true;
+        }
+    }
+
+    // 2. Coincidencia con lista predefinida de IDs
     if (id && PADRINO_IDS.includes(String(id).trim())) {
         return true;
     }
 
+    // 3. Coincidencia con nombres de contacto
     if (contacto) {
         const cContacto = normalizarTexto(contacto);
         if (PADRINO_NAMES.some(p => cContacto.includes(p))) {
@@ -53,6 +84,7 @@ function esInvitadoPadrino(id, contacto, listaNombres) {
         }
     }
 
+    // 4. Coincidencia en la lista de nombres de los pases
     if (Array.isArray(listaNombres)) {
         for (const item of listaNombres) {
             const cItem = normalizarTexto(item);
@@ -66,7 +98,21 @@ function esInvitadoPadrino(id, contacto, listaNombres) {
 }
 
 // Activa la visualización de la sección exclusiva para padrinos
-function activarModoPadrinos() {
+function activarModoPadrinos(guestObj) {
+    const rolEspecifico = obtenerRolEspecial(guestObj);
+    const cardTitleEl = document.getElementById('padrinos-card-title');
+    const badgeRsvpEl = document.getElementById('padrino-badge-rsvp');
+
+    if (cardTitleEl && rolEspecifico) {
+        cardTitleEl.innerText = `CÓDIGO DE VESTIMENTA – ${rolEspecifico}`;
+    }
+    if (badgeRsvpEl && rolEspecifico) {
+        badgeRsvpEl.innerText = `DISTINCIÓN DE HONOR: ${rolEspecifico}`;
+    }
+    const publicToggle = document.getElementById('padrinos-public-toggle-wrap');
+    if (publicToggle) {
+        publicToggle.style.display = 'none'; // Ya es padrino oficial, no requiere botón de consulta
+    }
     const padrinosCard = document.getElementById('padrinos-dresscode-card');
     const padrinosToggle = document.getElementById('padrinos-toggle-wrap');
     const generalPalette = document.getElementById('general-guest-palette');
@@ -92,6 +138,25 @@ function activarModoPadrinos() {
 }
 
 // Alterna la visibilidad de la paleta general desde la vista de padrino
+// Permite desplegar o contraer la sección de padrinos de forma manual (ej. enlace base)
+function toggleSeccionPadrinos() {
+    const padrinosCard = document.getElementById('padrinos-dresscode-card');
+    const toggleText = document.getElementById('padrinos-public-toggle-text');
+    if (!padrinosCard) return;
+
+    if (padrinosCard.style.display === 'none' || padrinosCard.style.display === '') {
+        padrinosCard.style.display = 'block';
+        if (toggleText) toggleText.innerText = 'Ocultar paleta especial ▴';
+        if (typeof AOS !== 'undefined') AOS.refresh();
+        // Desplazamiento suave para ver la tarjeta
+        padrinosCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+        padrinosCard.style.display = 'none';
+        if (toggleText) toggleText.innerText = '¿Cortejo o Padrino? Consulta tu paleta aquí ▾';
+    }
+}
+window.toggleSeccionPadrinos = toggleSeccionPadrinos;
+
 function toggleGeneralPalette() {
     const generalPalette = document.getElementById('general-guest-palette');
     const toggleText = document.getElementById('padrinos-toggle-text');
@@ -114,7 +179,7 @@ function initRSVP() {
 
     // 0. Detección preliminar inmediata de Padrinos para visualización sin retardo
     if (esInvitadoPadrino(guestId, null, null)) {
-        activarModoPadrinos();
+        activarModoPadrinos(data);
     }
 
     const loadingEl = document.getElementById('loading-state');
@@ -154,7 +219,7 @@ function initRSVP() {
             }
 
             // Confirmar condición de padrino con los datos recibidos de la hoja
-            if (esInvitadoPadrino(data.id, data.contacto, data.listaNombres)) {
+            if (esInvitadoPadrino(data.id, data.contacto, data.listaNombres, data)) {
                 activarModoPadrinos();
             }
 
@@ -197,8 +262,9 @@ function procesarEstadoInvitado(data) {
     if (expiredEl) expiredEl.style.display = 'none';
     if (confirmedEl) confirmedEl.style.display = 'none';
 
-    const esConfirmado = data.estado === 'Confirmado' || (typeof data.confirmados === 'number' && data.confirmados > 0);
-    const esNoAsiste = data.estado === 'Rechazado' || data.estado === 'No asistirá' || (data.confirmados === 0 && (data.estado === 'Rechazado' || data.estado === 'No asistirá'));
+    const estadoStr = String(data.estado || '').trim();
+    const esConfirmado = estadoStr.startsWith('Confirmado') || (typeof data.confirmados === 'number' && data.confirmados > 0);
+    const esNoAsiste = estadoStr === 'Rechazado' || estadoStr === 'No asistirá';
     const expirado = haExpiradoFechaLimite();
 
     // 1. Si la fecha límite expiró y el invitado NO había confirmado previamente:
@@ -214,7 +280,7 @@ function procesarEstadoInvitado(data) {
     if (esConfirmado) {
         if (confirmedEl) confirmedEl.style.display = 'block';
         if (confirmedTitle) confirmedTitle.innerText = '¡Asistencia Confirmada!';
-        const total = data.confirmados || (data.listaNombres ? data.listaNombres.length : 1);
+        const total = data.confirmados || (data.nombresConfirmados ? data.nombresConfirmados.length : (data.listaNombres ? data.listaNombres.length : 1));
         if (confirmedMsg) {
             confirmedMsg.innerHTML = `¡Hola, <strong>${data.contacto.trim()}</strong>!<br>Ya registraste tu asistencia para <strong>${total} ${total === 1 ? 'persona' : 'personas'}</strong>.<br>¡Nos dará muchísimo gusto verte!`;
         }
@@ -280,12 +346,21 @@ function mostrarFormulario(data) {
         ? data.listaNombres
         : [data.contacto.trim()];
 
-    nombres.forEach((nombre, index) => {
+    const confirmadosPrevios = Array.isArray(data.nombresConfirmados)
+        ? data.nombresConfirmados.map(n => normalizarTexto(n))
+        : [];
+    const tieneSeleccionPrevia = confirmadosPrevios.length > 0;
+
+    nombres.forEach((nombre) => {
+        const estaSeleccionado = tieneSeleccionPrevia
+            ? confirmadosPrevios.includes(normalizarTexto(nombre))
+            : true;
+
         const item = document.createElement('label');
-        item.className = 'guest-option selected';
+        item.className = `guest-option${estaSeleccionado ? ' selected' : ''}`;
         item.innerHTML = `
             <span class="guest-label-text">${nombre}</span>
-            <input type="checkbox" name="invitado" value="${nombre}" checked onchange="actualizarSeleccion(this)">
+            <input type="checkbox" name="invitado" value="${nombre}" ${estaSeleccionado ? 'checked' : ''} onchange="actualizarSeleccion(this)">
         `;
         listContainer.appendChild(item);
     });
@@ -344,6 +419,9 @@ function enviarRSVP(tipo) {
 
     fetch(SCRIPT_URL, {
         method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+        },
         body: JSON.stringify(payload)
     })
         .then(res => res.json())
@@ -352,8 +430,9 @@ function enviarRSVP(tipo) {
 
             // Actualizar datos locales
             if (currentGuestData) {
-                currentGuestData.estado = tipo;
+                currentGuestData.estado = data.estado || tipo;
                 currentGuestData.confirmados = seleccionados.length;
+                currentGuestData.nombresConfirmados = seleccionados;
             }
 
             const formEl = document.getElementById('form-state');

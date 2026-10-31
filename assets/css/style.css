@@ -1059,10 +1059,10 @@ body {
     transform: translate(-50%, -50%);
     width: 14px;
     height: 14px;
-    background: var(--gold-warm);
-    border: 2.5px solid var(--white);
+    background: #b8995a;
+    border: 2px solid var(--white);
     border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(43, 69, 97, 0.4), 0 0 8px rgba(194, 155, 83, 0.7);
+    box-shadow: 0 2px 5px rgba(43, 69, 97, 0.25);
     transition: left 0.3s linear;
 }
 
@@ -1105,28 +1105,27 @@ body {
     transform: scale(0.95);
 }
 
-/* Botón principal circular Play / Pausa en contraste dorado nupcial con icono marino */
+/* Botón principal circular Play / Pausa en tono mate suave y difuminado */
 .play-pause-btn {
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold-warm) 0%, var(--gold-dark) 100%);
+    background: #b8995a;
     border: 2px solid var(--white);
     color: var(--white);
     font-size: 1.35rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 18px rgba(145, 117, 49, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.35, 1);
+    box-shadow: 0 4px 12px rgba(53, 83, 117, 0.18);
+    transition: all 0.25s ease;
 }
 
 .play-pause-btn:hover {
-    background: linear-gradient(135deg, var(--gold-radiant) 0%, var(--gold-warm) 100%);
+    background: #a98b4e;
     color: var(--white);
-    transform: scale(1.12);
-    box-shadow: 0 8px 24px rgba(191, 160, 84, 0.65), 0 3px 8px rgba(0, 0, 0, 0.2);
-    border-color: var(--white);
+    transform: scale(1.06);
+    box-shadow: 0 6px 16px rgba(53, 83, 117, 0.24);
 }
 
 .play-pause-btn:active {
@@ -1770,6 +1769,43 @@ body {
    10.1 APARTADO CONDICIONAL EXCLUSIVO: PADRINOS DE BODA
    Diseño de gala con detalles dorados y azul marino
    ========================================================= */
+
+/* Botón público de consulta de paleta para padrinos en enlace base */
+.padrinos-public-toggle-wrap {
+    margin: 6px auto 18px auto;
+    text-align: center;
+}
+
+.padrinos-public-toggle-btn {
+    background: #fdfbf7;
+    border: 1px solid rgba(191, 160, 84, 0.45);
+    border-radius: 20px;
+    color: var(--navy-deep);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 8px 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(90, 115, 142, 0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.padrinos-public-toggle-btn:hover {
+    background: #f8f4ea;
+    border-color: rgba(191, 160, 84, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(191, 160, 84, 0.18);
+    color: #1a334e;
+}
+
+.padrinos-toggle-sparkle {
+    color: var(--gold-warm);
+    font-size: 0.85rem;
+}
+
 .padrinos-dresscode-card {
     background-color: rgba(160, 174, 210, 0.82);
     backdrop-filter: blur(8px);
@@ -1889,6 +1925,21 @@ body {
     font-weight: 600;
     text-shadow: 0 1px 2px rgba(35, 58, 85, 0.3);
 }
+.padrinos-bubble-role {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    color: #fff4d6;
+    background: rgba(43, 69, 97, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    padding: 2px 10px;
+    margin-top: 2px;
+    display: inline-block;
+    text-shadow: 0 1px 2px rgba(35, 58, 85, 0.3);
+}
+
 
 .padrinos-general-toggle-wrap {
     margin: 10px auto 22px auto;
@@ -3554,5 +3605,314 @@ body {
     .cal-reminder-ribbon {
         font-size: 0.76rem;
         padding: 4px 8px;
+    }
+}
+
+/* =========================================================
+   14. SECCIÓN GUÍA DE LA INVITACIÓN (OPCIÓN 2)
+   Tarjeta editorial de alta papelería con instrucciones paso a paso
+   ========================================================= */
+.guide-section {
+    padding: 15px 18px 25px;
+    background-image: url(../images/backgrounds/fondo-1.png);
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
+    display: flex;
+    justify-content: center;
+}
+
+.guide-card {
+    position: relative;
+    width: 100%;
+    max-width: 390px;
+    background-color: var(--card-cream);
+    border: 1px solid rgba(191, 160, 84, 0.38);
+    border-radius: 18px;
+    padding: 28px 20px 24px;
+    box-shadow: 0 14px 36px rgba(53, 83, 117, 0.1), 0 0 0 4px rgba(253, 251, 247, 0.65);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.guide-card-inner-border {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px solid rgba(191, 160, 84, 0.22);
+    border-radius: 13px;
+    pointer-events: none;
+}
+
+.guide-header {
+    margin-bottom: 18px;
+    padding: 0 4px;
+}
+
+.guide-eyebrow {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 2.8px;
+    color: var(--gold-bronze);
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.guide-script-title {
+    font-size: 2.9rem;
+    color: var(--navy-deep);
+    font-weight: normal;
+    line-height: 1.05;
+    margin: 2px 0 8px;
+}
+
+.guide-intro {
+    font-size: 1rem;
+    color: var(--slate-muted);
+    line-height: 1.45;
+    font-style: italic;
+    margin: 0 auto;
+    max-width: 320px;
+}
+
+.guide-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.guide-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(191, 160, 84, 0.24);
+    border-radius: 12px;
+    padding: 12px 13px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.025);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.guide-step-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(191, 160, 84, 0.5);
+}
+
+.guide-step-item.highlight-step {
+    background: #f7f3ea;
+    border: 1px solid rgba(191, 160, 84, 0.45);
+    box-shadow: 0 4px 12px rgba(90, 115, 142, 0.08);
+}
+
+.guide-step-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--card-cream-warm);
+    border: 1px solid rgba(191, 160, 84, 0.35);
+    color: var(--gold-bronze);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.guide-step-icon.highlight-icon {
+    background: #b8995a;
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 6px rgba(53, 83, 117, 0.15);
+}
+
+.guide-step-body {
+    flex: 1;
+}
+
+.guide-step-title {
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    color: var(--navy-deep);
+    font-weight: 700;
+    margin: 0 0 3px;
+}
+
+.guide-step-desc {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    line-height: 1.48;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.guide-step-desc strong {
+    color: var(--navy-deep);
+    font-weight: 600;
+}
+
+.guide-footer-action {
+    display: flex;
+    justify-content: center;
+}
+
+.guide-scroll-rsvp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-dark) 100%);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(230, 206, 138, 0.55);
+    border-radius: 30px;
+    padding: 11px 22px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(43, 69, 97, 0.25);
+    transition: all 0.3s ease;
+}
+
+.guide-scroll-rsvp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(43, 69, 97, 0.35);
+    background: linear-gradient(135deg, var(--gold-warm) 0%, var(--gold-dark) 100%);
+    border-color: var(--white);
+}
+
+/* =========================================================
+   15. CINTILLO FLOTANTE INFERIOR: RECORDATORIO RSVP (OPCIÓN 3)
+   Barra flotante tipo píldora fija abajo que desaparece al llegar al RSVP
+   ========================================================= */
+.rsvp-floating-reminder {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translate(-50%, 24px);
+    z-index: 990;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    background: rgba(35, 53, 77, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 206, 138, 0.65);
+    border-radius: 999px;
+    padding: 6px 8px 6px 14px;
+    box-shadow: 0 10px 28px rgba(18, 28, 42, 0.4), 0 0 14px rgba(191, 160, 84, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.35, 1),
+        transform 0.4s cubic-bezier(0.25, 1, 0.35, 1),
+        visibility 0.4s ease;
+}
+
+.rsvp-floating-reminder.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.rsvp-floating-reminder.dismissed {
+    display: none !important;
+}
+
+.rsvp-reminder-pill {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    padding: 3px 4px 3px 0;
+    text-align: left;
+}
+
+.rsvp-reminder-pill strong {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.rsvp-reminder-sparkle {
+    color: var(--gold-light);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.rsvp-reminder-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-warm) 0%, var(--gold-dark) 100%);
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    animation: reminderBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes reminderBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(2.5px);
+    }
+}
+
+.rsvp-reminder-close {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.rsvp-reminder-close:hover {
+    background: rgba(230, 206, 138, 0.28);
+    color: var(--white);
+}
+
+@media (max-width: 380px) {
+    .guide-card {
+        padding: 22px 14px 20px;
+    }
+
+    .guide-script-title {
+        font-size: 2.5rem;
+    }
+
+    .guide-step-desc {
+        font-size: 0.74rem;
+    }
+
+    .rsvp-reminder-pill {
+        font-size: 0.68rem;
+        gap: 5px;
     }
 }

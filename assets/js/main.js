@@ -215,6 +215,8 @@ function openWelcomeEnvelope(e) {
         if (typeof AOS !== 'undefined') {
             AOS.refresh();
         }
+        // Mostrar cintillo flotante inferior tras abrir el sobre
+        initRsvpFloatingReminder();
     }, 1800);
 
     // Paso 4: Retirar del DOM visual tras completar la transición
@@ -223,11 +225,71 @@ function openWelcomeEnvelope(e) {
     }, 3000);
 }
 
+// =========================================================
+// NAVEGACIÓN SUAVE A RSVP & CINTILLO RECORDATORIO INFERIOR
+// =========================================================
+let rsvpReminderDismissed = false;
+
+function scrollToRSVP() {
+    const rsvpTarget = document.getElementById('rsvp-container') || document.querySelector('.rsvp-section');
+    if (rsvpTarget) {
+        rsvpTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+window.scrollToRSVP = scrollToRSVP;
+
+function dismissRsvpReminder(e) {
+    if (e && e.stopPropagation) e.stopPropagation();
+    rsvpReminderDismissed = true;
+    const reminder = document.getElementById('rsvp-floating-reminder');
+    if (reminder) {
+        reminder.classList.remove('visible');
+        reminder.classList.add('dismissed');
+    }
+}
+window.dismissRsvpReminder = dismissRsvpReminder;
+
+function initRsvpFloatingReminder() {
+    const reminder = document.getElementById('rsvp-floating-reminder');
+    const rsvpSection = document.querySelector('.rsvp-section');
+    if (!reminder || !rsvpSection) return;
+
+    // Mostrar después de un breve instante tras abrir la invitación
+    setTimeout(() => {
+        if (!rsvpReminderDismissed) {
+            reminder.classList.add('visible');
+        }
+    }, 900);
+
+    // Ocultar automáticamente cuando el usuario llega a la sección de Asistencia (RSVP)
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (rsvpReminderDismissed) return;
+                if (entry.isIntersecting) {
+                    reminder.classList.remove('visible');
+                } else {
+                    const splash = document.getElementById('welcome-splash');
+                    const isSplashClosed = !splash || splash.classList.contains('splash-closing') || splash.classList.contains('splash-hidden');
+                    if (isSplashClosed) {
+                        reminder.classList.add('visible');
+                    }
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+        observer.observe(rsvpSection);
+    }
+}
+
 // Bloquear el scroll de fondo mientras la portada de bienvenida esté visible
 document.addEventListener('DOMContentLoaded', () => {
     const splash = document.getElementById('welcome-splash');
     if (splash && !splash.classList.contains('splash-hidden')) {
         document.body.style.overflow = 'hidden';
+    } else {
+        initRsvpFloatingReminder();
     }
 });
 
