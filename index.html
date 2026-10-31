@@ -30,6 +30,29 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Precargar datos del invitado y mostrar saludo instantáneo si está en caché o parámetro -->
+    <script>
+        (function() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const guestId = params.get('id');
+                const guestNameParam = params.get('n') || params.get('nombre') || params.get('guest');
+                
+                if (guestNameParam) {
+                    window.__PRELOADED_GUEST_NAME__ = guestNameParam.trim();
+                } else if (guestId) {
+                    const cached = localStorage.getItem('guest_data_' + guestId);
+                    if (cached) {
+                        const parsed = JSON.parse(cached);
+                        if (parsed && parsed.contacto) {
+                            window.__PRELOADED_GUEST_NAME__ = parsed.contacto.trim();
+                            window.__CACHED_GUEST_DATA__ = parsed;
+                        }
+                    }
+                }
+            } catch(e) {}
+        })();
+    </script>
 </head>
 
 <body>
@@ -51,19 +74,27 @@
             <div class="splash-header-box">
                 <h1 class="splash-main-title script-font">Nuestra Boda</h1>
                 <p class="splash-guest-greeting font-alta" id="splash-guest-greeting" style="display: none;"></p>
-                <p class="splash-instruction-text font-alta">DA CLIC AL SOBRE PARA ABRIR</p>
+                <script>
+                    if (window.__PRELOADED_GUEST_NAME__) {
+                        const el = document.getElementById('splash-guest-greeting');
+                        if (el) {
+                            el.innerText = '¡HOLA, ' + window.__PRELOADED_GUEST_NAME__.toUpperCase() + '!';
+                            el.style.display = 'block';
+                        }
+                    }
+                </script>
+                <p class="splash-instruction-text font-alta">TOCA EL SELLO PARA ABRIR EL SOBRE</p>
             </div>
 
             <!-- Área Central con el Sobre y el Sello Interactivo -->
             <div class="splash-envelope-area" id="splash-envelope-area">
-                <!-- Flores de esquina izquierda -->
+                <div class="splash-envelope-wrapper" id="splash-envelope-wrapper">
+                    <!-- Flores de esquina izquierda -->
                 <img src="assets/images/gallery/flores-esquina-izquierda.png" alt="Flores decorativas"
                     class="splash-flower-decor splash-flower-left">
                 <!-- Flores de esquina derecha -->
                 <img src="assets/images/gallery/flores-esquina-derecha.png" alt="Flores decorativas"
                     class="splash-flower-decor splash-flower-right">
-
-                <div class="splash-envelope-wrapper" id="splash-envelope-wrapper">
                     <!-- Sobre Cerrado -->
                     <img src="assets/images/gallery/sobre-cerrado-nupcial.png" alt="Sobre cerrado de boda"
                         class="splash-envelope-closed" id="splash-env-closed">

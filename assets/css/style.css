@@ -351,15 +351,15 @@ body {
 }
 
 .splash-flower-decor.splash-flower-left {
-    top: -40px;
-    left: 5px;
-    width: 82px;
+    top: -19px;
+    left: -24px;
+    width: 76px;
 }
 
 .splash-flower-decor.splash-flower-right {
-    top: -50px;
-    right: 10px;
-    width: 78px;
+    top: -40px;
+    right: -24px;
+    width: 72px;
 }
 
 /* Envoltorio del sobre interactivo */
@@ -557,7 +557,7 @@ body {
 .splash-envelope-area.anim-opening .splash-inner-letter {
     opacity: 1;
     transform: translateX(-50%) translateY(-65px) scale(1);
-    z-index: 20;
+    z-index: 50;
 }
 
 /* Sección Inferior de la Portada */
@@ -627,13 +627,15 @@ body {
     }
 
     .splash-flower-decor.splash-flower-left {
-        width: 70px;
-        top: -24px;
+        width: 66px;
+        top: -20px;
+        left: -18px;
     }
 
     .splash-flower-decor.splash-flower-right {
-        width: 68px;
-        top: -26px;
+        width: 64px;
+        top: -22px;
+        right: -16px;
     }
 
     .splash-wax-seal {
@@ -1925,6 +1927,7 @@ body {
     font-weight: 600;
     text-shadow: 0 1px 2px rgba(35, 58, 85, 0.3);
 }
+
 .padrinos-bubble-role {
     font-family: var(--font-display);
     font-size: 0.68rem;
@@ -3868,9 +3871,12 @@ body {
 }
 
 @keyframes reminderBounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(2.5px);
     }
