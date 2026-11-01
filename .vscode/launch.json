@@ -2,41 +2,34 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Chrome: Servidor Local (Recomendado)",
+            "name": "Chrome: Servidor Web (Puerto 5500)",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:8080",
+            "url": "http://127.0.0.1:5500/index.html",
             "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "Iniciar Servidor Local"
+            "preLaunchTask": "Iniciar Servidor Web"
         },
         {
             "name": "Chrome: Probar Invitado Padrino (?id=11)",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:8080?id=11",
+            "url": "http://127.0.0.1:5500/index.html?id=11",
             "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "Iniciar Servidor Local"
+            "preLaunchTask": "Iniciar Servidor Web"
         },
         {
-            "name": "Chrome: Abrir index.html directo (Sin Servidor)",
+            "name": "Edge: Servidor Web (Puerto 5500)",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://127.0.0.1:5500/index.html",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Iniciar Servidor Web"
+        },
+        {
+            "name": "Chrome: Archivo directo (Sin Servidor)",
             "type": "chrome",
             "request": "launch",
             "file": "${workspaceFolder}/index.html"
-        },
-        {
-            "name": "Edge: Servidor Local",
-            "type": "msedge",
-            "request": "launch",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "Iniciar Servidor Local"
-        },
-        {
-            "name": "Chrome: Live Server (Puerto 5500)",
-            "type": "chrome",
-            "request": "launch",
-            "url": "http://127.0.0.1:5500",
-            "webRoot": "${workspaceFolder}"
         }
     ]
 }
