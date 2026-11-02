@@ -3722,16 +3722,50 @@ body {
     gap: 14px;
     width: 95%;
     border-radius: 16px;
-    padding: 18px 18px;
+    padding: 16px 18px;
     box-shadow: 0 10px 26px rgba(53, 83, 117, 0.09), 0 2px 6px rgba(191, 160, 84, 0.08);
-    transition: transform 0.28s ease, box-shadow 0.28s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
     box-sizing: border-box;
     overflow: visible;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .guide-step-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 32px rgba(53, 83, 117, 0.14), 0 4px 10px rgba(191, 160, 84, 0.14);
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 16px 36px rgba(53, 83, 117, 0.16), 0 6px 14px rgba(191, 160, 84, 0.18);
+}
+
+.guide-step-item:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+/* Indicación clic/tap para explorar la sección */
+.guide-step-cta {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    font-weight: 600;
+    margin-top: 6px;
+    opacity: 0.85;
+    transition: all 0.25s ease;
+}
+
+.guide-step-item:hover .guide-step-cta {
+    opacity: 1;
+    transform: translateX(2px);
+    color: var(--navy-deep);
+}
+
+.guide-step-item.guide-step-right .guide-step-cta {
+    text-align: right;
+}
+
+.guide-step-item.guide-step-left .guide-step-cta {
+    text-align: left;
 }
 
 /* Marco fino interior de alta papelería */

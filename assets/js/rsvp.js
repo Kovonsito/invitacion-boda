@@ -34,30 +34,41 @@ function normalizarTexto(texto) {
         .trim();
 }
 
-// Determina si el usuario actual es uno de los padrinos asignados
-// Determina si el invitado pertenece al cortejo de honor (padrino, dama, caballero o acompañante)
+// Determina si el invitado pertenece al cortejo de honor (Padrinos, Dama de honor, Caballero de honor)
 function obtenerRolEspecial(guestObj) {
     if (!guestObj) return null;
     const rawRol = guestObj.rol || guestObj.padrino || guestObj.esPadrino;
     if (!rawRol) return null;
     const r = normalizarTexto(String(rawRol));
+    if (r === 'invitado' || r === 'invitados' || r === 'general') return null;
     if (r.includes('dama')) return 'DAMA DE HONOR';
     if (r.includes('caballero')) return 'CABALLERO DE HONOR';
+    if (r.includes('padrinos')) return 'PADRINOS';
     if (r.includes('padrino') || r.includes('madrina')) return 'PADRINO';
-    if (r === 'si' || r === 'true') return 'PADRINO / CORTEJO';
+    if (r === 'si' || r === 'true') return 'PADRINOS / CORTEJO';
     return rawRol.toString().toUpperCase();
 }
 
 function esInvitadoPadrino(id, contacto, listaNombres, guestObj) {
     const urlParams = new URLSearchParams(window.location.search);
-    const paramPadrino = urlParams.get('padrino') || urlParams.get('padrinos') || urlParams.get('rol');
-    if (paramPadrino === 'true' || paramPadrino === '1' || paramPadrino === 'si' || paramPadrino === 'dama' || paramPadrino === 'caballero') {
+    const paramPadrino = normalizarTexto(urlParams.get('padrino') || urlParams.get('padrinos') || urlParams.get('rol') || '');
+    if (
+        paramPadrino === 'true' ||
+        paramPadrino === '1' ||
+        paramPadrino === 'si' ||
+        paramPadrino.includes('padrino') ||
+        paramPadrino.includes('dama') ||
+        paramPadrino.includes('caballero')
+    ) {
         return true;
     }
 
-    // 1. Verificación directa desde Google Sheets (columna "Rol", "Padrino" o "EsPadrino")
+    // 1. Verificación directa desde Google Sheets (columna "ROL", "Padrino" o "EsPadrino")
     if (guestObj) {
         const rolNorm = normalizarTexto(String(guestObj.rol || guestObj.padrino || guestObj.esPadrino || ''));
+        if (rolNorm === 'invitado' || rolNorm === 'invitados' || rolNorm === 'general') {
+            return false;
+        }
         if (
             rolNorm.includes('padrino') ||
             rolNorm.includes('madrina') ||
@@ -71,12 +82,12 @@ function esInvitadoPadrino(id, contacto, listaNombres, guestObj) {
         }
     }
 
-    // 2. Coincidencia con lista predefinida de IDs
+    // 2. Coincidencia con lista predefinida de IDs (respaldo si la celda ROL está vacía)
     if (id && PADRINO_IDS.includes(String(id).trim())) {
         return true;
     }
 
-    // 3. Coincidencia con nombres de contacto
+    // 3. Coincidencia con nombres de contacto (respaldo si la celda ROL está vacía)
     if (contacto) {
         const cContacto = normalizarTexto(contacto);
         if (PADRINO_NAMES.some(p => cContacto.includes(p))) {
@@ -95,6 +106,26 @@ function esInvitadoPadrino(id, contacto, listaNombres, guestObj) {
     }
 
     return false;
+}
+
+// Restaura la vista de invitado general si la hoja indica explícitamente el rol "Invitado"
+function desactivarModoPadrinos() {
+    const publicToggle = document.getElementById('padrinos-public-toggle-wrap');
+    const padrinosCard = document.getElementById('padrinos-dresscode-card');
+    const padrinosToggle = document.getElementById('padrinos-toggle-wrap');
+    const generalPalette = document.getElementById('general-guest-palette');
+    const badgePadrino = document.getElementById('padrino-badge-rsvp');
+
+    // Para los invitados normales se oculta también el botón de consulta de cortejo/padrinos
+    if (publicToggle) publicToggle.style.display = 'none';
+    if (padrinosCard) padrinosCard.style.display = 'none';
+    if (padrinosToggle) padrinosToggle.style.display = 'none';
+    if (generalPalette) generalPalette.style.display = 'block';
+    if (badgePadrino) badgePadrino.style.display = 'none';
+
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
 }
 
 // Activa la visualización de la sección exclusiva para padrinos
@@ -190,6 +221,8 @@ function initRSVP() {
         currentGuestData = window.__CACHED_GUEST_DATA__;
         if (esInvitadoPadrino(currentGuestData.id, currentGuestData.contacto, currentGuestData.listaNombres, currentGuestData)) {
             activarModoPadrinos(currentGuestData);
+        } else {
+            desactivarModoPadrinos();
         }
         procesarEstadoInvitado(currentGuestData);
     } else if (guestId) {
@@ -205,6 +238,8 @@ function initRSVP() {
                     }
                     if (esInvitadoPadrino(cachedData.id, cachedData.contacto, cachedData.listaNombres, cachedData)) {
                         activarModoPadrinos(cachedData);
+                    } else {
+                        desactivarModoPadrinos();
                     }
                     procesarEstadoInvitado(cachedData);
                 }
@@ -212,7 +247,13 @@ function initRSVP() {
         } catch(e) {}
     }
 
-    // 0. Detección preliminar inmediata de Padrinos para visualización sin retardo
+    // 0. Si viene con ID de invitado, ocultar preventivamente el botón de cortejo hasta validar su rol
+    if (guestId) {
+        const publicToggle = document.getElementById('padrinos-public-toggle-wrap');
+        if (publicToggle) publicToggle.style.display = 'none';
+    }
+
+    // 0.1 Detección preliminar inmediata de Padrinos para visualización sin retardo
     if (esInvitadoPadrino(guestId, null, null)) {
         activarModoPadrinos(currentGuestData || null);
     }
@@ -258,9 +299,11 @@ function initRSVP() {
                 splashGreeting.style.display = 'block';
             }
 
-            // Confirmar condición de padrino con los datos recibidos de la hoja
+            // Confirmar condición de padrino/cortejo con los datos recibidos de la hoja
             if (esInvitadoPadrino(data.id, data.contacto, data.listaNombres, data)) {
-                activarModoPadrinos();
+                activarModoPadrinos(data);
+            } else {
+                desactivarModoPadrinos();
             }
 
             procesarEstadoInvitado(data);
@@ -468,11 +511,16 @@ function enviarRSVP(tipo) {
         .then(data => {
             if (data.error) throw new Error(data.error);
 
-            // Actualizar datos locales
+            // Actualizar datos locales y caché
             if (currentGuestData) {
                 currentGuestData.estado = data.estado || tipo;
                 currentGuestData.confirmados = seleccionados.length;
                 currentGuestData.nombresConfirmados = seleccionados;
+                if (guestId) {
+                    try {
+                        localStorage.setItem('guest_data_' + guestId, JSON.stringify(currentGuestData));
+                    } catch (e) {}
+                }
             }
 
             const formEl = document.getElementById('form-state');

@@ -226,9 +226,18 @@ function openWelcomeEnvelope(e) {
 }
 
 // =========================================================
-// NAVEGACIÓN SUAVE A RSVP & CINTILLO RECORDATORIO INFERIOR
+// NAVEGACIÓN SUAVE ENTRE SECCIONES DE LA INVITACIÓN
 // =========================================================
 let rsvpReminderDismissed = false;
+
+function scrollToSection(sectionId) {
+    if (!sectionId) return;
+    const target = document.getElementById(sectionId);
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+window.scrollToSection = scrollToSection;
 
 function scrollToRSVP() {
     const rsvpTarget = document.getElementById('rsvp-container') || document.querySelector('.rsvp-section');
