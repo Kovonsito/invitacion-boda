@@ -2,9 +2,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Iniciar Servidor Local",
+            "label": "Iniciar Servidor Web",
             "type": "shell",
-            "command": "python -u -m http.server 8080",
+            "command": "node server.js",
             "isBackground": true,
             "problemMatcher": {
                 "pattern": {
@@ -12,8 +12,8 @@
                 },
                 "background": {
                     "activeOnStart": true,
-                    "beginsPattern": "^Serving HTTP on",
-                    "endsPattern": "^Serving HTTP on"
+                    "beginsPattern": "^\\[SERVER_READY\\]",
+                    "endsPattern": "^\\[SERVER_READY\\]"
                 }
             },
             "presentation": {
@@ -24,4 +24,3 @@
         }
     ]
 }
-
