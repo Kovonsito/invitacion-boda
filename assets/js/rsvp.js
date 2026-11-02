@@ -133,6 +133,10 @@ function activarModoPadrinos(guestObj) {
     const rolEspecifico = obtenerRolEspecial(guestObj);
     const cardTitleEl = document.getElementById('padrinos-card-title');
     const badgeRsvpEl = document.getElementById('padrino-badge-rsvp');
+    const bubbleWomen = document.getElementById('padrinos-bubble-women');
+    const bubbleMen = document.getElementById('padrinos-bubble-men');
+    const roleWomen = document.getElementById('padrinos-bubble-role-women');
+    const roleMen = document.getElementById('padrinos-bubble-role-men');
 
     if (cardTitleEl && rolEspecifico) {
         cardTitleEl.innerText = `CÓDIGO DE VESTIMENTA – ${rolEspecifico}`;
@@ -140,9 +144,30 @@ function activarModoPadrinos(guestObj) {
     if (badgeRsvpEl && rolEspecifico) {
         badgeRsvpEl.innerText = `DISTINCIÓN DE HONOR: ${rolEspecifico}`;
     }
+
+    // Filtrar burbujas de color según el rol específico:
+    // - Dama de honor: solo Dorado mate / Champán
+    // - Caballero de honor: solo Azul marino
+    // - Padrinos / Cortejo: ambos colores (Hombres y Mujeres)
+    const rolNorm = normalizarTexto(rolEspecifico || '');
+    if (rolNorm.includes('dama')) {
+        if (bubbleWomen) bubbleWomen.style.display = 'flex';
+        if (bubbleMen) bubbleMen.style.display = 'none';
+        if (roleWomen) roleWomen.style.display = 'none';
+    } else if (rolNorm.includes('caballero')) {
+        if (bubbleWomen) bubbleWomen.style.display = 'none';
+        if (bubbleMen) bubbleMen.style.display = 'flex';
+        if (roleMen) roleMen.style.display = 'none';
+    } else {
+        if (bubbleWomen) bubbleWomen.style.display = 'flex';
+        if (bubbleMen) bubbleMen.style.display = 'flex';
+        if (roleWomen) roleWomen.style.display = 'inline-block';
+        if (roleMen) roleMen.style.display = 'inline-block';
+    }
+
     const publicToggle = document.getElementById('padrinos-public-toggle-wrap');
     if (publicToggle) {
-        publicToggle.style.display = 'none'; // Ya es padrino oficial, no requiere botón de consulta
+        publicToggle.style.display = 'none'; // Ya es cortejo/padrino oficial, no requiere botón de consulta
     }
     const padrinosCard = document.getElementById('padrinos-dresscode-card');
     const padrinosToggle = document.getElementById('padrinos-toggle-wrap');
@@ -156,7 +181,7 @@ function activarModoPadrinos(guestObj) {
         padrinosToggle.style.display = 'block';
     }
     if (generalPalette) {
-        // Para padrinos se colapsa la paleta general por defecto para enfocar su paleta asignada
+        // Para cortejo/padrinos se colapsa la paleta general por defecto para enfocar su paleta asignada
         generalPalette.style.display = 'none';
     }
     if (badgePadrino) {
