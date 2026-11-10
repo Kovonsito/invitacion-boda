@@ -2,7 +2,7 @@
 // MÓDULO DE ASISTENCIA DINÁMICA (RSVP) CON GOOGLE SHEETS
 // =========================================================
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBfe6AsBT63D6LXVylOJTFFp51hHcp_ifRIPt7_lcpvP2eJdo6rYaArA-IAFmver9brg/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypTeoS_qGSAF00ARFU_qKbO2yZRIrUHBtzFNuG8yqvu8M5r6ouhc18A0U5OZkemcXSfQ/exec';
 
 // Fecha límite de confirmación: 15 de Noviembre de 2026 a las 23:59:59 (GMT-7 / Hora de Nayarit)
 const FECHA_LIMITE_RSVP = new Date('2026-11-15T23:59:59-07:00');
@@ -10,13 +10,6 @@ const FECHA_LIMITE_RSVP = new Date('2026-11-15T23:59:59-07:00');
 function haExpiradoFechaLimite() {
     return new Date() > FECHA_LIMITE_RSVP;
 }
-
-// Identificadores fijos de ID y nombres oficiales para distinguir a los Padrinos:
-// - Isaac Huerta: id=11
-// - Norma Cortés: id=13
-// - Lupita Mercado: id=26
-const PADRINO_IDS = ['11', '13', '26'];
-const PADRINO_NAMES = ['lupita mercado', 'norma cortes', 'isaac huerta'];
 
 let guestId = null;
 let currentGuestData = null;
@@ -49,7 +42,7 @@ function obtenerRolEspecial(guestObj) {
     return rawRol.toString().toUpperCase();
 }
 
-function esInvitadoPadrino(id, contacto, listaNombres, guestObj) {
+function esInvitadoPadrino(guestObj) {
     const urlParams = new URLSearchParams(window.location.search);
     const paramPadrino = normalizarTexto(urlParams.get('padrino') || urlParams.get('padrinos') || urlParams.get('rol') || '');
     if (
@@ -63,7 +56,7 @@ function esInvitadoPadrino(id, contacto, listaNombres, guestObj) {
         return true;
     }
 
-    // 1. Verificación directa desde Google Sheets (columna "ROL", "Padrino" o "EsPadrino")
+    // Verificación directa desde Google Sheets (Columna K: "ROL")
     if (guestObj) {
         const rolNorm = normalizarTexto(String(guestObj.rol || guestObj.padrino || guestObj.esPadrino || ''));
         if (rolNorm === 'invitado' || rolNorm === 'invitados' || rolNorm === 'general') {
@@ -79,29 +72,6 @@ function esInvitadoPadrino(id, contacto, listaNombres, guestObj) {
             rolNorm === 'true'
         ) {
             return true;
-        }
-    }
-
-    // 2. Coincidencia con lista predefinida de IDs (respaldo si la celda ROL está vacía)
-    if (id && PADRINO_IDS.includes(String(id).trim())) {
-        return true;
-    }
-
-    // 3. Coincidencia con nombres de contacto (respaldo si la celda ROL está vacía)
-    if (contacto) {
-        const cContacto = normalizarTexto(contacto);
-        if (PADRINO_NAMES.some(p => cContacto.includes(p))) {
-            return true;
-        }
-    }
-
-    // 4. Coincidencia en la lista de nombres de los pases
-    if (Array.isArray(listaNombres)) {
-        for (const item of listaNombres) {
-            const cItem = normalizarTexto(item);
-            if (PADRINO_NAMES.some(p => cItem.includes(p))) {
-                return true;
-            }
         }
     }
 
@@ -241,35 +211,15 @@ function initRSVP() {
         splashGreeting.style.display = 'block';
     }
 
-    // Si existen datos del invitado en caché, precargarlos de inmediato sin esperar el fetch
+    // Si existen datos del invitado en caché (cargados desde index.html), precargarlos de inmediato sin esperar el fetch
     if (window.__CACHED_GUEST_DATA__) {
         currentGuestData = window.__CACHED_GUEST_DATA__;
-        if (esInvitadoPadrino(currentGuestData.id, currentGuestData.contacto, currentGuestData.listaNombres, currentGuestData)) {
+        if (esInvitadoPadrino(currentGuestData)) {
             activarModoPadrinos(currentGuestData);
         } else {
             desactivarModoPadrinos();
         }
         procesarEstadoInvitado(currentGuestData);
-    } else if (guestId) {
-        try {
-            const cachedStr = localStorage.getItem('guest_data_' + guestId);
-            if (cachedStr) {
-                const cachedData = JSON.parse(cachedStr);
-                if (cachedData && cachedData.contacto) {
-                    currentGuestData = cachedData;
-                    if (splashGreeting) {
-                        splashGreeting.innerText = `¡HOLA, ${cachedData.contacto.trim().toUpperCase()}!`;
-                        splashGreeting.style.display = 'block';
-                    }
-                    if (esInvitadoPadrino(cachedData.id, cachedData.contacto, cachedData.listaNombres, cachedData)) {
-                        activarModoPadrinos(cachedData);
-                    } else {
-                        desactivarModoPadrinos();
-                    }
-                    procesarEstadoInvitado(cachedData);
-                }
-            }
-        } catch(e) {}
     }
 
     // 0. Si viene con ID de invitado, ocultar preventivamente el botón de cortejo hasta validar su rol
@@ -278,8 +228,8 @@ function initRSVP() {
         if (publicToggle) publicToggle.style.display = 'none';
     }
 
-    // 0.1 Detección preliminar inmediata de Padrinos para visualización sin retardo
-    if (esInvitadoPadrino(guestId, null, null)) {
+    // 0.1 Detección preliminar inmediata si el rol viene por parámetro URL
+    if (esInvitadoPadrino(currentGuestData || null)) {
         activarModoPadrinos(currentGuestData || null);
     }
 
@@ -325,7 +275,7 @@ function initRSVP() {
             }
 
             // Confirmar condición de padrino/cortejo con los datos recibidos de la hoja
-            if (esInvitadoPadrino(data.id, data.contacto, data.listaNombres, data)) {
+            if (esInvitadoPadrino(data)) {
                 activarModoPadrinos(data);
             } else {
                 desactivarModoPadrinos();
